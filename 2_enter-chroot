@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+    echo 'Usage'
+    echo '2_enter-chroot chroot'
+    exit
+fi
+
+dest=$(readlink -f $1)
+
+mount --bind /dev $dest/dev
+mount --bind /proc $dest/proc
+mount --bind /sys $dest/sys
+
+setarch i386 chroot $dest /bin/bash --rcfile /root/.bashrc
+
+umount $dest/dev
+umount $dest/proc
+umount $dest/sys

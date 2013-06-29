@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+    echo "Usage:"
+    echo "1_make-chroot distro-rpm chroot-dir"
+    exit
+fi
+
+# convert to absolute path
+dest=$(readlink -f $2)
+
+MESSAGE="This script requires rpm and yum packages to be installed."
+
+rpm --version >/dev/null 2>&1 || { echo >&2 $MESSAGE; exit 1; }
+yum --version >/dev/null 2>&1 || { echo >&2 $MESSAGE; exit 1; }
+
+echo "Making chroot from $1 in $dest"
+
+mkdir -p $dest/var/lib/rpm
+setarch i386 rpm --root $dest --initdb
+sudo setarch i386 rpm -ivh --force-debian --nodeps --root $dest $1
+sudo rm -r /etc/pki
+sudo ln -s $dest/etc/pki /etc/pki
+sudo wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O $dest/etc/yum.repos.d/devtools-1.1.repo
+sudo setarch i386 yum -y --installroot $dest install yum wget make zlib-devel bzip2-devel sqlite-devel ncurses-devel expat-devel openssl-devel zlib-devel devtoolset-1.1-binutils devtoolset-1.1-gcc devtoolset-1.1-gcc-c++
+# fix devtoolset
+sudo cp -r $dest/opt/rh/* $dest/opt/centos/
+sudo cp /etc/resolv.conf $dest/etc/
+sudo mkdir $dest/opt/prefix
+sudo cp .bashrc $dest/root/
