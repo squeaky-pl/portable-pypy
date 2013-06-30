@@ -1,0 +1,67 @@
+#!/bin/bash
+
+wget http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2
+tar xf patchelf-0.6.tar.bz2
+cd patchelf-0.6
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd ..
+
+
+wget http://www.sqlite.org/2013/sqlite-autoconf-3071700.tar.gz
+tar xf sqlite-autoconf-3071700.tar.gz
+cd sqlite-autoconf-3071700
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd ..
+
+
+wget ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
+tar xf libffi-3.0.13.tar.gz
+cd libffi-3.0.13
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd ..
+cd lib
+find . -name ffi.h | xargs -i ln -s ../lib/{} ../include/
+find . -name ffitarget.h | xargs -i ln -s ../lib/{} ../include/
+cd ..
+
+
+wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
+tar xf openssl-1.0.1e.tar.gz
+cd openssl-1.0.1e
+./config shared --prefix=/opt/prefix
+# this script ignored LDFLAGS
+sed -i "s#^SHARED_LDFLAGS=\(.*\)#SHARED_LDFLAGS=$LDFLAGS \1#" Makefile
+make -j4
+make install
+cd ..
+
+
+wget http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz
+tar xf expat-2.1.0.tar.gz
+cd expat-2.1.0
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd ..
+
+wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
+tar xf ncurses-5.9.tar.gz
+cd ncurses-5.9
+./configure --with-shared --prefix=/opt/prefix --without-cxx-binding --without-cxx
+make -j4
+make install
+cd ..
+
+wget http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2
+tar xf Python-2.7.5.tar.bz2
+cd Python-2.7.5
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd ..

@@ -23,8 +23,10 @@ sudo rm -r /etc/pki
 sudo ln -s $dest/etc/pki /etc/pki
 sudo wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O $dest/etc/yum.repos.d/devtools-1.1.repo
 sudo setarch i386 yum -y --installroot $dest install yum wget make zlib-devel bzip2-devel sqlite-devel ncurses-devel expat-devel openssl-devel zlib-devel devtoolset-1.1-binutils devtoolset-1.1-gcc devtoolset-1.1-gcc-c++
+
 # fix devtoolset
 sudo cp -r $dest/opt/rh/* $dest/opt/centos/
+sudo ln -s $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld.bfd $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld
 sudo cp /etc/resolv.conf $dest/etc/
 sudo mkdir $dest/opt/prefix
 sudo cp .bashrc $dest/root/
