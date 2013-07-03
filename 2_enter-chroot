@@ -14,7 +14,7 @@ mount --bind /sys $dest/sys
 
 ARCH=$(cat $dest/opt/prefix/arch)
 
-setarch $ARCH chroot $dest /bin/bash --rcfile /root/.bashrc
+HOME=/root setarch $ARCH chroot $dest /bin/bash
 
 umount $dest/dev
 umount $dest/proc
