@@ -1,7 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-bundle = ['sqlite3', 'ncurses', 'ssl', 'crypto', 'ffi', 'expat']
-ffi_libs = ['sqlite3', 'curses']
+bundle = ['sqlite3', 'ncurses', 'panel', 'ssl', 'crypto', 'ffi', 'expat']
 
 from os import system, chdir, unlink, mkdir
 from os.path import dirname, relpath, join
@@ -19,24 +18,19 @@ def get_deps(binary):
             continue
         line = line.strip()
         needed, path = line.split(' => ')
+        if path == 'not found':
+              print 'Broken dependency in ' + binary
         path = path.split(' ')[0]
         if not path:
             continue
+
+        if needed[3:].split('.', 1)[0] not in bundle:
+	    continue
+
         deps[needed] = path
         deps.update(get_deps(path))
 
     return deps
-
-
-def strip_deps(deps):
-    stripped = {}
-    for k, v in deps.items():
-        name = k[3:].split('.', 1)[0]
-        if not name in bundle:
-            continue
-        stripped[k] = v
-
-    return stripped
 
 
 def gather_deps(binaries):
@@ -44,14 +38,17 @@ def gather_deps(binaries):
     for binary in binaries:
         deps.update(get_deps(binary))
 
-    return strip_deps(deps)
+    return deps
 
 
 def copy_deps(deps):
+    copied = {}
+
     for needed, path in deps.items():
         copy2(path, 'lib/' + needed)
+        copied[path] = 'lib/' + needed
 
-    return ['lib/' + k for k in deps.keys()]
+    return copied
 
 
 def rpath_binaries(binaries):
@@ -71,12 +68,13 @@ def main():
     binaries.extend(glob('lib_pypy/__pycache__/*.so'))
 
     deps = gather_deps(binaries)
+
     copied = copy_deps(deps)
 
-    for item in copied:
-        print('Copied ' + item)
+    for path, item in copied.items():
+        print('Copied {0} to {1}'.format(path, item))
 
-    binaries.extend(copied)
+    binaries.extend(copied.values())
 
     rpaths = rpath_binaries(binaries)
     for binary, rpath in rpaths.items():
@@ -87,10 +85,6 @@ def main():
 
 if __name__ == '__main__':
     chdir(argv[1])
-    try:
-        rmtree('lib')
-    except OSError:
-        pass
 
     try:
         mkdir('lib')

@@ -12,8 +12,6 @@ dest=$(readlink -f $2)
 
 if [[ $1 =~ i386 ]]; then
     SETARCH="setarch i386"
-    echo 'set arch'
-    exit
 fi
 
 MESSAGE="This script requires rpm and yum packages to be installed."
@@ -41,4 +39,4 @@ cp /etc/resolv.conf $dest/etc/
 mkdir $dest/opt/prefix
 
 cp .bashrc $dest/root/
-cp -a 3_make_deps 4_make_portable.py $dest/opt/prefix
+cp -a 3_make_deps sysconfig_pypy.py 4_package_pypy PACKAGE_HACK 5_make_portable.py $dest/opt/prefix

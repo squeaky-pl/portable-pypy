@@ -65,3 +65,6 @@ cd Python-2.7.5
 make -j4
 make install
 cd ..
+
+
+cp -ra lib64/* lib

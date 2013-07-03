@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp sysconfig_pypy.py $1/lib-python/2.7/distutils
+cd $1
+#find . -name *.so | xargs rm
+pypy/goal/pypy-c pypy/tool/release/package.py . pypy-2.0.2-linux_$(uname -m)-portable
