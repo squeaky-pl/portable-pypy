@@ -9,11 +9,6 @@ fi
 # convert to absolute path
 dest=$(readlink -f $2)
 
-
-if [[ $1 =~ i386 ]]; then
-    SETARCH="setarch i386"
-fi
-
 MESSAGE="This script requires rpm and yum packages to be installed."
 
 rpm --version >/dev/null 2>&1 || { echo >&2 $MESSAGE; exit 1; }
@@ -21,13 +16,15 @@ yum --version >/dev/null 2>&1 || { echo >&2 $MESSAGE; exit 1; }
 
 echo "Making chroot from $1 in $dest"
 
+ARCH=$(rpm -qip $1 | grep Architecture | awk '{print $2}')
+
 mkdir -p $dest/var/lib/rpm
-$SETARCH rpm --root $dest --initdb
-$SETARCH rpm -ivh --force-debian --nodeps --root $dest $1
+setarch $ARCH rpm --root $dest --initdb
+setarch $ARCH rpm -ivh --force-debian --nodeps --root $dest $1
 rm -r /etc/pki
 ln -s $dest/etc/pki /etc/pki
 wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O $dest/etc/yum.repos.d/devtools-1.1.repo
-$SETARCH yum -y --installroot $dest install yum wget make zlib-devel bzip2-devel sqlite-devel ncurses-devel expat-devel openssl-devel zlib-devel devtoolset-1.1-binutils devtoolset-1.1-gcc devtoolset-1.1-gcc-c++ readline-devel
+setarch $ARCH yum -y --installroot $dest install yum wget make zlib-devel bzip2-devel sqlite-devel ncurses-devel expat-devel openssl-devel zlib-devel devtoolset-1.1-binutils devtoolset-1.1-gcc devtoolset-1.1-gcc-c++ readline-devel
 
 # fix devtoolset
 cp -r $dest/opt/rh/* $dest/opt/centos/
@@ -37,6 +34,7 @@ fi
 
 cp /etc/resolv.conf $dest/etc/
 mkdir $dest/opt/prefix
+echo -n $ARCH > $dest/opt/prefix/arch
 
 cp .bashrc $dest/root/
 cp -a 3_make_deps sysconfig_pypy.py 4_package_pypy PACKAGE_HACK 5_make_portable.py $dest/opt/prefix
