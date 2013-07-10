@@ -29,7 +29,7 @@ setarch $ARCH yum -y --installroot $dest install yum wget make zlib-devel bzip2-
 # fix devtoolset
 cp -r $dest/opt/rh/* $dest/opt/centos/
 if [ ! -f $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld ]; then
-    ln -s $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld.bfd $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld 
+    ln -s /opt/centos/devtoolset-1.1/root/usr/bin/ld.bfd $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld
 fi
 
 cp /etc/resolv.conf $dest/etc/
