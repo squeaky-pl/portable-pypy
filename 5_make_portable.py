@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-bundle = ['sqlite3', 'ncurses', 'panel', 'ssl', 'crypto', 'ffi', 'expat']
+bundle = ['sqlite3', 'ncurses', 'panel', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk']
 
 from os import system, chdir, unlink, mkdir
 from os.path import dirname, relpath, join
@@ -66,6 +66,7 @@ def rpath_binaries(binaries):
 def main():
     binaries = ['bin/pypy']
     binaries.extend(glob('lib_pypy/__pycache__/*.so'))
+    binaries.extend(glob('lib_pypy/_tkinter/__pycache__/*.so'))
 
     deps = gather_deps(binaries)
 
