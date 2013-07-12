@@ -3,8 +3,8 @@
 bundle = ['sqlite3', 'ncurses', 'panel', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk']
 
 from os import system, chdir, unlink, mkdir
-from os.path import dirname, relpath, join
-from shutil import rmtree, copy, copy2
+from os.path import dirname, relpath, join, samefile
+from shutil import rmtree, copy, copy2, copytree
 from sys import argv, exit
 from glob import glob
 from subprocess import check_output, call
@@ -45,6 +45,9 @@ def copy_deps(deps):
     copied = {}
 
     for needed, path in deps.items():
+	if samefile(path, 'lib/' + needed):
+		continue
+
         copy2(path, 'lib/' + needed)
         copied[path] = 'lib/' + needed
 
@@ -93,4 +96,9 @@ if __name__ == '__main__':
         pass
 
     main()
+
+    # tcl/tk library
+    copytree('/opt/prefix/lib/tcl8.6', 'lib/tcl')
+    copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
+    call(['patch', 'lib_pypy/_tkinter/app.py', '../_tkinter_app.py.patch'])
 
