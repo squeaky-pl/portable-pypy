@@ -18,7 +18,7 @@ make install
 cd ..
 
 
-wget ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
+wget http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz 
 tar xf libffi-3.0.13.tar.gz
 cd libffi-3.0.13
 ./configure --prefix=/opt/prefix
@@ -65,6 +65,26 @@ cd Python-2.7.5
 make -j4
 make install
 cd ..
+
+wget http://prdownloads.sourceforge.net/tcl/tcl8.6.0-src.tar.gz
+tar xf tcl8.6.0-src.tar.gz
+cd tcl8.6.0/unix
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd ../..
+
+ln -s /opt/prefix/lib/libtcl8.6.so /opt/prefix/lib/libtcl.so
+
+wget http://prdownloads.sourceforge.net/tcl/tk8.6.0-src.tar.gz
+tar xf tk8.6.0-src.tar.gz
+cd tk8.6.0/unix
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd ../..
+
+ln -s /opt/prefix/lib/libtk8.6.so /opt/prefix/lib/libtk.so
 
 
 cp -ra lib64/* lib
