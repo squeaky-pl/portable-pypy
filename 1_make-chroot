@@ -24,7 +24,7 @@ setarch $ARCH rpm -ivh --force-debian --nodeps --root $dest $1
 rm -r /etc/pki
 ln -s $dest/etc/pki /etc/pki
 wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O $dest/etc/yum.repos.d/devtools-1.1.repo
-setarch $ARCH yum -y --installroot $dest install yum wget make zlib-devel bzip2-devel sqlite-devel ncurses-devel expat-devel openssl-devel zlib-devel devtoolset-1.1-binutils devtoolset-1.1-gcc devtoolset-1.1-gcc-c++ readline-devel
+setarch $ARCH yum -c yum.conf -y --installroot $dest install yum wget make zlib-devel bzip2-devel sqlite-devel ncurses-devel expat-devel openssl-devel zlib-devel devtoolset-1.1-binutils devtoolset-1.1-gcc devtoolset-1.1-gcc-c++ readline-devel libX11-devel libXt-devel patch
 
 # fix devtoolset
 cp -r $dest/opt/rh/* $dest/opt/centos/
@@ -33,8 +33,9 @@ if [ ! -f $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld ]; then
 fi
 
 cp /etc/resolv.conf $dest/etc/
+cp yum.conf $dest/etc/
 mkdir $dest/opt/prefix
 echo -n $ARCH > $dest/opt/prefix/arch
 
 cp .bashrc $dest/root/
-cp -a 3_make_deps sysconfig_pypy.py 4_package_pypy PACKAGE_HACK 5_make_portable.py $dest/opt/prefix
+cp -a 3_make_deps sysconfig_pypy.py 4_package_pypy PACKAGE_HACK 5_make_portable.py _tkinter_app.py.patch $dest/opt/prefix
