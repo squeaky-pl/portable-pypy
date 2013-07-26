@@ -1,6 +1,0 @@
-cd into source
-find . -name *.so | xargs rm
-run package_pypy
-execute manually cc -shared lines
-run package_pypy again
-bring original sysconfig_pypy to package

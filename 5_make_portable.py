@@ -101,4 +101,3 @@ if __name__ == '__main__':
     copytree('/opt/prefix/lib/tcl8.6', 'lib/tcl')
     copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
     call(['patch', 'lib_pypy/_tkinter/app.py', '../_tkinter_app.py.patch'])
-

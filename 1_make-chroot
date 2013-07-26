@@ -38,4 +38,4 @@ mkdir $dest/opt/prefix
 echo -n $ARCH > $dest/opt/prefix/arch
 
 cp .bashrc $dest/root/
-cp -a 3_make_deps sysconfig_pypy.py 4_package_pypy PACKAGE_HACK 5_make_portable.py _tkinter_app.py.patch $dest/opt/prefix
+cp -a 3_make_deps 4_package_pypy PACKAGE_HACK 5_make_portable.py _tkinter_app.py.patch $dest/opt/prefix
