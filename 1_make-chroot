@@ -33,9 +33,15 @@ if [ ! -f $dest/opt/centos/devtoolset-1.1/root/usr/bin/ld ]; then
 fi
 
 cp /etc/resolv.conf $dest/etc/
-cp yum.conf $dest/etc/
+#cp yum.conf $dest/etc/
 mkdir $dest/opt/prefix
 echo -n $ARCH > $dest/opt/prefix/arch
 
 cp .bashrc $dest/root/
 cp -a 3_make_deps 4_package_pypy 5_make_portable.py _tkinter_app.py.patch $dest/opt/prefix
+
+mkdir $dest/opt/pypy
+cd $dest/opt/pypy
+wget -O pypy.tar.bz2 https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-beta-linux_$ARCH-portable.tar.bz2
+tar xf pypy.tar.bz2 --strip-components=1
+rm pypy.tar.bz2

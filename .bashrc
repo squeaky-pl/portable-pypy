@@ -1,6 +1,6 @@
 source /opt/centos/devtoolset-1.1/enable
 
-export PATH=/opt/prefix/bin:$PATH
+export PATH=/opt/prefix/bin:/opt/pypy/bin:$PATH
 export CFLAGS=-I/opt/prefix/include
 export CPPFLAGS=-I/opt/prefix/include
 export LDFLAGS="-L/opt/prefix/lib -Wl,-rpath,/opt/prefix/lib"
