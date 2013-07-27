@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-bundle = ['sqlite3', 'ncurses', 'panel', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk']
+bundle = ['sqlite3', 'ncurses', 'panel', 'ssl',
+          'crypto', 'ffi', 'expat', 'tcl', 'tk']
 
-from os import system, chdir, unlink, mkdir
-from os.path import dirname, relpath, join, samefile
-from shutil import rmtree, copy, copy2, copytree
-from sys import argv, exit
+from os import chdir, mkdir
+from os.path import dirname, relpath, join, samefile, exists, basename
+from shutil import copy2, copytree
+from sys import argv
 from glob import glob
 from subprocess import check_output, call
 
@@ -19,13 +20,13 @@ def get_deps(binary):
         line = line.strip()
         needed, path = line.split(' => ')
         if path == 'not found':
-              print 'Broken dependency in ' + binary
+            print 'Broken dependency in ' + binary
         path = path.split(' ')[0]
         if not path:
             continue
 
         if needed[3:].split('.', 1)[0] not in bundle:
-	    continue
+            continue
 
         deps[needed] = path
         deps.update(get_deps(path))
@@ -45,8 +46,8 @@ def copy_deps(deps):
     copied = {}
 
     for needed, path in deps.items():
-	if samefile(path, 'lib/' + needed):
-		continue
+        if exists('lib/' + needed) and samefile(path, 'lib/' + needed):
+            continue
 
         copy2(path, 'lib/' + needed)
         copied[path] = 'lib/' + needed
@@ -101,3 +102,19 @@ if __name__ == '__main__':
     copytree('/opt/prefix/lib/tcl8.6', 'lib/tcl')
     copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
     call(['patch', 'lib_pypy/_tkinter/app.py', '../_tkinter_app.py.patch'])
+
+    # virtualenv
+    if not exists('virtualenv_support'):
+        mkdir('virtualenv_support')
+
+    root = 'https://raw.github.com/pypa/virtualenv/1.10.X'
+    files = ['virtualenv.py', 'virtualenv_support/pip-1.4.tar.gz',
+             'virtualenv_support/setuptools-0.9.7.tar.gz']
+    for file in files:
+        call(['wget', '-O', join('virtualenv_support', basename(file)),
+              join(root, file)])
+
+    call(['patch', 'virtualenv_support/virtualenv.py',
+          '../virtualenv.py.patch'])
+    copy2('../virtualenv-pypy', 'bin/virtualenv-pypy')
+    call(['chmod', 'a+x', 'bin/virtualenv-pypy'])

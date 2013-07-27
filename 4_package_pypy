@@ -2,4 +2,4 @@
 
 cd $1
 find . -name *.so | xargs rm
-pypy/goal/pypy-c pypy/tool/release/package.py . pypy-2.1-beta-linux_$(uname -m)-portable
+pypy/goal/pypy-c pypy/tool/release/package.py . pypy-2.1-beta2-linux_$(uname -m)-portable

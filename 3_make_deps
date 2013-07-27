@@ -58,14 +58,6 @@ make -j4
 make install
 cd ..
 
-wget http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2
-tar xf Python-2.7.5.tar.bz2
-cd Python-2.7.5
-./configure --prefix=/opt/prefix
-make -j4
-make install
-cd ..
-
 wget http://prdownloads.sourceforge.net/tcl/tcl8.6.0-src.tar.gz
 tar xf tcl8.6.0-src.tar.gz
 cd tcl8.6.0/unix

@@ -1,0 +1,14 @@
+--- pypy-2.1-beta2-linux_x86_64-portable/virtualenv_support/virtualenv_orig.py	2013-07-27 11:50:58.208452048 -0400
++++ pypy-2.1-beta2-linux_x86_64-portable/virtualenv_support/virtualenv.py	2013-07-27 11:50:26.628451115 -0400
+@@ -1376,6 +1376,11 @@
+             else:
+                 shutil.copyfile(py_executable_base, full_pth)
+ 
++    portable_lib_dir = join(os.path.dirname(sys.executable), '../lib')
++    portable_dst_lib_dir = join(home_dir, 'lib')
++    if (os.path.exists(portable_lib_dir) and not os.path.exists(portable_dst_lib_dir)):
++        shutil.copytree(portable_lib_dir, portable_dst_lib_dir)
++
+     if is_win and ' ' in py_executable:
+         # There's a bug with subprocess on Windows when using a first
+         # argument that has a space in it.  Instead we have to quote
