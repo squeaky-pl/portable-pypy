@@ -50,13 +50,13 @@ make -j4
 make install
 cd ..
 
-wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
-tar xf ncurses-5.9.tar.gz
-cd ncurses-5.9
-./configure --with-shared --prefix=/opt/prefix --without-cxx-binding --without-cxx
-make -j4
-make install
-cd ..
+#wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
+#tar xf ncurses-5.9.tar.gz
+#cd ncurses-5.9
+#./configure --with-shared --prefix=/opt/prefix --without-cxx-binding --without-cxx
+#make -j4
+#make install
+#cd ..
 
 wget http://prdownloads.sourceforge.net/tcl/tcl8.6.0-src.tar.gz
 tar xf tcl8.6.0-src.tar.gz
