@@ -18,6 +18,10 @@ echo "Making chroot from $1 in $dest"
 
 ARCH=$(rpm -qip $1 | grep Architecture | awk '{print $2}')
 
+if [ $ARCH = "i386" ]; then
+    ARCH="i686"
+fi
+
 mkdir -p $dest/var/lib/rpm
 setarch $ARCH rpm --root $dest --initdb
 setarch $ARCH rpm -ivh --force-debian --nodeps --root $dest $1
