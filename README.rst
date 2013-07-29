@@ -9,9 +9,15 @@ it instantly without installing any extra libraries or tweaking
 your OS.
 Currenly they are known to work across various DEB and RPM based
 distributions including RHEL/Centos 5 and later, Ubuntu and Debian stable.
+It should run on any distribution that includes GLIBC 2.3 or later.
 
 Latest release
 ==============
+
+`PyPy 2.1-beta2 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-beta2-linux_x86_64-portable.tar.bz2>`_
+
+`PyPy 2.1-beta2 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-beta2-linux_i686-portable.tar.bz2>`_
+
 
 Using virtualenv
 ================
