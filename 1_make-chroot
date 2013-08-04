@@ -49,6 +49,6 @@ wget -O pypy.tar.bz2 https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-
 tar xf pypy.tar.bz2 --strip-components=1
 rm pypy.tar.bz2
 
-cd $dest/opt
-wget https://bitbucket.org/squeaky/centos-devtools/downloads/devtools.tar.bz2
-tar xf devtools.tar.bz2
+cd $dest
+wget https://bitbucket.org/squeaky/centos-devtools/downloads/gcc-4.8.1-binutils-2.23.2-$ARCH.tar.bz2
+tar xf gcc-4.8.1-binutils-2.23.2-$ARCH.tar.bz2
