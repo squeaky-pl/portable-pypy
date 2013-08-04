@@ -16,7 +16,7 @@ Latest Python 2.7 release
 
 `PyPy 2.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-linux_x86_64-portable.tar.bz2>`_
 
-`PyPy 2.1-beta2 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-beta2-linux_i686-portable.tar.bz2>`_
+`PyPy 2.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-linux_i686-portable.tar.bz2>`_
 
 Latest Python 3.2 release
 =========================
