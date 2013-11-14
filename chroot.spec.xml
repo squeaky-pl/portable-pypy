@@ -3,6 +3,8 @@
         make
         wget
         bzip2
+        zlib-devel
+        ncurses-devel
         perl
         glibc-devel
         libX11-devel
