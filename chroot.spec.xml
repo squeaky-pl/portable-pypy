@@ -3,6 +3,7 @@
         make
         wget
         bzip2
+        bzip2-devel
         zlib-devel
         ncurses-devel
         perl
