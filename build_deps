@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /workspace/src
+
 wget http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2
 tar xf patchelf-0.6.tar.bz2
 cd patchelf-0.6
@@ -9,9 +11,9 @@ make install
 cd ..
 
 
-wget http://www.sqlite.org/2013/sqlite-autoconf-3071700.tar.gz
-tar xf sqlite-autoconf-3071700.tar.gz
-cd sqlite-autoconf-3071700
+wget http://sqlite.org/2013/sqlite-autoconf-3080100.tar.gz
+tar xf sqlite-autoconf-3080100.tar.gz
+cd sqlite-autoconf-3080100
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -25,10 +27,14 @@ cd libffi-3.0.13
 make -j4
 make install
 cd ..
-cd lib
-find . -name ffi.h | xargs -i ln -s ../lib/{} ../include/
-find . -name ffitarget.h | xargs -i ln -s ../lib/{} ../include/
-cd ..
+
+if [ -d /opt/prefix/lib ]; then
+    pushd .
+    cd /opt/prefix/lib
+    find . -name ffi.h | xargs -i ln -s ../lib/{} ../include/
+    find . -name ffitarget.h | xargs -i ln -s ../lib/{} ../include/
+    popd
+fi
 
 
 wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
@@ -58,9 +64,9 @@ cd ..
 #make install
 #cd ..
 
-wget http://prdownloads.sourceforge.net/tcl/tcl8.6.0-src.tar.gz
-tar xf tcl8.6.0-src.tar.gz
-cd tcl8.6.0/unix
+wget http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
+tar xf tcl8.6.1-src.tar.gz
+cd tcl8.6.1/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -68,9 +74,9 @@ cd ../..
 
 ln -s /opt/prefix/lib/libtcl8.6.so /opt/prefix/lib/libtcl.so
 
-wget http://prdownloads.sourceforge.net/tcl/tk8.6.0-src.tar.gz
-tar xf tk8.6.0-src.tar.gz
-cd tk8.6.0/unix
+wget http://prdownloads.sourceforge.net/tcl/tk8.6.1-src.tar.gz
+tar xf tk8.6.1-src.tar.gz
+cd tk8.6.1/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -79,4 +85,4 @@ cd ../..
 ln -s /opt/prefix/lib/libtk8.6.so /opt/prefix/lib/libtk.so
 
 
-cp -ra lib64/* lib
+cp -ra /opt/prefix/lib64/* /opt/prefix/lib

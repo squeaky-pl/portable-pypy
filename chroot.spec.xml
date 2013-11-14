@@ -1,0 +1,36 @@
+<spec>
+    <install>
+        make
+        wget
+        bzip2
+        perl
+        glibc-devel
+        libX11-devel
+        libXt-devel
+        patch
+    </install>
+    <mkdir>
+        /opt/pypy
+        /opt/prefix
+        /workspace/src
+    </mkdir>
+    <copy>
+        build_deps /workspace
+        _tkinter_app.py.patch /workspace
+        virtualenv.py.patch /workspace
+        virtualenv-pypy /workspace
+    </copy>
+    <unpack>
+        https://bitbucket.org/squeaky/centos-devtools/downloads/gcc-4.8.2-binutils-2.23.2-x86_64.tar.bz2 /
+        https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-linux_x86_64-portable.tar.bz2 /opt/pypy 1
+    </unpack>
+    <append path="/root/.bashrc">
+        export PATH=$PATH:/opt/devtools/bin:/opt/pypy/bin
+
+        export CFLAGS=-I/opt/prefix/include
+        export CPPFLAGS=-I/opt/prefix/include
+        export LDFLAGS="-L/opt/prefix/lib -Wl,-rpath,/opt/prefix/lib"
+
+        cd /workspace
+    </append>
+</spec>
