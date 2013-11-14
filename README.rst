@@ -45,4 +45,4 @@ in these builds.
 Previous versions
 =================
 
-All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads`_
+All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
