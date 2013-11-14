@@ -19,6 +19,8 @@
     </mkdir>
     <copy>
         build_deps /workspace
+        package /workspace
+        make_portable /workspace
         _tkinter_app.py.patch /workspace
         virtualenv.py.patch /workspace
         virtualenv-pypy /workspace
@@ -28,7 +30,7 @@
         https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.1-linux_x86_64-portable.tar.bz2 /opt/pypy 1
     </unpack>
     <append path="/root/.bashrc">
-        export PATH=$PATH:/opt/devtools/bin:/opt/pypy/bin
+        export PATH=$PATH:/opt/devtools/bin:/opt/prefix/bin:/opt/pypy/bin
 
         export CFLAGS=-I/opt/prefix/include
         export CPPFLAGS=-I/opt/prefix/include

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env pypy
 
 bundle = ['sqlite3', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk']
 
@@ -19,7 +19,7 @@ def get_deps(binary):
         line = line.strip()
         needed, path = line.split(' => ')
         if path == 'not found':
-            print 'Broken dependency in ' + binary
+            print('Broken dependency in ' + binary)
         path = path.split(' ')[0]
         if not path:
             continue
@@ -107,8 +107,8 @@ if __name__ == '__main__':
         mkdir('virtualenv_support')
 
     root = 'https://raw.github.com/pypa/virtualenv/1.10.X'
-    files = ['virtualenv.py', 'virtualenv_support/pip-1.4.tar.gz',
-             'virtualenv_support/setuptools-0.9.7.tar.gz']
+    files = ['virtualenv.py', 'virtualenv_support/pip-1.4.1.tar.gz',
+             'virtualenv_support/setuptools-0.9.8.tar.gz']
     for file in files:
         call(['wget', '-O', join('virtualenv_support', basename(file)),
               join(root, file)])
