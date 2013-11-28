@@ -39,7 +39,7 @@ the build.
 Included software
 =================
 
-Besides PyPy there is OpenSSL, SQLite3, libffi, TCL/TK and virtualenv packaged
+Besides PyPy there is OpenSSL, SQLite3, libffi, expat, TCL/TK and virtualenv packaged
 in these builds.
 
 Previous versions
