@@ -106,9 +106,9 @@ if __name__ == '__main__':
     if not exists('virtualenv_support'):
         mkdir('virtualenv_support')
 
-    root = 'https://raw.github.com/pypa/virtualenv/1.10.X'
-    files = ['virtualenv.py', 'virtualenv_support/pip-1.4.1.tar.gz',
-             'virtualenv_support/setuptools-0.9.8.tar.gz']
+    root = 'https://raw.github.com/pypa/virtualenv/1.11.X'
+    files = ['virtualenv.py', 'virtualenv_support/pip-1.5-py2.py3-none-any.whl',
+             'virtualenv_support/setuptools-2.1-py2.py3-none-any.whl']
     for file in files:
         call(['wget', '-O', join('virtualenv_support', basename(file)),
               join(root, file)])
