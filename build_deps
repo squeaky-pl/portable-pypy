@@ -11,9 +11,9 @@ make install
 cd ..
 
 
-wget http://sqlite.org/2013/sqlite-autoconf-3080100.tar.gz
-tar xf sqlite-autoconf-3080100.tar.gz
-cd sqlite-autoconf-3080100
+wget http://sqlite.org/2013/sqlite-autoconf-3080200.tar.gz
+tar xf sqlite-autoconf-3080200.tar.gz
+cd sqlite-autoconf-3080200
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -37,9 +37,9 @@ if [ -d /opt/prefix/lib ]; then
 fi
 
 
-wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
-tar xf openssl-1.0.1e.tar.gz
-cd openssl-1.0.1e
+wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
+tar xf openssl-1.0.1f.tar.gz
+cd openssl-1.0.1f
 ./config shared --prefix=/opt/prefix
 # this script ignored LDFLAGS
 sed -i "s#^SHARED_LDFLAGS=\(.*\)#SHARED_LDFLAGS=$LDFLAGS \1#" Makefile
