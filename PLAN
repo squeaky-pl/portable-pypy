@@ -1,0 +1,6 @@
+1. Switch to IP addresses in repositories
+2. Remove unneeded repos
+3. install yum-downloadonly
+4. yum --downloadonly --downnloaddir=xyz
+5. cd xyz && rpm -i --noscripts --force *.rpm
+6. download things outside proot (DNS problems)
