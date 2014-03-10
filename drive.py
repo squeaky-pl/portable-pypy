@@ -6,6 +6,7 @@ from os import makedirs
 from os.path import isdir, join, exists, basename, dirname, samefile
 from subprocess import check_call, CalledProcessError
 from shutil import rmtree, copytree, copy2
+import sys
 from urlparse import urlparse
 
 
@@ -39,7 +40,7 @@ def urlcopy(src, dest=None):
     if urlparse(src).scheme:
         check_call(['wget', '-O', dest, src])
     else:
-        if samefile(src, dest):
+        if exists(dest) and samefile(src, dest):
             return dest
 
         if isdir(src):
@@ -90,12 +91,36 @@ def create(name):
     unpack(devtools.format(arch=arch), root)
     unpack(pypy.format(arch=arch), join(root, 'opt/pypy'), strip=1)
 
+    proot = 'http://static.proot.me/proot-x86'
+    if sys.maxint == 2 ** 63 - 1:
+        proot += '_64'
+    urlcopy(proot, join(here, 'proot'))
+    check_call(['chmod', 'a+x', join(here, 'proot')])
+
     # XXX hack
     rmtree(join(root, 'etc/yum.repos.d'))
     ensuredirs(join(root, 'etc/yum.repos.d'))
     copy2(join(here, 'CentOS-Base.repo'), join(root, 'etc/yum.repos.d'))
-    runinroot(root, ['yum', 'install', '-y', 'yum-downloadonly'])
     # XXX end hack
+
+    copy2(join(here, 'yum.conf'), join(root, 'etc/yum.conf'))
+
+    runinroot(root, ['yum', 'install', '-y', 'yum-downloadonly'])
+
+    def install(packages):
+        runinroot(root, ['mkdir', '-p', '/tmp/rpms'])
+        runinroot(
+            root,
+            ['yum', 'install', '-y', '--downloadonly',
+             '--downloaddir=/tmp/rpms'] + packages, okcode=1)
+        runinroot(
+            root,
+            ['/bin/bash', '-c', 'rpm -i --noscripts --force /tmp/rpms/*'])
+        runinroot(root, ['rm', '-r', '/tmp/rpms'])
+
+    install(
+        ['bzip2-devel', 'zlib-devel', 'ncruses-devel', 'perl',
+         'glib-devel', 'libX11-devel', 'libXt-devel', 'patch'])
 
 prootenv = {
     'PATH': '/opt/devtools/bin:/opt/prefix/bin:/opt/pypy/bin:' +
@@ -106,9 +131,14 @@ prootenv = {
 }
 
 
-def runinroot(root, cmd):
-    check_call(
-        ['./proot', '-b', '/run:/run', '-0', '-R', root] + cmd, env=prootenv)
+def runinroot(root, cmd, okcode=None):
+    try:
+        check_call(
+            ['./proot', '-b', '/run:/run', '-0', '-R', root] + cmd,
+            env=prootenv)
+    except CalledProcessError as e:
+        if e.returncode != okcode:
+            raise
 
 
 if __name__ == '__main__':
