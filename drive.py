@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import errno
+import os
 from os import makedirs
 from os.path import isdir, join, exists, basename, dirname, samefile
 from subprocess import check_call, CalledProcessError
@@ -90,10 +91,26 @@ def create(name):
     unpack(pypy.format(arch=arch), join(root, 'opt/pypy'), strip=1)
 
 
+prootenv = {
+    'PATH': '/opt/devtools/bin:/opt/prefix/bin:/opt/pypy/bin:' +
+    os.environ['PATH'],
+    'CFLAGS': '-I/opt/prefix/include',
+    'CPPFLAGS': '-I/opt/prefix/include',
+    'LDFLAGS': '-L/opt/prefix/lib -Wl,-rpath,/opt/prefix/lib'
+}
+
+
+def runinroot(root, cmd):
+    check_call(
+        ['./proot', '-b', '/run:/run' '-0', '-R', root] + cmd, env=prootenv)
+
+
 if __name__ == '__main__':
     from sys import argv
 
     if argv[1] == 'create':
         create(argv[2])
+    elif argv[1] == 'shell':
+        runinroot(argv[2], ['/bin/bash'])
     else:
         assert False, "Invalid action"
