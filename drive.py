@@ -90,6 +90,12 @@ def create(name):
     unpack(devtools.format(arch=arch), root)
     unpack(pypy.format(arch=arch), join(root, 'opt/pypy'), strip=1)
 
+    # XXX hack
+    rmtree(join(root, 'etc/yum.repos.d'))
+    ensuredirs(join(root, 'etc/yum.repos.d'))
+    copy2(join(here, 'CentOS-Base.repo'), join(root, 'etc/yum.repos.d'))
+    runinroot(root, ['yum', 'install', '-y', 'yum-downloadonly'])
+    # XXX end hack
 
 prootenv = {
     'PATH': '/opt/devtools/bin:/opt/prefix/bin:/opt/pypy/bin:' +
@@ -102,7 +108,7 @@ prootenv = {
 
 def runinroot(root, cmd):
     check_call(
-        ['./proot', '-b', '/run:/run' '-0', '-R', root] + cmd, env=prootenv)
+        ['./proot', '-b', '/run:/run', '-0', '-R', root] + cmd, env=prootenv)
 
 
 if __name__ == '__main__':
