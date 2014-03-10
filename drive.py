@@ -3,7 +3,7 @@
 import errno
 import os
 from os import makedirs
-from os.path import isdir, join, exists, basename, dirname, samefile
+from os.path import isdir, join, exists, basename, dirname, samefile, splitext
 from subprocess import check_call, CalledProcessError
 from shutil import rmtree, copytree, copy2
 import sys
@@ -120,7 +120,7 @@ def create(name):
 
     install(
         ['bzip2-devel', 'zlib-devel', 'ncruses-devel', 'perl',
-         'glib-devel', 'libX11-devel', 'libXt-devel', 'patch'])
+         'glibc-devel', 'libX11-devel', 'libXt-devel', 'patch'])
 
 prootenv = {
     'PATH': '/opt/devtools/bin:/opt/prefix/bin:/opt/pypy/bin:' +
@@ -131,14 +131,38 @@ prootenv = {
 }
 
 
-def runinroot(root, cmd, okcode=None):
+def runinroot(root, cmd, cwd=None, okcode=None):
+    args = ['./proot', '-b', '/run:/run', '-0', '-R', root]
+    if cwd:
+        args.append('--cwd=' + cwd)
+    args.extend(cmd)
+
     try:
-        check_call(
-            ['./proot', '-b', '/run:/run', '-0', '-R', root] + cmd,
-            env=prootenv)
+        check_call(args, env=prootenv)
     except CalledProcessError as e:
         if e.returncode != okcode:
             raise
+
+
+deps = [
+    'http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2',
+    'http://sqlite.org/2013/sqlite-autoconf-3080200.tar.gz',
+    'http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz'
+]
+
+
+def builddeps(root):
+    srcdir = join(root, 'workspace/src')
+    for url in deps:
+        directory = join(srcdir, basename(url).split('.tar.')[0])
+
+        if exists(directory):
+            rmtree(directory)
+
+        unpack(url, srcdir)
+        runinroot(root, ['./configure', '--prefix=/opt/prefix'], cwd=directory)
+        runinroot(root, ['make', '-j4'], cwd=directory)
+        runinroot(root, ['make', 'install'], cwd=directory)
 
 
 if __name__ == '__main__':
@@ -148,5 +172,7 @@ if __name__ == '__main__':
         create(argv[2])
     elif argv[1] == 'shell':
         runinroot(argv[2], ['/bin/bash'])
+    elif argv[1] == 'builddeps':
+        builddeps(argv[2])
     else:
         assert False, "Invalid action"
