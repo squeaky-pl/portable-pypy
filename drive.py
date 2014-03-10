@@ -35,12 +35,12 @@ def urlcopy(src, dest=None):
     if isdir(dest):
         dest = join(dest, basename(src))
 
-    if samefile(src, dest):
-        return dest
-
     if urlparse(src).scheme:
         check_call(['wget', '-O', dest, src])
     else:
+        if samefile(src, dest):
+            return dest
+
         if isdir(src):
             if exists(dest):
                 rmtree(dest)
@@ -65,16 +65,29 @@ def unpack(src, dest, strip=0, okcode=None):
             raise
 
 
+devtools = 'https://bitbucket.org/squeaky/centos-devtools/downloads/gcc-4.8.2-binutils-2.23.2-{arch}.tar.bz2'
+pypy = 'https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_{arch}-portable.tar.bz2'
+
+
 def create(name):
     url = 'http://download.openvz.org/template/precreated/'
     if name == 'centos-i686':
         url += 'centos-5-x86.tar.gz'
+        arch = 'i686'
     elif name == 'centos-x86_64':
         url += 'centos-5-x86_64.tar.gz'
+        arch = 'x86_64'
     else:
         assert False, "Not a valid chroot image ID"
 
-    unpack(url, join(here, name), okcode=2)
+    root = join(here, name)
+    unpack(url, root, okcode=2)
+
+    for path in ['opt/pypy', 'opt/prefix', 'workspace/src']:
+        ensuredirs(join(root, path))
+
+    unpack(devtools.format(arch=arch), root)
+    unpack(pypy.format(arch=arch), join(root, 'opt/pypy'), strip=1)
 
 
 if __name__ == '__main__':
