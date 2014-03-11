@@ -247,7 +247,7 @@ def package(root):
         rmtree(join(root, 'workspace/portable-pypy'))
 
     check_call(['mv', join(root, 'workspace/pypy'), join(root, 'workspace/portable-pypy')])
-    check_call(['tar', '-cjf', join(here, 'portable-pypy.tar.bz2'), join(root, 'workspace/portable-pypy')])
+    check_call(['tar', '-cjf', join(here, 'portable-pypy.tar.bz2'), 'portable-pypy'], cwd=join(root, 'workspace'))
 
 
 if __name__ == '__main__':

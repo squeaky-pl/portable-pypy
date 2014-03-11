@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cd $1
-find . -name *.so | xargs rm
-pypy pypy/tool/release/package.py . pypy-2.2.1-linux_$(uname -m)-portable

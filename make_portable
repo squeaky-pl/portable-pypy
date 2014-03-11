@@ -102,18 +102,5 @@ if __name__ == '__main__':
     copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
     call(['patch', 'lib_pypy/_tkinter/app.py', '../_tkinter_app.py.patch'])
 
-    # virtualenv
-    if not exists('virtualenv_support'):
-        mkdir('virtualenv_support')
-
-    root = 'https://raw.github.com/pypa/virtualenv/1.11.X'
-    files = ['virtualenv.py', 'virtualenv_support/pip-1.5-py2.py3-none-any.whl',
-             'virtualenv_support/setuptools-2.1-py2.py3-none-any.whl']
-    for file in files:
-        call(['wget', '-O', join('virtualenv_support', basename(file)),
-              join(root, file)])
-
     call(['patch', 'virtualenv_support/virtualenv.py',
           '../virtualenv.py.patch'])
-    copy2('../virtualenv-pypy', 'bin/virtualenv-pypy')
-    call(['chmod', 'a+x', 'bin/virtualenv-pypy'])
