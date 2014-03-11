@@ -150,6 +150,8 @@ deps = [
     'http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz',
     'http://www.openssl.org/source/openssl-1.0.1f.tar.gz',
     'http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz',
+    'http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz',
+    'http://prdownloads.sourceforge.net/tcl/tk8.6.1-src.tar.gz'
 ]
 
 
@@ -157,6 +159,8 @@ def builddeps(root):
     srcdir = join(root, 'workspace/src')
     for url in deps:
         name = basename(url).split('.tar.')[0]
+        if name.startswith(('tcl', 'tk')):
+            name = name[:-4] + '/unix' # get rid of src and add subdir
         directory = join(srcdir, name)
 
         if exists(directory):
@@ -194,7 +198,13 @@ def builddeps(root):
                      'find . -name ffitarget.h | xargs -i ln -sf ../lib/{} ../include/'],
                     cwd=libdir)
 
+        if name.startswith('tcl'):
+            runinroot(root, ['ln', '-s', '/opt/prefix/lib/libtcl8.6.so', '/opt/prefix/lib/libtcl.so'])
 
+        if name.startswith('tk'):
+            runinroot(root, ['ln', '-s', '/opt/prefix/lib/libtk8.6.so', '/opt/prefix/lib/libtk.so'])
+
+    runinroot(root, ['bash', '-c', 'cp -ra /opt/prefix/lib64/* /opt/prefix/lib'])
 
 
 if __name__ == '__main__':
