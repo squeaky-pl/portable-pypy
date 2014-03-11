@@ -147,22 +147,54 @@ def runinroot(root, cmd, cwd=None, okcode=None):
 deps = [
     'http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2',
     'http://sqlite.org/2013/sqlite-autoconf-3080200.tar.gz',
-    'http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz'
+    'http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz',
+    'http://www.openssl.org/source/openssl-1.0.1f.tar.gz',
+    'http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz',
 ]
 
 
 def builddeps(root):
     srcdir = join(root, 'workspace/src')
     for url in deps:
-        directory = join(srcdir, basename(url).split('.tar.')[0])
+        name = basename(url).split('.tar.')[0]
+        directory = join(srcdir, name)
 
         if exists(directory):
             rmtree(directory)
 
         unpack(url, srcdir)
-        runinroot(root, ['./configure', '--prefix=/opt/prefix'], cwd=directory)
-        runinroot(root, ['make', '-j4'], cwd=directory)
+
+        configure = ['./config', 'shared'] if name.startswith('openssl') else \
+            ['./configure']
+        runinroot(root, configure + ['--prefix=/opt/prefix'], cwd=directory)
+
+        if name.startswith('openssl'):
+            runinroot(
+                root,
+                ['sed', '-i',
+                 's#^SHARED_LDFLAGS=\\(.*\\)#SHARED_LDFLAGS={} \\1#'.format(prootenv['LDFLAGS']),
+                 'Makefile'],
+                cwd=directory)
+        runinroot(
+            root, ['make', '-j4'], cwd=directory,
+            okcode=(2 if name.startswith('openssl') else None))
         runinroot(root, ['make', 'install'], cwd=directory)
+
+        if name.startswith('libffi'):
+            libdir = join(root, 'opt/prefix/lib')
+            if exists(libdir):
+                runinroot(
+                    root,
+                    ['bash', '-c',
+                     'find . -name ffi.h | xargs -i ln -sf ../lib/{} ../include/'],
+                    cwd=libdir)
+                runinroot(
+                    root,
+                    ['bash', '-c',
+                     'find . -name ffitarget.h | xargs -i ln -sf ../lib/{} ../include/'],
+                    cwd=libdir)
+
+
 
 
 if __name__ == '__main__':
