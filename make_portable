@@ -7,7 +7,7 @@ from os.path import dirname, relpath, join, samefile, exists, basename
 from shutil import copy2, copytree
 from sys import argv
 from glob import glob
-from subprocess import check_output, call
+from subprocess import check_output, check_call
 
 
 def get_deps(binary):
@@ -59,11 +59,18 @@ def rpath_binaries(binaries):
 
     for binary in binaries:
         rpath = join('$ORIGIN', relpath('lib', dirname(binary)))
-        call(['patchelf', '--set-rpath', rpath, binary])
+        check_call(['patchelf', '--set-rpath', rpath, binary])
 
         rpaths[binary] = rpath
 
     return rpaths
+
+
+def strip(binaries):
+    for binary in binaries:
+        check_call(['chmod', 'a+w', binary])
+        check_call(['strip', binary])
+        check_call(['chmod', 'a-w', binary])
 
 
 def main():
@@ -84,6 +91,8 @@ def main():
     for binary, rpath in rpaths.items():
         print('Set RPATH of {0} to {1}'.format(binary, rpath))
 
+    strip(copied.values())
+
     return deps
 
 
@@ -100,7 +109,7 @@ if __name__ == '__main__':
     # tcl/tk library
     copytree('/opt/prefix/lib/tcl8.6', 'lib/tcl')
     copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
-    call(['patch', 'lib_pypy/_tkinter/app.py', '../_tkinter_app.py.patch'])
+    check_call(['patch', 'lib_pypy/_tkinter/app.py', '../_tkinter_app.py.patch'])
 
-    call(['patch', 'virtualenv_support/virtualenv.py',
+    check_call(['patch', 'virtualenv_support/virtualenv.py',
           '../virtualenv.py.patch'])
