@@ -4,3 +4,8 @@
 4. yum --downloadonly --downnloaddir=xyz
 5. cd xyz && rpm -i --noscripts --force *.rpm
 6. download things outside proot (DNS problems)
+
+
+7. make proot, elfpatch and patch portable binaries
+8. integrate make_portable into main file
+9. add some print around

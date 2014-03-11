@@ -3,14 +3,14 @@
 import errno
 import os
 from os import makedirs
-from os.path import isdir, join, exists, basename, dirname, samefile, splitext
+from os.path import isdir, join, exists, basename, dirname, samefile, abspath
 from subprocess import check_call, CalledProcessError
 from shutil import rmtree, copytree, copy2
 import sys
 from urlparse import urlparse
 
 
-here = dirname(__file__)
+here = dirname(abspath(__file__))
 
 
 def ensuredirs(dirs):
@@ -119,7 +119,7 @@ def create(name):
         runinroot(root, ['rm', '-r', '/tmp/rpms'])
 
     install(
-        ['bzip2-devel', 'zlib-devel', 'ncruses-devel', 'perl',
+        ['bzip2-devel', 'zlib-devel', 'ncurses-devel', 'perl',
          'glibc-devel', 'libX11-devel', 'libXt-devel', 'patch'])
 
 prootenv = {
@@ -207,6 +207,49 @@ def builddeps(root):
     runinroot(root, ['bash', '-c', 'cp -ra /opt/prefix/lib64/* /opt/prefix/lib'])
 
 
+def translate(root):
+    srcdir = join(root, 'workspace/src/pypy')
+    if exists(srcdir):
+        rmtree(srcdir)
+    ensuredirs(srcdir)
+    unpack('https://bitbucket.org/pypy/pypy/get/default.tar.bz2', srcdir, strip=1)
+
+    runinroot(root, ['pypy', 'rpython/bin/rpython', '-Ojit', 'pypy/goal/targetpypystandalone.py'], cwd=srcdir)
+
+
+def package(root):
+    srcdir = join(root, 'workspace/src/pypy')
+
+    runinroot(root, ['pypy', 'pypy/tool/release/package.py', '.', 'pypy', 'pypy', '/workspace', './pypy-c'], cwd=srcdir)
+
+    if exists(join(root, 'workspace/pypy')):
+        rmtree(join(root, 'workspace/pypy'))
+
+    unpack(join(root, 'workspace/pypy.tar.bz2'), join(root, 'workspace'))
+
+    ensuredirs(join(root, 'workspace/pypy/virtualenv_support'))
+
+    baseurl = 'https://github.com/pypa/virtualenv/raw/1.11.4'
+    files = ['virtualenv.py', 'virtualenv_support/pip-1.5.4-py2.py3-none-any.whl',
+             'virtualenv_support/setuptools-2.2-py2.py3-none-any.whl']
+
+    for filename in files:
+        urlcopy(join(baseurl, filename), join(root, 'workspace/pypy/virtualenv_support'))
+
+    copy2(join(here, 'virtualenv-pypy'), join(root, 'workspace/pypy/bin/virtualenv-pypy'))
+
+    for filename in ['virtualenv.py.patch', '_tkinter_app.py.patch', 'make_portable']:
+        copy2(join(here, filename), join(root, 'workspace'))
+
+    runinroot(root, ['pypy', 'make_portable', 'pypy'], cwd=join(root, 'workspace'))
+
+    if exists(join(root, 'workspace/portable-pypy')):
+        rmtree(join(root, 'workspace/portable-pypy'))
+
+    check_call(['mv', join(root, 'workspace/pypy'), join(root, 'workspace/portable-pypy')])
+    check_call(['tar', '-cjf', join(here, 'portable-pypy.tar.bz2'), join(root, 'workspace/portable-pypy')])
+
+
 if __name__ == '__main__':
     from sys import argv
 
@@ -216,5 +259,9 @@ if __name__ == '__main__':
         runinroot(argv[2], ['/bin/bash'])
     elif argv[1] == 'builddeps':
         builddeps(argv[2])
+    elif argv[1] == 'translate':
+        translate(argv[2])
+    elif argv[1] == 'package':
+        package(argv[2])
     else:
         assert False, "Invalid action"
