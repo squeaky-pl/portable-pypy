@@ -1,3 +1,0 @@
-[submodule "centos-chroot"]
-	path = centos-chroot
-	url = git@github.com:squeaky-pl/centos-chroot.git
