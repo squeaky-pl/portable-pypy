@@ -194,12 +194,15 @@ def builddeps(root):
                     cwd=libdir)
 
         if name.startswith('tcl'):
-            runinroot(root, ['ln', '-s', '/opt/prefix/lib/libtcl8.6.so', '/opt/prefix/lib/libtcl.so'])
+            runinroot(root, ['ln', '-sf', '/opt/prefix/lib/libtcl8.6.so', '/opt/prefix/lib/libtcl.so'])
 
         if name.startswith('tk'):
-            runinroot(root, ['ln', '-s', '/opt/prefix/lib/libtk8.6.so', '/opt/prefix/lib/libtk.so'])
+            runinroot(root, ['ln', '-sf', '/opt/prefix/lib/libtk8.6.so', '/opt/prefix/lib/libtk.so'])
 
     runinroot(root, ['bash', '-c', 'cp -ra /opt/prefix/lib64/* /opt/prefix/lib'])
+
+    # force static linking of crypto,ssl,ffi
+    runinroot(root, ['bash', '-c', 'rm /opt/prefix/lib/lib{crypto,ssl,ffi}.so*'])
 
 
 def translate(root):
