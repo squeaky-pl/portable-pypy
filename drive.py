@@ -97,7 +97,8 @@ def create(name):
     urlcopy(proot, join(here, 'proot'))
     check_call(['chmod', 'a+x', join(here, 'proot')])
 
-    copy2(join(here, 'yum.conf'), join(root, 'etc/yum.conf'))
+    with open(join(root, 'etc/yum.conf'), 'a') as f:
+        f.write('\nmultilib_policy=best')
 
     runinroot(root, ['yum', 'install', '-y', 'yum-downloadonly'])
 
