@@ -201,8 +201,8 @@ def builddeps(root):
 
     runinroot(root, ['bash', '-c', 'cp -ra /opt/prefix/lib64/* /opt/prefix/lib'])
 
-    # force static linking of crypto,ssl,ffi
-    runinroot(root, ['bash', '-c', 'rm /opt/prefix/lib/lib{crypto,ssl,ffi}.so*'])
+    # force static linking of crypto,ssl,ffi,expat
+    runinroot(root, ['bash', '-c', 'rm /opt/prefix/lib/lib{crypto,ssl,ffi,expat}.so*'])
 
 
 def translate(root):
