@@ -97,12 +97,6 @@ def create(name):
     urlcopy(proot, join(here, 'proot'))
     check_call(['chmod', 'a+x', join(here, 'proot')])
 
-    # XXX hack
-    rmtree(join(root, 'etc/yum.repos.d'))
-    ensuredirs(join(root, 'etc/yum.repos.d'))
-    copy2(join(here, 'CentOS-Base.repo'), join(root, 'etc/yum.repos.d'))
-    # XXX end hack
-
     copy2(join(here, 'yum.conf'), join(root, 'etc/yum.conf'))
 
     runinroot(root, ['yum', 'install', '-y', 'yum-downloadonly'])
@@ -132,7 +126,7 @@ prootenv = {
 
 
 def runinroot(root, cmd, cwd=None, okcode=None):
-    args = ['./proot', '-b', '/run:/run', '-0', '-R', root]
+    args = ['./proot', '-b', '/var/run/nscd/socket', '-0', '-R', root, '-b', '/run']
     if cwd:
         args.append('--cwd=' + cwd)
     args.extend(cmd)
