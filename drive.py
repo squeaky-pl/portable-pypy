@@ -4,7 +4,7 @@ import errno
 import os
 from os import makedirs
 from os.path import isdir, join, exists, basename, dirname, samefile, abspath
-from subprocess import check_call, CalledProcessError
+from subprocess import check_call, check_output, CalledProcessError
 from shutil import rmtree, copytree, copy2
 import sys
 from urlparse import urlparse
@@ -126,14 +126,14 @@ prootenv = {
 }
 
 
-def runinroot(root, cmd, cwd=None, okcode=None):
-    args = ['./proot', '-b', '/var/run/nscd/socket', '-0', '-R', root, '-b', '/run']
+def runinroot(root, cmd, cwd=None, okcode=None, call=check_call):
+    args = ['./proot', '-b', '/var/run/nscd/socket', '-0', '-R', root, '-b', '/run', '-b', '.:/host']
     if cwd:
         args.append('--cwd=' + cwd)
     args.extend(cmd)
 
     try:
-        check_call(args, env=prootenv)
+        return call(args, env=prootenv)
     except CalledProcessError as e:
         if e.returncode != okcode:
             raise
@@ -236,7 +236,7 @@ def package(root):
 
     copy2(join(here, 'virtualenv-pypy'), join(root, 'workspace/pypy/bin/virtualenv-pypy'))
 
-    for filename in ['virtualenv.py.patch', '_tkinter_app.py.patch', 'make_portable']:
+    for filename in ['_tkinter_app.py.patch', 'make_portable']:
         copy2(join(here, filename), join(root, 'workspace'))
 
     runinroot(root, ['pypy', 'make_portable', 'pypy'], cwd=join(root, 'workspace'))
@@ -251,11 +251,14 @@ def package(root):
     unpack('https://bitbucket.org/pypy/numpy/get/master.tar.bz2', join(root, 'workspace/src/numpy'), strip=1)
     runinroot(root, ['/workspace/pypy/bin/pypy', 'setup.py', 'install'], cwd=join(root, 'workspace/src/numpy'))
 
+    # archive name
+    name = runinroot(root, ['/workspace/pypy/bin/pypy', '/host/version.py'], call=check_output).strip()
+
     # cleanup
     check_call(['find', join(root, 'workspace/pypy'), '-name', '*.pyc', '-delete'])
 
-    check_call(['mv', join(root, 'workspace/pypy'), join(root, 'workspace/portable-pypy')])
-    check_call(['tar', '-cjf', join(here, 'portable-pypy.tar.bz2'), 'portable-pypy'], cwd=join(root, 'workspace'))
+    check_call(['mv', join(root, 'workspace/pypy'), join(root, 'workspace', name)])
+    check_call(['tar', '-cjf', join(here, name + '.tar.bz2'), name], cwd=join(root, 'workspace'))
 
 
 if __name__ == '__main__':
