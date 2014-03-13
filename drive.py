@@ -244,6 +244,16 @@ def package(root):
     if exists(join(root, 'workspace/portable-pypy')):
         rmtree(join(root, 'workspace/portable-pypy'))
 
+    if exists(join(root, 'workspace/src/numpy')):
+        rmtree(join(root, 'workspace/src/numpy'))
+
+    # numpy
+    unpack('https://bitbucket.org/pypy/numpy/get/master.tar.bz2', join(root, 'workspace/src/numpy'), strip=1)
+    runinroot(root, ['/workspace/pypy/bin/pypy', 'setup.py', 'install'], cwd=join(root, 'workspace/src/numpy'))
+
+    # cleanup
+    check_call(['find', join(root, 'workspace/pypy'), '-name', '*.pyc', '-delete'])
+
     check_call(['mv', join(root, 'workspace/pypy'), join(root, 'workspace/portable-pypy')])
     check_call(['tar', '-cjf', join(here, 'portable-pypy.tar.bz2'), 'portable-pypy'], cwd=join(root, 'workspace'))
 
