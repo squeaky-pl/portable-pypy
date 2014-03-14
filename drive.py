@@ -236,10 +236,7 @@ def package(root):
 
     copy2(join(here, 'virtualenv-pypy'), join(root, 'workspace/pypy/bin/virtualenv-pypy'))
 
-    for filename in ['_tkinter_app.py.patch', 'make_portable']:
-        copy2(join(here, filename), join(root, 'workspace'))
-
-    runinroot(root, ['pypy', 'make_portable', 'pypy'], cwd=join(root, 'workspace'))
+    runinroot(root, ['pypy', '/host/make_portable', 'pypy'], cwd=join(root, 'workspace'))
 
     if exists(join(root, 'workspace/portable-pypy')):
         rmtree(join(root, 'workspace/portable-pypy'))
@@ -256,6 +253,7 @@ def package(root):
 
     # cleanup
     check_call(['find', join(root, 'workspace/pypy'), '-name', '*.pyc', '-delete'])
+    check_call(['find', join(root, 'workspace/pypy'), '-name', '_cffi__*.[oc]', '-delete'])
 
     check_call(['mv', join(root, 'workspace/pypy'), join(root, 'workspace', name)])
     check_call(['tar', '-cjf', join(here, name + '.tar.bz2'), name], cwd=join(root, 'workspace'))
