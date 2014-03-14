@@ -23,13 +23,14 @@ def ensuredirs(dirs):
     return dirs
 
 
-def urlcopy(src, dest=None):
+def urlcopy(src, dest=None, use_cache=True):
     cache = ensuredirs(join(here, 'cache'))
 
-    cached = join(cache, basename(src))
+    if use_cache:
+        cached = join(cache, basename(src))
 
-    if exists(cached):
-        src = cached
+        if exists(cached):
+            src = cached
 
     if not dest:
         dest = cache
@@ -39,6 +40,9 @@ def urlcopy(src, dest=None):
 
     if urlparse(src).scheme:
         check_call(['wget', '-O', dest, src])
+
+        if use_cache and not exists(cached):
+            copy2(dest, cache)
     else:
         if exists(dest) and samefile(src, dest):
             return dest
@@ -53,9 +57,9 @@ def urlcopy(src, dest=None):
     return dest
 
 
-def unpack(src, dest, strip=0, okcode=None):
+def unpack(src, dest, strip=0, okcode=None, use_cache=True):
     if urlparse(src).scheme:
-        src = urlcopy(src)
+        src = urlcopy(src, use_cache=use_cache)
 
     ensuredirs(dest)
 
@@ -199,7 +203,8 @@ def builddeps(root):
         if name.startswith('tk'):
             runinroot(root, ['ln', '-sf', '/opt/prefix/lib/libtk8.6.so', '/opt/prefix/lib/libtk.so'])
 
-    runinroot(root, ['bash', '-c', 'cp -ra /opt/prefix/lib64/* /opt/prefix/lib'])
+    if exists(join(root, 'opt/prefix/lib64')):
+        runinroot(root, ['bash', '-c', 'cp -ra /opt/prefix/lib64/* /opt/prefix/lib'])
 
     # force static linking of crypto,ssl,ffi,expat
     runinroot(root, ['bash', '-c', 'rm /opt/prefix/lib/lib{crypto,ssl,ffi,expat}.so*'])
@@ -238,9 +243,6 @@ def package(root):
 
     runinroot(root, ['pypy', '/host/make_portable', 'pypy'], cwd=join(root, 'workspace'))
 
-    if exists(join(root, 'workspace/portable-pypy')):
-        rmtree(join(root, 'workspace/portable-pypy'))
-
     if exists(join(root, 'workspace/src/numpy')):
         rmtree(join(root, 'workspace/src/numpy'))
 
@@ -254,6 +256,9 @@ def package(root):
     # cleanup
     check_call(['find', join(root, 'workspace/pypy'), '-name', '*.pyc', '-delete'])
     check_call(['find', join(root, 'workspace/pypy'), '-name', '_cffi__*.[oc]', '-delete'])
+
+    if exists(join(root, 'workspace', name)):
+        rmtree(join(root, 'workspace', name))
 
     check_call(['mv', join(root, 'workspace/pypy'), join(root, 'workspace', name)])
     check_call(['tar', '-cjf', join(here, name + '.tar.bz2'), name], cwd=join(root, 'workspace'))

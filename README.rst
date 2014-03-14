@@ -9,7 +9,8 @@ it instantly without installing any extra libraries or tweaking
 your OS.
 Currenly they are known to work across various DEB and RPM based
 distributions including RHEL/Centos 5 and later, Ubuntu and Debian stable.
-It should run on any distribution that includes GLIBC 2.3 or later.
+It should run on any distribution that includes GLIBC 2.3 and kernel 2.6.19
+or later.
 
 Latest Python 2.7 release
 =========================
