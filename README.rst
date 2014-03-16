@@ -26,6 +26,13 @@ Latest Python 3.2 release
 
 `PyPy3 2.1-beta i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.1-beta-linux_i686-portable.tar.bz2>`_
 
+Weakly builds
+=============
+
+These are snapshots of alpha version done at the weekends.
+They include also numpy precompiled for your convenience.
+`Browse here <https://bitbucket.org/squeaky/portable-pypy-weekly/downloads>`_.
+
 Using virtualenv
 ================
 Stock virtualenv is not working with portable binaries including RPATH

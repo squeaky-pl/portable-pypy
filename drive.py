@@ -89,7 +89,7 @@ def create(name):
     root = join(here, name)
     unpack(url, root, okcode=2)
 
-    for path in ['opt/pypy', 'opt/prefix', 'workspace/src']:
+    for path in ['opt/pypy', 'opt/prefix', 'workspace/src', 'workspace/tmp']:
         ensuredirs(join(root, path))
 
     unpack(devtools.format(arch=arch), root)
@@ -126,7 +126,8 @@ prootenv = {
     os.environ['PATH'],
     'CFLAGS': '-I/opt/prefix/include',
     'CPPFLAGS': '-I/opt/prefix/include',
-    'LDFLAGS': '-L/opt/prefix/lib -Wl,-rpath,/opt/prefix/lib'
+    'LDFLAGS': '-L/opt/prefix/lib -Wl,-rpath,/opt/prefix/lib',
+    'PYPY_USESSION_DIR': '/workspace/tmp'
 }
 
 
