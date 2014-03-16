@@ -215,7 +215,7 @@ def translate(root):
     if exists(srcdir):
         rmtree(srcdir)
     ensuredirs(srcdir)
-    unpack('https://bitbucket.org/pypy/pypy/get/default.tar.bz2', srcdir, strip=1)
+    unpack('https://bitbucket.org/pypy/pypy/get/default.tar.bz2', srcdir, strip=1, use_cache=False)
 
     runinroot(root, ['pypy', 'rpython/bin/rpython', '-Ojit', 'pypy/goal/targetpypystandalone.py'], cwd=srcdir)
 
@@ -247,8 +247,11 @@ def package(root):
         rmtree(join(root, 'workspace/src/numpy'))
 
     # numpy
-    unpack('https://bitbucket.org/pypy/numpy/get/master.tar.bz2', join(root, 'workspace/src/numpy'), strip=1)
+    unpack('https://bitbucket.org/pypy/numpy/get/master.tar.bz2', join(root, 'workspace/src/numpy'), strip=1, use_cache=False)
     runinroot(root, ['/workspace/pypy/bin/pypy', 'setup.py', 'install'], cwd=join(root, 'workspace/src/numpy'))
+
+    #compile cffi extensions
+    runinroot(root, ['/workspace/pypy/bin/pypy', '-c', 'import numpy.fft.fft_cffi'])
 
     # archive name
     name = runinroot(root, ['/workspace/pypy/bin/pypy', '/host/version.py'], call=check_output).strip()
