@@ -172,13 +172,6 @@ def builddeps(root):
             ['./configure']
         runinroot(root, configure + ['--prefix=/opt/prefix'], cwd=directory)
 
-        if name.startswith('openssl'):
-            runinroot(
-                root,
-                ['sed', '-i',
-                 's#^SHARED_LDFLAGS=\\(.*\\)#SHARED_LDFLAGS={} \\1#'.format(prootenv['LDFLAGS']),
-                 'Makefile'],
-                cwd=directory)
         runinroot(
             root, ['make', '-j4'], cwd=directory,
             okcode=(2 if name.startswith('openssl') else None))
