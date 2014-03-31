@@ -144,15 +144,15 @@ def runinroot(root, cmd, cwd=None, okcode=None, call=check_call):
             raise
 
 
-deps = [
-    'http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2',
-    'http://sqlite.org/2013/sqlite-autoconf-3080200.tar.gz',
-    'http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz',
-    'http://www.openssl.org/source/openssl-1.0.1f.tar.gz',
-    'http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz',
-    'http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz',
-    'http://prdownloads.sourceforge.net/tcl/tk8.6.1-src.tar.gz'
-]
+deps = """
+http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2
+http://sqlite.org/2014/sqlite-autoconf-3080402.tar.gz
+http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
+http://www.openssl.org/source/openssl-1.0.1f.tar.gz
+http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz
+http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
+http://prdownloads.sourceforge.net/tcl/tk8.6.1-src.tar.gz
+""".strip().split()
 
 
 def builddeps(root):
