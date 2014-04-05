@@ -57,15 +57,18 @@ def urlcopy(src, dest=None, use_cache=True):
     return dest
 
 
-def unpack(src, dest, strip=0, okcode=None, use_cache=True):
+def unpack(src, dest, strip=0, excludes=None, okcode=None, use_cache=True):
     if urlparse(src).scheme:
         src = urlcopy(src, use_cache=use_cache)
 
     ensuredirs(dest)
 
+    args = ['tar', 'xf', src, '--strip-components=' + str(strip), '-C', dest]
+    if excludes:
+        args.extend('--exclude=' + e for e in excludes)
+
     try:
-        check_call(
-            ['tar', 'xf', src, '--strip-components=' + str(strip), '-C', dest])
+        check_call(args)
     except CalledProcessError as e:
         if e.returncode != okcode:
             raise
@@ -87,7 +90,9 @@ def create(name):
         assert False, "Not a valid chroot image ID"
 
     root = join(here, name)
-    unpack(url, root, okcode=2)
+    unpack(
+        url, root,
+        excludes=['./dev', './etc/udev/devices', './var/named/chroot/dev'])
 
     for path in ['opt/pypy', 'opt/prefix', 'workspace/src', 'workspace/tmp']:
         ensuredirs(join(root, path))
