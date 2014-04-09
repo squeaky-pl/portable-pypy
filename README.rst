@@ -2,17 +2,6 @@
 Portable PyPy distribution for Linux
 ====================================
 
-
-
-Warning
-=======
-
-The stable builds and weekly builds uploaded before April 8th of 2014
-are subject to `heartbleed <http://heartbleed.com/>`_ OpenSSL vonurability.
-
-About
-=====
-
 This repository contains efforts to build 32 and 64 bit
 x86 `PyPy <http://pypy.org>`_ binaries for various Linux distrubtions. The idea
 is that you just download an archive, uncompress it and run
@@ -26,16 +15,16 @@ or later.
 Latest Python 2.7 release
 =========================
 
-`PyPy 2.2.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_x86_64-portable.tar.bz2>`_
+`PyPy 2.2.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_x86_64-portable.tar.bz2>`_ (with OpenSSL 1.0.1g, heartbleed *FREE*)
 
-`PyPy 2.2.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_i686-portable.tar.bz2>`_
+`PyPy 2.2.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_i686-portable.tar.bz2>`_ *WARNING heartbleed vunurable*
 
 Latest Python 3.2 release
 =========================
 
-`PyPy3 2.1-beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.1-beta-linux_x86_64-portable.tar.bz2>`_
+`PyPy3 2.1-beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.1-beta-linux_x86_64-portable.tar.bz2>`_ *WARNING heartbleed vunurable*
 
-`PyPy3 2.1-beta i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.1-beta-linux_i686-portable.tar.bz2>`_
+`PyPy3 2.1-beta i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.1-beta-linux_i686-portable.tar.bz2>`_ *WARNING heartbleed vonurable*
 
 Weekly builds
 =============

@@ -211,17 +211,20 @@ def builddeps(root):
     runinroot(root, ['bash', '-c', 'rm /opt/prefix/lib/lib{crypto,ssl,ffi,expat}.so*'])
 
 
-def translate(root):
+def translate(root, revision=None):
+    if not revision:
+        revision = 'default'
+
     srcdir = join(root, 'workspace/src/pypy')
     if exists(srcdir):
         rmtree(srcdir)
     ensuredirs(srcdir)
-    unpack('https://bitbucket.org/pypy/pypy/get/default.tar.bz2', srcdir, strip=1, use_cache=False)
+    unpack('https://bitbucket.org/pypy/pypy/get/{}.tar.bz2'.format(revision), srcdir, strip=1, use_cache=False)
 
     runinroot(root, ['pypy', 'rpython/bin/rpython', '-Ojit', 'pypy/goal/targetpypystandalone.py'], cwd=srcdir)
 
 
-def package(root):
+def package(root, skip_numpy=False):
     srcdir = join(root, 'workspace/src/pypy')
 
     runinroot(root, ['pypy', 'pypy/tool/release/package.py', '.', 'pypy', 'pypy', '/workspace', './pypy-c'], cwd=srcdir)
@@ -247,12 +250,12 @@ def package(root):
     if exists(join(root, 'workspace/src/numpy')):
         rmtree(join(root, 'workspace/src/numpy'))
 
-    # numpy
-    unpack('https://bitbucket.org/pypy/numpy/get/master.tar.bz2', join(root, 'workspace/src/numpy'), strip=1, use_cache=False)
-    runinroot(root, ['/workspace/pypy/bin/pypy', 'setup.py', 'install'], cwd=join(root, 'workspace/src/numpy'))
+    if not skip_numpy:
+        unpack('https://bitbucket.org/pypy/numpy/get/master.tar.bz2', join(root, 'workspace/src/numpy'), strip=1, use_cache=False)
+        runinroot(root, ['/workspace/pypy/bin/pypy', 'setup.py', 'install'], cwd=join(root, 'workspace/src/numpy'))
 
-    #compile cffi extensions
-    runinroot(root, ['/workspace/pypy/bin/pypy', '-c', 'import numpy.fft.fft_cffi'])
+        # compile cffi extensions
+        runinroot(root, ['/workspace/pypy/bin/pypy', '-c', 'import numpy.fft.fft_cffi'])
 
     # archive name
     name = runinroot(root, ['/workspace/pypy/bin/pypy', '/host/version.py'], call=check_output).strip()
@@ -278,8 +281,8 @@ if __name__ == '__main__':
     elif argv[1] == 'builddeps':
         builddeps(argv[2])
     elif argv[1] == 'translate':
-        translate(argv[2])
+        translate(argv[2], *argv[3:])
     elif argv[1] == 'package':
-        package(argv[2])
+        package(argv[2], *argv[3:])
     else:
         assert False, "Invalid action"
