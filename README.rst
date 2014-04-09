@@ -15,9 +15,9 @@ or later.
 Latest Python 2.7 release
 =========================
 
-`PyPy 2.2.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_x86_64-portable.tar.bz2>`_ (with OpenSSL 1.0.1g, heartbleed *FREE*)
+`PyPy 2.2.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_x86_64-portable.tar.bz2>`_ (with OpenSSL 1.0.1g *WITHOUT* heartbleed)
 
-`PyPy 2.2.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_i686-portable.tar.bz2>`_ *WARNING heartbleed vunurable*
+`PyPy 2.2.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_i686-portable.tar.bz2>`_ (with OpenSSL 1.0.1g *WITHOUT* heartbleed)
 
 Latest Python 3.2 release
 =========================
