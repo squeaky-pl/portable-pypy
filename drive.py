@@ -74,8 +74,10 @@ def unpack(src, dest, strip=0, excludes=None, okcode=None, use_cache=True):
             raise
 
 
-devtools = 'https://bitbucket.org/squeaky/centos-devtools/downloads/gcc-4.8.2-binutils-2.23.2-{arch}.tar.bz2'
-pypy = 'https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_{arch}-portable.tar.bz2'
+devtools, pypy = """
+https://bitbucket.org/squeaky/centos-devtools/downloads/gcc-4.8.2-binutils-2.23.2-{arch}.tar.bz2
+https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_{arch}-portable.tar.bz2
+""".strip().split()
 
 
 def create(name):

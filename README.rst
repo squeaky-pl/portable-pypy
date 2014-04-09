@@ -2,6 +2,17 @@
 Portable PyPy distribution for Linux
 ====================================
 
+
+
+Warning
+=======
+
+The stable builds and weekly builds uploaded before April 8th of 2014
+are subject to `heartbleed <http://heartbleed.com/>`_ OpenSSL vonurability.
+
+About
+=====
+
 This repository contains efforts to build 32 and 64 bit
 x86 `PyPy <http://pypy.org>`_ binaries for various Linux distrubtions. The idea
 is that you just download an archive, uncompress it and run
