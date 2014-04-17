@@ -129,7 +129,7 @@ def create(name):
          'glibc-devel', 'libX11-devel', 'libXt-devel', 'patch'])
 
 prootenv = {
-    'PATH': '/opt/devtools/bin:/opt/prefix/bin:/opt/pypy/bin:' +
+    'PATH': '/opt/devtools/bin:/opt/prefix/bin:/opt/pypy/bin:/bin:' +
     os.environ['PATH'],
     'CFLAGS': '-I/opt/prefix/include',
     'CPPFLAGS': '-I/opt/prefix/include',
@@ -152,8 +152,8 @@ def runinroot(root, cmd, cwd=None, okcode=None, call=check_call):
 
 
 deps = """
-http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2
-http://sqlite.org/2014/sqlite-autoconf-3080402.tar.gz
+http://hydra.nixos.org/build/1524660/download/2/patchelf-0.8.tar.bz2
+http://sqlite.org/2014/sqlite-autoconf-3080403.tar.gz
 http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
 http://www.openssl.org/source/openssl-1.0.1g.tar.gz
 http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz
