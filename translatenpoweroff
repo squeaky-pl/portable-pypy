@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./drive.py translate centos-x86_64 && ./drive.py translate centos-i686 &&  gnome-session-quit --power-off --force --no-prompt
+
