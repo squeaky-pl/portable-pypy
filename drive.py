@@ -152,11 +152,12 @@ def runinroot(root, cmd, cwd=None, okcode=None, call=check_call):
 
 
 deps = """
-http://hydra.nixos.org/build/1524660/download/2/patchelf-0.8.tar.bz2
+http://releases.nixos.org/patchelf/patchelf-0.8/patchelf-0.8.tar.gz
 http://sqlite.org/2014/sqlite-autoconf-3080403.tar.gz
 http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
 http://www.openssl.org/source/openssl-1.0.1g.tar.gz
 http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz
+http://ftp.gnu.org/gnu/gdbm/gdbm-1.11.tar.gz
 http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
 http://prdownloads.sourceforge.net/tcl/tk8.6.1-src.tar.gz
 """.strip().split()
@@ -236,9 +237,9 @@ def package(root, skip_numpy=False):
 
     ensuredirs(join(root, 'workspace/pypy/virtualenv_support'))
 
-    baseurl = 'https://github.com/pypa/virtualenv/raw/1.11.4'
-    files = ['virtualenv.py', 'virtualenv_support/pip-1.5.4-py2.py3-none-any.whl',
-             'virtualenv_support/setuptools-2.2-py2.py3-none-any.whl']
+    baseurl = 'https://github.com/pypa/virtualenv/raw/1.11.6'
+    files = ['virtualenv.py', 'virtualenv_support/pip-1.5.6-py2.py3-none-any.whl',
+             'virtualenv_support/setuptools-3.6-py2.py3-none-any.whl']
 
     for filename in files:
         urlcopy(join(baseurl, filename), join(root, 'workspace/pypy/virtualenv_support'))

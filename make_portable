@@ -1,6 +1,6 @@
 #!/usr/bin/env pypy
 
-bundle = ['sqlite3', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk']
+bundle = ['sqlite3', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk', 'gdbm']
 
 from os import chdir, mkdir
 from os.path import dirname, relpath, join, samefile, exists, basename
