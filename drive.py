@@ -76,7 +76,7 @@ def unpack(src, dest, strip=0, excludes=None, okcode=None, use_cache=True):
 
 devtools, pypy = """
 https://bitbucket.org/squeaky/centos-devtools/downloads/gcc-4.8.2-binutils-2.23.2-{arch}.tar.bz2
-https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.2.1-linux_{arch}-portable.tar.bz2
+https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.3.1-linux_{arch}-portable.tar.bz2
 """.strip().split()
 
 
@@ -153,9 +153,9 @@ def runinroot(root, cmd, cwd=None, okcode=None, call=check_call):
 
 deps = """
 http://releases.nixos.org/patchelf/patchelf-0.8/patchelf-0.8.tar.gz
-http://sqlite.org/2014/sqlite-autoconf-3080403.tar.gz
-http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
-http://www.openssl.org/source/openssl-1.0.1g.tar.gz
+http://sqlite.org/2014/sqlite-autoconf-3080500.tar.gz
+http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.1.tar.gz
+http://www.openssl.org/source/openssl-1.0.1h.tar.gz
 http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz
 http://ftp.gnu.org/gnu/gdbm/gdbm-1.11.tar.gz
 http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
@@ -228,7 +228,7 @@ def translate(root, revision=None):
 def package(root, skip_numpy=False):
     srcdir = join(root, 'workspace/src/pypy')
 
-    runinroot(root, ['pypy', 'pypy/tool/release/package.py', '.', 'pypy', 'pypy', '/workspace', './pypy-c'], cwd=srcdir)
+    runinroot(root, ['pypy', 'pypy/tool/release/package.py', '--rename_pypy_c', 'pypy', '--archive-name', 'pypy', '--targetdir', '/workspace', '--override_pypy_c', './pypy-c'], cwd=srcdir, okcode=255)
 
     if exists(join(root, 'workspace/pypy')):
         rmtree(join(root, 'workspace/pypy'))

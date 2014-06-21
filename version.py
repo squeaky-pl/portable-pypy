@@ -1,7 +1,9 @@
-from sys import pypy_version_info as vi
+from sys import version_info, pypy_version_info as vi
 import platform
 
-name = 'pypy-' + '.'.join(map(str, vi[:2 if not vi[2] else 3]))
+py = '3' if version_info[0] == 3 else ''
+
+name = 'pypy' + py + '-' + '.'.join(map(str, vi[:2 if not vi[2] else 3]))
 
 if vi.releaselevel != 'final':
     name += '-' + vi.releaselevel
