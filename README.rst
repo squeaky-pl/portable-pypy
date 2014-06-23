@@ -19,6 +19,13 @@ Latest Python 2.7 release
 
 `PyPy 2.3.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.3.1-linux_i686-portable.tar.bz2>`_
 
+Latest Python 3.2 release
+=========================
+
+`PyPy3 2.3.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.3.1-linux_x86_64-portable.tar.bz2>`_
+
+`PyPy3 2.3.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.3.1-linux_i686-portable.tar.bz2>`_
+
 Weekly builds
 =============
 
