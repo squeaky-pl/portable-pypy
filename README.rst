@@ -35,14 +35,22 @@ They include also numpy precompiled for your convenience.
 
 Using virtualenv
 ================
-Stock virtualenv is not working with portable binaries including RPATH
-entries. For this reason build includes specially patched ``virtualenv-pypy``
-script that takes care of the details for you::
+
+For versions 2.3 and newer you can use stock virtualenv that comes from your
+distribution or that you installed with PIP etc. Just pass
+`-p path-to-portable-pypy/bin/pypy` on the commandline.
+
+For your convenience this build also includes packaged virtualenv so you
+don't have to install one if you haven't done it yet::
 
     portable-pypy/bin/virtualenv-pypy my-environment
 
-You dont have to add -p switch as it defaults to pypy binary located in
-the build.
+In this case you dont have to add `-p` switch as it defaults to pypy binary
+located in the build.
+
+Stock virtualenv didn't work with portable binaries prior to version 2.3 that included RPATH
+entries in `pypy` binary. For these versions it's obligatory to use
+`virtualenv-pypy` that fixes this problem.
 
 Included software
 =================
