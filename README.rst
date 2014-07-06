@@ -66,7 +66,7 @@ All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/do
 How it is done
 ==============
 
-Binaries are built in a CentOS 5 chroot with help of `proot <http://proot.me/>`.
+Binaries are built in a CentOS 5 chroot with help of `proot <http://proot.me/>`_.
 That ensures that they are built against version of GLIBC that is reasonably
 old not to cause problems with symbol versioning.
 All the dependencies are also built inside chroot from latest stable tarballs. They are packed together with PyPy
