@@ -38,19 +38,19 @@ Using virtualenv
 
 For versions 2.3 and newer you can use stock virtualenv that comes from your
 distribution or that you installed with PIP etc. Just pass
-`-p path-to-portable-pypy/bin/pypy` on the commandline.
+``-p path-to-portable-pypy/bin/pypy`` on the commandline.
 
 For your convenience this build also includes packaged virtualenv so you
 don't have to install one if you haven't done it yet::
 
     portable-pypy/bin/virtualenv-pypy my-environment
 
-In this case you dont have to add `-p` switch as it defaults to pypy binary
+In this case you dont have to add ``-p`` switch as it defaults to ``pypy`` binary
 located in the build.
 
 Stock virtualenv didn't work with portable binaries prior to version 2.3 that included RPATH
-entries in `pypy` binary. For these versions it's obligatory to use
-`virtualenv-pypy` that fixes this problem.
+entries in ``pypy`` binary. For these versions it's obligatory to use
+``virtualenv-pypy`` that fixes this problem.
 
 Included software
 =================
@@ -66,8 +66,9 @@ All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/do
 How it is done
 ==============
 
-Binaries are built in a CentOS 5 chroot. That ensures that they are built against
-version of GLIBC that is reasonably old not to cause problems with symbol versioning.
-All the dependencies are also built inside chroot. They are packed together with PyPy
+Binaries are built in a CentOS 5 chroot with help of `proot <http://proot.me/>`.
+That ensures that they are built against version of GLIBC that is reasonably
+old not to cause problems with symbol versioning.
+All the dependencies are also built inside chroot from latest stable tarballs. They are packed together with PyPy
 into one distribution and `RPATH <http://enchildfone.wordpress.com/2010/03/23/a-description-of-rpath-origin-ld_library_path-and-portable-linux-binaries/>`_
 entires are inserted into them (this ensures that they can be found relatively to each other).
