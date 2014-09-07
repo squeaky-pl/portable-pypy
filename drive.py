@@ -153,13 +153,13 @@ def runinroot(root, cmd, cwd=None, okcode=None, call=check_call):
 
 deps = """
 http://releases.nixos.org/patchelf/patchelf-0.8/patchelf-0.8.tar.gz
-http://sqlite.org/2014/sqlite-autoconf-3080500.tar.gz
+http://sqlite.org/2014/sqlite-autoconf-3080600.tar.gz
 http://www.mirrorservice.org/sites/sourceware.org/pub/libffi/libffi-3.1.tar.gz
-http://www.openssl.org/source/openssl-1.0.1h.tar.gz
+http://www.openssl.org/source/openssl-1.0.1i.tar.gz
 http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz
 http://ftp.gnu.org/gnu/gdbm/gdbm-1.11.tar.gz
-http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
-http://prdownloads.sourceforge.net/tcl/tk8.6.1-src.tar.gz
+http://prdownloads.sourceforge.net/tcl/tcl8.6.2-src.tar.gz
+http://prdownloads.sourceforge.net/tcl/tk8.6.2-src.tar.gz
 """.strip().split()
 
 
@@ -222,13 +222,13 @@ def translate(root, revision=None):
     ensuredirs(srcdir)
     unpack('https://bitbucket.org/pypy/pypy/get/{}.tar.bz2'.format(revision), srcdir, strip=1, use_cache=False)
 
-    runinroot(root, ['pypy', 'rpython/bin/rpython', '-Ojit', 'pypy/goal/targetpypystandalone.py'], cwd=srcdir)
+    runinroot(root, ['/opt/pypy/bin/pypy', 'rpython/bin/rpython', '-Ojit', 'pypy/goal/targetpypystandalone.py'], cwd=srcdir)
 
 
 def package(root, skip_numpy=False):
     srcdir = join(root, 'workspace/src/pypy')
 
-    runinroot(root, ['pypy', 'pypy/tool/release/package.py', '--rename_pypy_c', 'pypy', '--archive-name', 'pypy', '--targetdir', '/workspace', '--override_pypy_c', './pypy-c'], cwd=srcdir, okcode=255)
+    runinroot(root, ['/opt/pypy/bin/pypy', 'pypy/tool/release/package.py', '--rename_pypy_c', 'pypy', '--archive-name', 'pypy', '--targetdir', '/workspace', '--override_pypy_c', './pypy-c'], cwd=srcdir, okcode=255)
 
     if exists(join(root, 'workspace/pypy')):
         rmtree(join(root, 'workspace/pypy'))
@@ -246,7 +246,7 @@ def package(root, skip_numpy=False):
 
     copy2(join(here, 'virtualenv-pypy'), join(root, 'workspace/pypy/bin/virtualenv-pypy'))
 
-    runinroot(root, ['pypy', '/host/make_portable', 'pypy'], cwd=join(root, 'workspace'))
+    runinroot(root, ['/opt/pypy/bin/pypy', '/host/make_portable', 'pypy'], cwd=join(root, 'workspace'))
 
     if exists(join(root, 'workspace/src/numpy')):
         rmtree(join(root, 'workspace/src/numpy'))
