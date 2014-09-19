@@ -73,4 +73,4 @@ That ensures that they are built against version of GLIBC that is reasonably
 old not to cause problems with symbol versioning.
 All the dependencies are also built inside chroot from latest stable tarballs. They are packed together with PyPy
 into one distribution and `RPATH <http://enchildfone.wordpress.com/2010/03/23/a-description-of-rpath-origin-ld_library_path-and-portable-linux-binaries/>`_
-entires are inserted into them (this ensures that they can be found relatively to each other).
+entries are inserted into them (this ensures that they can be found relatively to each other).
