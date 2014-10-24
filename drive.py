@@ -265,6 +265,11 @@ def package(root, skip_numpy=False):
     check_call(['find', join(root, 'workspace/pypy'), '-name', '*.pyc', '-delete'])
     check_call(['find', join(root, 'workspace/pypy'), '-name', '_cffi__*.[oc]', '-delete'])
 
+    if name.startswith('pypy3'):
+        check_call(['rm', '-f', 'pypy3', 'pypy3.2'], cwd=join(root, 'workspace/pypy/bin'))
+        check_call(['ln', '-s', 'pypy', 'pypy3'], cwd=join(root, 'workspace/pypy/bin'))
+        check_call(['ln', '-s', 'pypy', 'pypy3.2'], cwd=join(root, 'workspace/pypy/bin'))
+
     if exists(join(root, 'workspace', name)):
         rmtree(join(root, 'workspace', name))
 
