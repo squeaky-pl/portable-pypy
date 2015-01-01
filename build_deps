@@ -1,0 +1,86 @@
+#!/bin/bash
+
+set -e
+
+if [[ $ABI == "32" ]]; then
+    export CFLAGS="-m32 $CFLAGS"
+    export CPPFLAGS=$CFLAGS
+    export LDFLAGS="-m32 $LDFLAGS"
+fi
+
+env
+
+set -x
+
+wget https://www.openssl.org/source/openssl-1.0.1j.tar.gz -O - | tar xz
+cd openssl-1.0.1j
+if [[ $ABI == "32" ]]; then
+    setarch i386 ./config --prefix=/opt/prefix -m32 shared
+else
+    ./config --prefix=/opt/prefix shared
+fi
+sed -i "s#^SHARED_LDFLAGS=\\(.*\\)#SHARED_LDFLAGS=$LDFLAGS \\1#" Makefile
+make
+make install
+cd -
+
+wget http://releases.nixos.org/patchelf/patchelf-0.8/patchelf-0.8.tar.gz -O - | tar xz
+cd patchelf-0.8
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+
+wget http://www.sqlite.org/2014/sqlite-autoconf-3080704.tar.gz -O - | tar xz
+cd sqlite-autoconf-3080704
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+wget ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz -O - | tar xz
+cd libffi-3.2.1
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+cd /opt/prefix/lib
+find . -name ffi.h | xargs -i ln -sf ../lib/{} ../include
+find . -name ffitarget.h | xargs -i ln -sf ../lib/{} ../include
+cd -
+
+wget http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz -O - | tar xz
+cd expat-2.1.0
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+
+wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.11.tar.gz -O - | tar xz
+cd gdbm-1.11
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+
+wget http://prdownloads.sourceforge.net/tcl/tcl8.6.3-src.tar.gz -O - | tar xz
+cd tcl8.6.3/unix
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+
+wget http://prdownloads.sourceforge.net/tcl/tk8.6.3-src.tar.gz -O - | tar xz
+cd tk8.6.3/unix
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+ln -sf /opt/prefix/lib/libtcl8.6.so /opt/prefix/lib/libtcl.so
+ln -sf /opt/prefix/lib/libtk8.6.so /opt/prefix/lib/libtk.so
