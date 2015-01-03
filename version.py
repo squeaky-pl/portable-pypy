@@ -1,4 +1,4 @@
-from sys import version_info, pypy_version_info as vi
+from sys import version_info, pypy_version_info as vi, maxint
 import platform
 
 py = '3' if version_info[0] == 3 else ''
@@ -15,6 +15,8 @@ if vi.releaselevel == 'alpha':
     from datetime import datetime
     name += '-' + datetime.now().strftime('%Y%m%d')
 
-name += '-linux_' + platform.machine() + '-portable'
+machine = 'x86_64' if maxint > 2**31 - 1 else 'i686'
+
+name += '-linux_' + machine + '-portable'
 
 print(name)

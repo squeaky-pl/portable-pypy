@@ -74,7 +74,7 @@ def strip(binaries):
 
 
 def main():
-    binaries = ['bin/pypy']
+    binaries = ['bin/libpypy-c.so']
     binaries.extend(glob('lib_pypy/__pycache__/*.so'))
     binaries.extend(glob('lib_pypy/_tkinter/__pycache__/*.so'))
 
@@ -109,4 +109,4 @@ if __name__ == '__main__':
     # tcl/tk library
     copytree('/opt/prefix/lib/tcl8.6', 'lib/tcl')
     copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
-    check_call(['patch', 'lib_pypy/_tkinter/app.py', '/host/_tkinter_app.py.patch'])
+    check_call(['patch', 'lib_pypy/_tkinter/app.py', '/src/_tkinter_app.py.patch'])
