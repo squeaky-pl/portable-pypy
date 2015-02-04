@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+if [[ $ABI == 32 ]]; then
+    PYPY_PATH=/opt/pypy-i686/bin
+else
+    PYPY_PATH=/opt/pypy-x86_64/bin
+fi
+
+if [[ $ABI == "32" ]]; then
+    export CFLAGS="-m32 $CFLAGS"
+    export CPPFLAGS=$CFLAGS
+    export LDFLAGS="-m32 $LDFLAGS"
+fi
+
+export PATH=$PYPY_PATH:$PATH
+
+env
+
+cd pypy
+pypy pypy/tool/release/package.py --rename_pypy_c pypy --archive-name pypy --targetdir /src --override_pypy_c ./pypy-c
+cd -
+
+rm -rf pypy-pack
+mkdir pypy-pack
+
+tar -C pypy-pack --strip-components=1 -xjf pypy.tar.bz2
+./make_portable pypy-pack
+
+NAME=`pypy/pypy-c version.py`
+echo using $NAME
+
+rm -rf $NAME
+mv pypy-pack $NAME
+tar -cjf ${NAME}.tar.bz2 $NAME
