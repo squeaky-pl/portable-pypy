@@ -12,6 +12,8 @@ cat <<EOF
 -v `pwd`/version.py:/src/version.py
 -v `pwd`/platform_linux.patch:/src/platform_linux.patch
 -v `pwd`/_tkinter_app.py.patch:/src/_tkinter_app.py.patch
+-v `pwd`/subprocess.py.patch:/src/subprocess.py.patch
+-v `pwd`/virtualenv-pypy:/src/virtualenv-pypy
 -v `pwd`/prefix:/opt/prefix
 
 -e ABI=$ABI

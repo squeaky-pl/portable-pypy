@@ -1,0 +1,14 @@
+--- lib-python/2.7/subprocess_orig.py	2015-02-04 22:46:09.202287258 +0100
++++ lib-python/2.7/subprocess.py	2015-02-04 23:05:27.208206464 +0100
+@@ -1595,6 +1595,11 @@
+             if os.path.exists(src_library):
+                 caller.f_globals['copyfile'](src_library, dest_library)
+ 
++        import shutil
++        shutil.copytree(
++            os.path.join(src_dir, '../lib'),
++            os.path.join(dest_dir, '../lib'))
++
+ 
+ def _demo_posix():
+     #
