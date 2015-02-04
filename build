@@ -2,6 +2,8 @@
 
 set -e
 
+REVISION=$1
+
 if [[ $ABI == 32 ]]; then
     PYPY_PATH=/opt/pypy-i686/bin
 else
