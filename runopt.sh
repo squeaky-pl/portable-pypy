@@ -4,7 +4,7 @@ set -e
 
 cat <<EOF
 
--v `pwd`/src:/src
+-v `pwd`/src$ABI:/src
 -v `pwd`/build_deps:/src/build_deps
 -v `pwd`/build:/src/build
 -v `pwd`/package:/src/package
@@ -14,7 +14,7 @@ cat <<EOF
 -v `pwd`/_tkinter_app.py.patch:/src/_tkinter_app.py.patch
 -v `pwd`/subprocess.py.patch:/src/subprocess.py.patch
 -v `pwd`/virtualenv-pypy:/src/virtualenv-pypy
--v `pwd`/prefix:/opt/prefix
+-v `pwd`/prefix$ABI:/opt/prefix
 
 -e ABI=$ABI
 

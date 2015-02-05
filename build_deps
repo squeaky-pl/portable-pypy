@@ -84,3 +84,7 @@ cd -
 
 ln -sf /opt/prefix/lib/libtcl8.6.so /opt/prefix/lib/libtcl.so
 ln -sf /opt/prefix/lib/libtk8.6.so /opt/prefix/lib/libtk.so
+
+if [ -d /opt/prefix/lib64 ]; then
+    cp /opt/prefix/lib64/* /opt/prefix/lib
+fi
