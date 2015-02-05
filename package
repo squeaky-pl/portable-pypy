@@ -32,7 +32,7 @@ mkdir pypy-pack/virtualenv_support
 cd pypy-pack/virtualenv_support
 
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv.py
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-6.0.7-py2.py3-none-any.whl
+wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-6.0.8-py2.py3-none-any.whl
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-12.0.5-py2.py3-none-any.whl
 
 cd -
