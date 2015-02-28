@@ -16,7 +16,7 @@ if [[ $ABI == "32" ]]; then
     export LDFLAGS="-m32 $LDFLAGS"
 fi
 
-export PATH=$PYPY_PATH:$PATH
+export PATH=/opt/prefix/cpython-2.7.9/bin:$PYPY_PATH:$PATH
 
 env
 
@@ -26,5 +26,5 @@ wget https://bitbucket.org/pypy/pypy/get/${REVISION:=default}.tar.bz2 -O - | tar
 
 cd pypy
 patch -p0 < ../platform_linux.patch
-pypy rpython -Ojit pypy/goal/targetpypystandalone.py
+python rpython/bin/rpython -Ojit pypy/goal/targetpypystandalone.py
 cd -

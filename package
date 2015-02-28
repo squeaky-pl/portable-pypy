@@ -44,4 +44,5 @@ echo using $NAME
 
 rm -rf $NAME
 mv pypy-pack $NAME
+rm -f ${NAME}.tar.bz2
 tar -cjf ${NAME}.tar.bz2 $NAME
