@@ -32,7 +32,7 @@ make install
 cd -
 
 
-wget http://www.sqlite.org/2014/sqlite-autoconf-3080802.tar.gz -O - | tar xz
+wget http://www.sqlite.org/2015/sqlite-autoconf-3080802.tar.gz -O - | tar xz
 cd sqlite-autoconf-3080802
 ./configure --prefix=/opt/prefix
 make -j4
