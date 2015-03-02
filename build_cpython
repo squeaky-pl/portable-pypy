@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+if [[ $ABI == "32" ]]; then
+    export CFLAGS="-m32 $CFLAGS"
+    export CPPFLAGS=$CFLAGS
+    export LDFLAGS="-m32 $LDFLAGS"
+fi
+
+env
+
+rm -rf Python-2.7.9
+wget https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz
+tar xf Python-2.7.9.tgz
+
+cd Python-2.7.9
+./configure --prefix=/opt/prefix/cpython-2.7.9
+make -j4
+make install
