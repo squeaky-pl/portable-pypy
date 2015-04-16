@@ -2,7 +2,7 @@
 
 bundle = ['sqlite3', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk', 'gdbm']
 
-from os import chdir, mkdir
+from os import chdir, mkdir, symlink
 from os.path import dirname, relpath, join, samefile, exists, basename
 from shutil import copy2, copytree
 from sys import argv
@@ -39,6 +39,23 @@ def gather_deps(binaries):
         deps.update(get_deps(binary))
 
     return deps
+
+
+def symlink_deps(folder):
+    symlinks = {}
+    for lib in glob(join(folder, '*.so*')):
+        if lib.endswith('.so'):
+            continue
+
+        lnkname, _, _ = lib.partition('.so.')
+        lnkname += '.so'
+
+        src = basename(lib)
+        symlink(src, lnkname)
+        symlinks[lnkname] = src
+        print lnkname, src
+
+    return symlinks
 
 
 def copy_deps(deps):
@@ -92,6 +109,10 @@ def main():
         print('Set RPATH of {0} to {1}'.format(binary, rpath))
 
     strip(copied.values())
+   
+    symlink_deps('lib')
+
+    check_call('cp -Lr /opt/prefix/include/* include', shell=True)
 
     return deps
 
