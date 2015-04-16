@@ -12,8 +12,8 @@ env
 
 set -x
 
-wget https://www.openssl.org/source/openssl-1.0.2.tar.gz -O - | tar xz
-cd openssl-1.0.2
+wget https://www.openssl.org/source/openssl-1.0.2a.tar.gz -O - | tar xz
+cd openssl-1.0.2a
 if [[ $ABI == "32" ]]; then
     setarch i386 ./config --prefix=/opt/prefix -m32 shared
 else
