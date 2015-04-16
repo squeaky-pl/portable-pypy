@@ -132,3 +132,4 @@ if __name__ == '__main__':
     copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
     check_call(['patch', 'lib_pypy/_tkinter/app.py', '/src/_tkinter_app.py.patch'])
     check_call(['patch', 'lib-python/2.7/subprocess.py', '/src/subprocess.py.patch'])
+    check_call(['patch', 'lib-python/2.7/distutils/sysconfig_pypy.py', '/src/sysconfig_pypy.py.patch'])
