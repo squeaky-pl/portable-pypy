@@ -16,7 +16,7 @@ if [[ $ABI == "32" ]]; then
     export LDFLAGS="-m32 $LDFLAGS"
 fi
 
-export PATH=/opt/prefix/cpython-2.7.9/bin:$PYPY_PATH:$PATH
+export PATH=/opt/prefix/cpython-2.7/bin:$PYPY_PATH:$PATH
 
 env
 
