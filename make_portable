@@ -92,8 +92,8 @@ def strip(binaries):
 
 def main():
     binaries = ['bin/libpypy-c.so']
-    binaries.extend(glob('lib_pypy/__pycache__/*.so'))
-    binaries.extend(glob('lib_pypy/_tkinter/__pycache__/*.so'))
+    binaries.extend(glob('lib_pypy/*_cffi.pypy-*.so'))
+    binaries.extend(glob('lib_pypy/_tkinter/*_cffi.pypy-*.so'))
 
     deps = gather_deps(binaries)
 
