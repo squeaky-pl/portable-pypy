@@ -30,12 +30,7 @@ Latest Python 3.2 release
 
 `PyPy3 2.3.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.3.1-linux_i686-portable.tar.bz2>`_
 
-Weekly builds
-=============
-
-These are snapshots of alpha version done at the weekends.
-They include also numpy precompiled for your convenience.
-`Browse here <https://bitbucket.org/squeaky/portable-pypy-weekly/downloads>`_.
+All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
 
 Using virtualenv
 ================
@@ -62,17 +57,14 @@ Included software
 Besides PyPy there is OpenSSL, SQLite3, libffi, expat, TCL/TK and virtualenv packaged
 in these builds.
 
-Previous versions
-=================
-
-All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
-
 How it is done
 ==============
 
-Binaries are built in a CentOS 5 chroot with help of `proot <http://proot.me/>`_.
+Binaries are built with a CentOS 5 base image with help of `docker <http://docker.com/>`_.
 That ensures that they are built against version of GLIBC that is reasonably
 old not to cause problems with symbol versioning.
 All the dependencies are also built inside chroot from latest stable tarballs. They are packed together with PyPy
 into one distribution and `RPATH <http://enchildfone.wordpress.com/2010/03/23/a-description-of-rpath-origin-ld_library_path-and-portable-linux-binaries/>`_
 entries are inserted into them (this ensures that they can be found relatively to each other).
+
+If you want to build it yourself checkout instructions inside `BUILD.rst`.
