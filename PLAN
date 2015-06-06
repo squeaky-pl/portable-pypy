@@ -1,7 +1,0 @@
-6. bundle pip
-
-7. make proot, elfpatch and patch portable binaries
-8. integrate make_portable into main file
-9. add some print around
-
-11. add all deps into banner
