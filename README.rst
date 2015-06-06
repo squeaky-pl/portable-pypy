@@ -15,12 +15,14 @@ or later.
 Latest Python 2.7 release
 =========================
 
-`PyPy 2.4 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.4-linux_x86_64-portable.tar.bz2>`_
+`PyPy 2.6 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.6-linux_x86_64-portable.tar.bz2>`_
 
-`PyPy 2.4 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.4-linux_i686-portable.tar.bz2>`_
+`PyPy 2.6 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-2.6-linux_i686-portable.tar.bz2>`_
 
 Latest Python 3.2 release
 =========================
+
+`PyPy3 2.4 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.4-linux_x86_64-portable.tar.bz2>`_
 
 `PyPy3 2.4 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.4-linux_i686-portable.tar.bz2>`_
 
