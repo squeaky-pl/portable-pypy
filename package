@@ -17,9 +17,10 @@ fi
 export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
+set -x
 
 cd pypy
-python pypy/tool/release/package.py --rename_pypy_c pypy --archive-name pypy --targetdir /src --override_pypy_c ./pypy-c
+python pypy/tool/release/package.py --rename_pypy_c pypy --archive-name pypy --targetdir /opt/src --override_pypy_c ./pypy-c
 cd -
 
 rm -rf pypy-pack
@@ -39,7 +40,7 @@ wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtua
 
 cd -
 
-cp /src/virtualenv-pypy pypy-pack/bin/virtualenv-pypy
+cp /opt/portable-pypy/virtualenv-pypy pypy-pack/bin/virtualenv-pypy
 
 NAME=`pypy/pypy-c version.py`
 echo using $NAME
@@ -47,4 +48,4 @@ echo using $NAME
 rm -rf $NAME
 mv pypy-pack $NAME
 rm -f ${NAME}.tar.bz2
-tar -cjf ${NAME}.tar.bz2 $NAME
+tar -cjf "/opt/target/${NAME}.tar.bz2" --owner=0 --group=0 $NAME

@@ -1,0 +1,9 @@
+VAGRANTFILE_API_VERSION = '2'
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = 'dduportal/boot2docker'
+    config.vm.synced_folder('.', '/mnt/build-home', create: true, disabled: false, id: 'pypy-build-home')
+    config.vm.network(:private_network, ip: '192.168.123.123')
+    config.vm.provider(:virtualbox) do |v, override|
+        v.memory = 5120 # need >=4GB free to build PyPy
+    end
+end

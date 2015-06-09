@@ -2,7 +2,16 @@
 
 set -e
 
-REVISION=$1
+# Check to make sure we have enough memory
+_MEM_KB="$( cat /proc/meminfo | awk '$1 == "MemAvailable:" { print($2); }' )"
+_MIN_MEM_KB="$(( 4 * 1024 * 1024 ))"
+
+if [ "${_MEM_KB}" -lt "${_MIN_MEM_KB}" ] ; then
+    echo 1>&2 "${_MEM_KB} kB is insufficient for building PyPy (need at least ${_MIN_MEM_KB})"
+    exit 1
+fi
+
+REVISION="${1:-${REVISION}}"
 
 if [[ $ABI == 32 ]]; then
     PYPY_PATH=/opt/pypy-i686/bin
@@ -19,12 +28,13 @@ fi
 export PATH=/opt/prefix/cpython-2.7/bin:$PYPY_PATH:$PATH
 
 env
+set -x
 
 rm -rf pypy
 mkdir -p pypy
-wget https://bitbucket.org/pypy/pypy/get/${REVISION:=default}.tar.bz2 -O - | tar -C pypy --strip-components=1 -xj
+wget "https://bitbucket.org/pypy/pypy/get/${REVISION}.tar.bz2" -O - | tar -C pypy --strip-components=1 -xoj
 
 cd pypy
-patch -p0 < ../platform_linux.patch
+patch -p0 < /opt/portable-pypy/platform_linux.patch
 python rpython/bin/rpython -Ojit pypy/goal/targetpypystandalone.py
 cd -

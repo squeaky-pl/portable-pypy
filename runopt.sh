@@ -2,26 +2,49 @@
 
 set -e
 
+if [ -n "${BUILD_HOME}" ] ; then
+    PREFIX_DIR="${BUILD_HOME}/prefix"
+    SRC_DIR="${BUILD_HOME}/src"
+    TARGET_DIR="${BUILD_HOME}"
+else
+    BUILD_HOME="$( pwd )"
+fi
+
+if [ -z "${PREFIX_DIR}" ] ; then
+    SRC_DIR="${BUILD_HOME}/prefix${ABI}"
+    mkdir -p "${PREFIX_DIR}"
+fi
+
+if [ -z "${SRC_DIR}" ] ; then
+    SRC_DIR="${BUILD_HOME}/src${ABI}"
+    mkdir -p "${SRC_DIR}"
+fi
+
+if [ -z "${TARGET_DIR}" ] ; then
+    TARGET_DIR="${BUILD_HOME}"
+    mkdir -p "${TARGET_DIR}"
+fi
+
+ABI="${ABI:-64}"
+MAKE_PROCS="${MAKE_PROCS:-4}"
+REVISION="${REVISION:-default}"
+
 cat <<EOF
 
--v `pwd`/src$ABI:/src
--v `pwd`/build_deps:/src/build_deps
--v `pwd`/build:/src/build
--v `pwd`/build_cpython:/src/build_cpython
--v `pwd`/package:/src/package
--v `pwd`/make_portable:/src/make_portable
--v `pwd`/version.py:/src/version.py
--v `pwd`/platform_linux.patch:/src/platform_linux.patch
--v `pwd`/_tkinter_app.py.patch:/src/_tkinter_app.py.patch
--v `pwd`/subprocess.py.patch:/src/subprocess.py.patch
--v `pwd`/sysconfig_pypy.py.patch:/src/sysconfig_pypy.py.patch
--v `pwd`/virtualenv-pypy:/src/virtualenv-pypy
--v `pwd`/prefix$ABI:/opt/prefix
+-v ${PREFIX_DIR}:/opt/prefix
 
--e ABI=$ABI
+-v ${SRC_DIR}:/opt/src
+
+-v ${TARGET_DIR}:/opt/target
 
 --env-file env.list
 
--w /src
+-e ABI=${ABI}
+
+-e MAKE_PROCS=${MAKE_PROCS}
+
+-e REVISION=${REVISION}
+
+-w /opt/src
 
 EOF

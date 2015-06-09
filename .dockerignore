@@ -1,0 +1,9 @@
+.dockerignore
+.git
+*.rst
+Dockerfile
+env.list
+mkall
+prefix*
+runopt.sh
+targets

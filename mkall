@@ -1,0 +1,105 @@
+#!/bin/bash
+
+set -e
+
+_help=''
+
+while getopts ':a:b:d:hr:t:' _opt ; do
+    case "${_opt}" in
+    a)  ABI="${OPTARG}"
+        ;;
+    b)  PHASE="${OPTARG}"
+        ;;
+    d)  BUILD_HOME="${OPTARG}"
+        ;;
+    h)  _help=1
+        ;;
+    r)  REVISION="${OPTARG}"
+        ;;
+    t)  MAKE_PROCS="${OPTARG}"
+        ;;
+    esac
+done
+
+shift "$(( OPTIND - 1 ))"
+
+if [ -n "${_help}" ] \
+        || [ "${#}" -gt 1 ] ; then
+    ME="$( basename "${0}" )"
+    cat 1>&2 <<EOF
+USE
+
+    ${ME} [-a 32|64] [-b PHASE] [-d BUILD_HOME] [-r REVISION] [-t NUM_PROCS]
+    ${ME} -h
+
+OPTIONS
+
+    -a ARCH_TYPE
+
+        Set the architecture type. Defaults to 64. ARCH_TYPE is one of:
+
+            * 32
+            * 64
+
+    -b PHASE
+
+        Only perform the indicated build phase instead of all phases.
+        PHASE is one of:
+
+            * build_cpython
+            * build_deps
+            * build
+            * package
+
+    -d BUILD_HOME
+
+        Sets the path of the build state directory that is maintained
+        between build steps to BUILD_HOME. If provided, this directory
+        must exist. It must have subdirectories named "prefix" and "src".
+        It must be mountable from within Docker.
+
+        This is primarily to accommodate non-native users who invoke
+        Docker from a VM (e.g., using boot2docker.iso). BUILD_HOME is
+        passed to Docker via the CLI -v option, so it must specify the
+        path as visible from within the VM.
+
+    -r REVISION
+
+        Set the PyPy release to build to REVISION. Defaults to "default".
+        (Only used in the "build" and "package" phases; see the "-b"
+        option.)
+
+    -t NUM_PROCS
+
+        Set the number of concurrent processes for various build steps.
+        Defaults to 4.
+EOF
+
+    if [ -n "${_help}" ] ; then
+        exit
+    else
+        exit 1
+    fi
+fi
+
+# Defaults are defined in runopt.sh
+export ABI
+export BUILD_HOME
+export MAKE_PROCS
+
+_working_dir="$( dirname "${0}" )"
+set -x
+cd "${_working_dir}"
+docker build -t pypy .
+# The --interactive and --tty options are necessary to be able to natively
+# halt each build step (e.g. with CTRL-C, kill, etc.)
+if [ -n "${PHASE}" ] ; then
+    docker run --interactive --rm --tty `./runopt.sh` pypy "/opt/portable-pypy/${PHASE}"
+else
+    docker run --interactive --rm --tty `./runopt.sh` pypy /opt/portable-pypy/build_cpython
+    docker run --interactive --rm --tty `./runopt.sh` pypy /opt/portable-pypy/build_deps
+    docker run --interactive --rm --tty `./runopt.sh` pypy /opt/portable-pypy/build
+    docker run --interactive --rm --tty `./runopt.sh` pypy /opt/portable-pypy/package
+    [ ! -e targets ] \
+        && ln -s "${BUILD_HOME}/var/pypy" targets
+fi
