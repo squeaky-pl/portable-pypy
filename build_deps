@@ -12,8 +12,8 @@ env
 
 set -x
 
-wget https://www.openssl.org/source/openssl-1.0.2a.tar.gz -O - | tar xz
-cd openssl-1.0.2a
+wget http://www.openssl.org/source/openssl-1.0.2d.tar.gz -O - | tar xz
+cd openssl-1.0.2d
 if [[ $ABI == "32" ]]; then
     setarch i386 ./config --prefix=/opt/prefix -m32 shared
 else
@@ -32,8 +32,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2015/sqlite-autoconf-3081002.tar.gz -O - | tar xz
-cd sqlite-autoconf-3081002
+wget https://sqlite.org/2015/sqlite-autoconf-3081101.tar.gz -O - | tar xz
+cd sqlite-autoconf-3081101
 ./configure --prefix=/opt/prefix
 make -j4
 make install
