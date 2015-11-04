@@ -2,12 +2,6 @@
 
 set -e
 
-if [[ $ABI == 32 ]]; then
-    PYPY_PATH=/opt/pypy-i686/bin
-else
-    PYPY_PATH=/opt/pypy-x86_64/bin
-fi
-
 if [[ $ABI == "32" ]]; then
     export CFLAGS="-m32 $CFLAGS"
     export CPPFLAGS=$CFLAGS
