@@ -12,8 +12,8 @@ env
 
 set -x
 
-wget http://www.openssl.org/source/openssl-1.0.2d.tar.gz -O - | tar xz
-cd openssl-1.0.2d
+wget http://www.openssl.org/source/openssl-1.0.2g.tar.gz -O - | tar xz
+cd openssl-1.0.2g
 if [[ $ABI == "32" ]]; then
     setarch i386 ./config --prefix=/opt/prefix -m32 shared
 else
@@ -32,8 +32,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2015/sqlite-autoconf-3090100.tar.gz -O - | tar xz
-cd sqlite-autoconf-3090100
+wget https://sqlite.org/2016/sqlite-autoconf-3110100.tar.gz -O - | tar xz
+cd sqlite-autoconf-3110100
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -67,16 +67,16 @@ make install
 cd -
 
 
-wget http://prdownloads.sourceforge.net/tcl/tcl8.6.4-src.tar.gz -O - | tar xz
-cd tcl8.6.4/unix
+wget http://prdownloads.sourceforge.net/tcl/tcl8.6.5-src.tar.gz -O - | tar xz
+cd tcl8.6.5/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
 cd -
 
 
-wget http://prdownloads.sourceforge.net/tcl/tk8.6.4-src.tar.gz -O - | tar xz
-cd tk8.6.4/unix
+wget http://prdownloads.sourceforge.net/tcl/tk8.6.5-src.tar.gz -O - | tar xz
+cd tk8.6.5/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
