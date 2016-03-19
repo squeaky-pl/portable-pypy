@@ -27,8 +27,8 @@ cd pypy-pack/virtualenv_support
 
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv.py
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/argparse-1.4.0-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-8.1.0-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-20.2.2-py2.py3-none-any.whl
+wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-8.1.1-py2.py3-none-any.whl
+wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-20.3-py2.py3-none-any.whl
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/wheel-0.29.0-py2.py3-none-any.whl
 
 cd -
@@ -42,3 +42,7 @@ rm -rf $NAME
 mv pypy-pack $NAME
 rm -f ${NAME}.tar.bz2
 tar -cjf ${NAME}.tar.bz2 $NAME
+
+md5sum ${NAME}.tar.bz2
+sha1sum ${NAME}.tar.bz2
+sha256sum ${NAME}.tar.bz2
