@@ -15,20 +15,44 @@ or later.
 Latest Python 2.7 release
 =========================
 
-`PyPy 5.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.0-linux_x86_64-portable.tar.bz2>`_
+`PyPy 5.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.0-linux_x86_64-portable.tar.bz2>`_::
 
-`PyPy 5.0 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.0-linux_i686-portable.tar.bz2>`_
+    md5:    e034a65e3f627aa6ce19e5e8d51b0a3b
+    sha1:   391aff941e97967cda65cdca7fbe2d8bbd27040f
+    sha256: 57c9ea251bf1e7074e14aeecdd1ac8bb2fc53dbf3f90a9613d03e33076a7fa08
+
+`PyPy 5.0 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.0-linux_i686-portable.tar.bz2>`_::
+
+    md5:    4afb94fe55e80e7364ef061d6024b560
+    sha1:   343c382c060302cf3517727336685c922567f16c
+    sha256: 316e03afdd2f6212857789933c01f0d41a1665c80d28526c0fb4082b6d3f4f60
 
 Latest Python 3.2 release
 =========================
 
-`PyPy3 2.4 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.4-linux_x86_64-portable.tar.bz2>`_
+`PyPy3 2.4 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.4-linux_x86_64-portable.tar.bz2>`_::
 
-`PyPy3 2.4 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.4-linux_i686-portable.tar.bz2>`_
+    md5:    6fd83263159cc3ece4a9a186ce1ed388
+    sha1:   ede1e03b1e0c4925fa0332114ed1b732d700830f
+    sha256: 7b3e0f0bc924bd0d68d85c0b566979e74a2b366595db3d81502267367370a5fb
 
-`PyPy3 2.3.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.3.1-linux_x86_64-portable.tar.bz2>`_
+`PyPy3 2.4 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.4-linux_i686-portable.tar.bz2>`_::
 
-`PyPy3 2.3.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.3.1-linux_i686-portable.tar.bz2>`_
+    md5:    deb9c7de9666d6e67939c5a97f4c0224
+    sha1:   3c1cd2e201a46a32cd62d27885e749ddf6c48af0
+    sha256: 7ce050b4928dc58f7e9dd01e3e48c443c85616ca83f4bcc9147f1078d0fd126c
+
+`PyPy3 2.3.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.3.1-linux_x86_64-portable.tar.bz2>`_::
+
+    md5:    c2b876fe91396e320d3e5313fcdfc2bdx
+    sha1:   f7e39cd173b6c66b057fef012a082c8c63a7be3d
+    sha256: cb56b5bde8f444d44a0ea9cd475ddeed00aa895f3dcc89fd37577a51439540aa
+
+`PyPy3 2.3.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3-2.3.1-linux_i686-portable.tar.bz2>`_::
+
+    md5:    fb0d7ad6280ed41710c4f2c067bcf91c
+    sha1:   5dcdad4c0724c6c84318756539be3ac4486e5866
+    sha256: 32a5b3fd4299b13aedf7bc6262eee0f6be9a27744ccf787718553d973ec38abb
 
 All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
 
