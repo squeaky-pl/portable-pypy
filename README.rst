@@ -15,17 +15,17 @@ or later.
 Latest Python 2.7 release
 =========================
 
-`PyPy 5.0.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.0.1-linux_x86_64-portable.tar.bz2>`_::
+`PyPy 5.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.1-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    43ca66449b303ca068ebbb4d52437130
-    sha1:   76fa42ea1e1fc80e64c78b44f008909074424134
-    sha256: 14d65f84fe8228cfa2b8e924364cf4c71e2bc6b13649098fa340baf044606436
+    md5:    eb47a9e3a9fda503b1a63c66ebd5502e
+    sha1:   ec2ed33346d90923c64f8a2b6a526bbded034bac
+    sha256: 893507603a58b8983b69924e60591de39b8f71f70ba36d6e3894db8f7c49c3ea
 
-`PyPy 5.0.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.0.1-linux_i686-portable.tar.bz2>`_::
+`PyPy 5.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.1-linux_i686-portable.tar.bz2>`_::
 
-    md5:    73a0b91196133d13feae7ea392d593f8
-    sha1:   8783f97754c6b693923aa6b05201693f8fe7db1f
-    sha256: 96f1b487655c914a03f56747dfff9c20350175cae01e2911f19b1016442ed6b5
+    md5:    eb47a9e3a9fda503b1a63c66ebd5502e
+    sha1:   ec2ed33346d90923c64f8a2b6a526bbded034bac
+    sha256: 893507603a58b8983b69924e60591de39b8f71f70ba36d6e3894db8f7c49c3ea
 
 Latest Python 3.2 release
 =========================
