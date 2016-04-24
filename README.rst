@@ -19,7 +19,7 @@ Latest Python 2.7 release
 
     md5:    eb47a9e3a9fda503b1a63c66ebd5502e
     sha1:   ec2ed33346d90923c64f8a2b6a526bbded034bac
-    sha256: 893507603a58b8983b69924e60591de39b8f71f70ba36d6e3894db8f7c49c3ea
+    sha256: b2df9b0127457d1c3cc0dc9b8f027a53569ccd3ba5a79012d641e576d9cc003a
 
 `PyPy 5.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.1-linux_i686-portable.tar.bz2>`_::
 
