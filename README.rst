@@ -17,8 +17,8 @@ Latest Python 2.7 release
 
 `PyPy 5.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.1-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    eb47a9e3a9fda503b1a63c66ebd5502e
-    sha1:   ec2ed33346d90923c64f8a2b6a526bbded034bac
+    md5:    eda58fb0cdf06af594cd10a98f1dcc29
+    sha1:   0d13c2270beb2d5ab33568d4eb2708521b76febc
     sha256: 893507603a58b8983b69924e60591de39b8f71f70ba36d6e3894db8f7c49c3ea
 
 `PyPy 5.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.1-linux_i686-portable.tar.bz2>`_::
