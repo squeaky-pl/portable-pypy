@@ -3,11 +3,11 @@ Portable PyPy distribution for Linux
 ====================================
 
 This repository contains efforts to build 32 and 64 bit
-x86 `PyPy <http://pypy.org>`_ binaries for various Linux distrubtions. The idea
+x86 `PyPy <http://pypy.org>`_ binaries for various Linux distributions. The idea
 is that you just download an archive, uncompress it and run
 it instantly without installing any extra libraries or tweaking
 your OS.
-Currenly they are known to work across various DEB and RPM based
+Currently they are known to work across various DEB and RPM based
 distributions including RHEL/Centos 5 and later, Ubuntu and Debian stable.
 It should run on any distribution that includes GLIBC 2.3 and kernel 2.6.19
 or later.
@@ -68,7 +68,7 @@ don't have to install one if you haven't done it yet::
 
     portable-pypy/bin/virtualenv-pypy my-environment
 
-In this case you dont have to add ``-p`` switch as it defaults to ``pypy`` binary
+In this case you don't have to add ``-p`` switch as it defaults to ``pypy`` binary
 located in the build.
 
 Stock virtualenv didn't work with portable binaries prior to version 2.3 that included RPATH
