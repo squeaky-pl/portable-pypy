@@ -32,8 +32,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2016/sqlite-autoconf-3120200.tar.gz -O - | tar xz
-cd sqlite-autoconf-3120200
+wget https://sqlite.org/2016/sqlite-autoconf-3130000.tar.gz -O - | tar xz
+cd sqlite-autoconf-3130000
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -59,7 +59,7 @@ make install
 cd -
 
 
-wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.11.tar.gz -O - | tar xz
+wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.12.tar.gz -O - | tar xz
 cd gdbm-1.11
 ./configure --prefix=/opt/prefix
 make -j4
