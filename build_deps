@@ -24,6 +24,13 @@ make
 make install
 cd -
 
+wget http://tukaani.org/xz/xz-5.2.2.tar.gz -O - | tar xz
+cd xz-5.2.2
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
 wget http://nixos.org/releases/patchelf/patchelf-0.9/patchelf-0.9.tar.gz -O - | tar xz
 cd patchelf-0.9
 ./configure --prefix=/opt/prefix
