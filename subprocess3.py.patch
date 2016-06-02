@@ -1,0 +1,11 @@
+--- lib-python/3/subprocess.py.orig	2016-06-02 19:44:52.060004669 +0200
++++ lib-python/3/subprocess.py	2016-06-02 19:46:49.860652037 +0200
+@@ -1817,3 +1817,8 @@
+             src_library = os.path.join(src_dir, libname)
+             if os.path.exists(src_library):
+                 caller.f_globals['copyfile'](src_library, dest_library)
++
++        import shutil
++        shutil.copytree(
++            os.path.join(src_dir, '../lib'),
++            os.path.join(dest_dir, '../lib'))
