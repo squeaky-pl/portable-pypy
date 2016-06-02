@@ -36,7 +36,7 @@ Latest Python 3.3 release
     sha1:   61c8dd458e336acbb90e31d03383fb0ab08f97aa
     sha256: 4d1e7dd727448c1b2caa90c943713c0aa10b32e9d977c2c3b348835f515a3ad4
 
-`PyPy3.3 5.2 alpha i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.3-5.2-alpha-20160602-linux_x86_64-portable.tar.bz2>`_::
+`PyPy3.3 5.2 alpha i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.3-5.2-alpha-20160602-linux_i686-portable.tar.bz2>`_::
 
     md5:    44bdce72b4754bebda03a12ff7cd6dfc
     sha1:   056c433a20ceadd4fc9389a77eb1203021a8d976
