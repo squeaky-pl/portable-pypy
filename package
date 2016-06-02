@@ -12,14 +12,30 @@ export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
 
+NAME=`pypy/pypy-c version.py`
+echo using $NAME
+
+
+BINNAME=pypy
+if [[ $NAME == pypy3* ]]; then
+    BINNAME=${NAME:0:7}
+fi
+echo binname $BINNAME
+
+
 cd pypy
-./pypy-c pypy/tool/release/package.py --rename_pypy_c pypy --archive-name pypy --targetdir /src --override_pypy_c ./pypy-c
+python pypy/tool/release/package.py --rename_pypy_c $BINNAME --archive-name pypy --targetdir /src --override_pypy_c ./pypy-c
 cd -
 
 rm -rf pypy-pack
 mkdir pypy-pack
 
 tar -C pypy-pack --strip-components=1 -xjf pypy.tar.bz2
+if [[ $NAME == pypy3* ]]; then
+    cd pypy-pack/bin
+    ln -s $BINNAME pypy
+    cd -
+fi
 ./make_portable pypy-pack
 
 mkdir pypy-pack/virtualenv_support
@@ -27,16 +43,13 @@ cd pypy-pack/virtualenv_support
 
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv.py
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/argparse-1.4.0-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-8.1.1-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-20.3-py2.py3-none-any.whl
+wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-8.1.2-py2.py3-none-any.whl
+wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-21.2.1-py2.py3-none-any.whl
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/wheel-0.29.0-py2.py3-none-any.whl
 
 cd -
 
 cp /src/virtualenv-pypy pypy-pack/bin/virtualenv-pypy
-
-NAME=`pypy/pypy-c version.py`
-echo using $NAME
 
 rm -rf $NAME
 mv pypy-pack $NAME
