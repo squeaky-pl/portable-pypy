@@ -67,7 +67,7 @@ cd -
 
 
 wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.12.tar.gz -O - | tar xz
-cd gdbm-1.11
+cd gdbm-1.12
 ./configure --prefix=/opt/prefix
 make -j4
 make install

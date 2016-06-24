@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-bundle = ['sqlite3', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk', 'gdbm']
+bundle = ['sqlite3', 'ssl', 'crypto', 'ffi', 'expat', 'tcl', 'tk', 'gdbm', 'lzma']
 
 from os import chdir, mkdir, symlink
 from os.path import dirname, relpath, join, samefile, exists, basename
@@ -92,8 +92,8 @@ def strip(binaries):
 
 def main():
     binaries = ['bin/libpypy-c.so']
-    binaries.extend(glob('lib_pypy/*_cffi.pypy-*.so'))
-    binaries.extend(glob('lib_pypy/_tkinter/*_cffi.pypy-*.so'))
+    binaries.extend(glob('lib_pypy/*_cffi.pypy*.so'))
+    binaries.extend(glob('lib_pypy/_tkinter/*_cffi.pypy*.so'))
 
     deps = gather_deps(binaries)
 
@@ -131,5 +131,9 @@ if __name__ == '__main__':
     copytree('/opt/prefix/lib/tcl8.6', 'lib/tcl')
     copytree('/opt/prefix/lib/tk8.6', 'lib/tk')
     check_call(['patch', 'lib_pypy/_tkinter/app.py', '/src/_tkinter_app.py.patch'])
-    check_call(['patch', 'lib-python/2.7/subprocess.py', '/src/subprocess.py.patch'])
-    check_call(['patch', 'lib-python/2.7/distutils/sysconfig_pypy.py', '/src/sysconfig_pypy.py.patch'])
+    if exists('lib-python/3'):
+        check_call(['patch', 'lib-python/3/subprocess.py', '/src/subprocess3.py.patch'])
+        check_call(['patch', 'lib-python/3/distutils/sysconfig_pypy.py', '/src/sysconfig_pypy.py.patch'])
+    else:
+        check_call(['patch', 'lib-python/2.7/subprocess.py', '/src/subprocess.py.patch'])
+        check_call(['patch', 'lib-python/2.7/distutils/sysconfig_pypy.py', '/src/sysconfig_pypy.py.patch'])

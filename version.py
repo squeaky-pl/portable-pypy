@@ -1,7 +1,13 @@
-from sys import version_info, pypy_version_info as vi, maxint
+from sys import version_info, pypy_version_info as vi
+
+try:
+    from sys import maxint
+except ImportError:
+    from sys import maxsize as maxint
+
 import platform
 
-py = '3' if version_info[0] == 3 else ''
+py = str(version_info[0]) + '.' + str(version_info[1]) if version_info[0] == 3 else ''
 
 name = 'pypy' + py + '-' + '.'.join(map(str, vi[:2 if not vi[2] else 3]))
 
