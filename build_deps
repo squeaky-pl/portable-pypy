@@ -39,8 +39,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2016/sqlite-autoconf-3130000.tar.gz -O - | tar xz
-cd sqlite-autoconf-3130000
+wget https://sqlite.org/2016/sqlite-autoconf-3140100.tar.gz -O - | tar xz
+cd sqlite-autoconf-3140100
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -58,8 +58,8 @@ find . -name ffi.h | xargs -i ln -sf ../lib/{} ../include
 find . -name ffitarget.h | xargs -i ln -sf ../lib/{} ../include
 cd -
 
-wget http://downloads.sourceforge.net/project/expat/expat/2.1.1/expat-2.1.1.tar.bz2 -O - | tar xj
-cd expat-2.1.1
+wget http://downloads.sourceforge.net/project/expat/expat/2.2.0/expat-2.2.0.tar.bz2 -O - | tar xj
+cd expat-2.2.0
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -74,16 +74,16 @@ make install
 cd -
 
 
-wget http://prdownloads.sourceforge.net/tcl/tcl8.6.5-src.tar.gz -O - | tar xz
-cd tcl8.6.5/unix
+wget http://prdownloads.sourceforge.net/tcl/tcl8.6.6-src.tar.gz -O - | tar xz
+cd tcl8.6.6/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
 cd -
 
 
-wget http://prdownloads.sourceforge.net/tcl/tk8.6.5-src.tar.gz -O - | tar xz
-cd tk8.6.5/unix
+wget http://prdownloads.sourceforge.net/tcl/tk8.6.6-src.tar.gz -O - | tar xz
+cd tk8.6.6/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
