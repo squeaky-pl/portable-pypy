@@ -16,6 +16,7 @@ cat <<EOF
 -v `pwd`/subprocess.py.patch:/src/subprocess.py.patch
 -v `pwd`/subprocess3.py.patch:/src/subprocess3.py.patch
 -v `pwd`/sysconfig_pypy.py.patch:/src/sysconfig_pypy.py.patch
+-v `pwd`/recursion.patch:/src/recursion.patch
 -v `pwd`/virtualenv-pypy:/src/virtualenv-pypy
 -v `pwd`/prefix$ABI:/opt/prefix
 
