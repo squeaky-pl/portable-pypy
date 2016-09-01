@@ -44,7 +44,7 @@ cd pypy-pack/virtualenv_support
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv.py
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/argparse-1.4.0-py2.py3-none-any.whl
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-8.1.2-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-21.2.1-py2.py3-none-any.whl
+wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-22.0.5-py2.py3-none-any.whl
 wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/wheel-0.29.0-py2.py3-none-any.whl
 
 cd -
