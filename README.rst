@@ -21,11 +21,11 @@ Latest Python 2.7 release
     sha1:   db1f498959213a2248ae924d02b1143107b9686d
     sha256: 73014c3840609a62c0984b9c383652097f0a8c52fb74dd9de70d9df2a9a743ff
 
-`PyPy 5.3.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.3.1-linux_i686-portable.tar.bz2>`_::
+`PyPy 5.4 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.4-linux_i686-portable.tar.bz2>`_::
 
-    md5:    3676a49065860b98e8fe1e0ea01b3eba
-    sha1:   76bca09c4eea7d80072a610da15795731511942d
-    sha256: 4460dad6376406c221406676208abae989c126115b0f0b2e46c8b8a027bf978a
+    md5:    f4019455bd82286ad5423ab42c53eea3
+    sha1:   7e6bf14420c8f20000ea10eaa066ece63fbde766
+    sha256: 7d7d253f009bb2624f43db6b8caeeb73d29177c4166a643a581a231a099c8689
 
 Latest Python 3.3 release
 =========================
