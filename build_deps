@@ -12,6 +12,14 @@ env
 
 set -x
 
+wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz -O - | tar xz
+cd ncurses-6.0
+./configure --prefix=/opt/prefix --without-cxx --with-termlib --without-normal --with-shared --enable-database --with-terminfo-dirs=/lib/terminfo:/usr/share/terminfo
+echo "#define NCURSES_USE_DATABASE 1" >> include/ncurses_cfg.h
+make
+make install
+cd -
+
 wget http://ftp.vim.org/security/openssl/openssl-1.0.2h.tar.gz -O - | tar xz
 cd openssl-1.0.2h
 if [[ $ABI == "32" ]]; then
