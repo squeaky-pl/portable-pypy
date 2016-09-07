@@ -7,7 +7,6 @@ cat <<EOF
 -v `pwd`/src$ABI:/src
 -v `pwd`/build_deps:/src/build_deps
 -v `pwd`/build:/src/build
--v `pwd`/build_cpython:/src/build_cpython
 -v `pwd`/package:/src/package
 -v `pwd`/make_portable:/src/make_portable
 -v `pwd`/version.py:/src/version.py
