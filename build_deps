@@ -97,6 +97,15 @@ make -j4
 make install
 cd -
 
+
+wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz -O - | tar xz 
+cd Python-2.7.12
+./configure --prefix=/opt/prefix/cpython-2.7
+make -j4
+make install
+cd -
+
+
 ln -sf /opt/prefix/lib/libtcl8.6.so /opt/prefix/lib/libtcl.so
 ln -sf /opt/prefix/lib/libtk8.6.so /opt/prefix/lib/libtk.so
 
