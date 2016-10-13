@@ -41,7 +41,11 @@ cd -
 
 wget http://nixos.org/releases/patchelf/patchelf-0.9/patchelf-0.9.tar.gz -O - | tar xz
 cd patchelf-0.9
-./configure --prefix=/opt/prefix
+if [[ $ABI == "32" ]]; then
+  LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/devtools-6.2/lib" ./configure --prefix=/opt/prefix
+else
+  LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/devtools-6.2/lib64" ./configure --prefix=/opt/prefix
+fi
 make -j4
 make install
 cd -
