@@ -30,11 +30,11 @@ Latest Python 2.7 release
 Latest Python 3.3 release
 =========================
 
-`PyPy3.3 5.2 alpha x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.3-5.2-alpha-20160602-linux_x86_64-portable.tar.bz2>`_::
+`PyPy3.3 5.5 alpha x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.3-5.5-alpha-20161013-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    0a2332b60a40e6fd3c8625ffc4f0ef9c
-    sha1:   61c8dd458e336acbb90e31d03383fb0ab08f97aa
-    sha256: 4d1e7dd727448c1b2caa90c943713c0aa10b32e9d977c2c3b348835f515a3ad4
+    md5:    b0f064518a5742f042b5cc067f83b9d2
+    sha1:   1bd7daf24d6e090d8907b80477901aa6a68ff10b
+    sha256: 1cd7a00da376b2db29b3e1f3e9bb7a77afc8ad988b3f13fd0805f37b23960a34
 
 `PyPy3.3 5.2 alpha i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.3-5.2-alpha-20160602-linux_i686-portable.tar.bz2>`_::
 
