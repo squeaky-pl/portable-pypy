@@ -49,9 +49,12 @@ wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtua
 
 cd -
 
-cd pypy-pack/lib-python/2.7
-wget --no-check-certificate https://raw.githubusercontent.com/certifi/python-certifi/master/certifi/cacert.pem
-cd -
+
+if [[ $NAME != pypy3* ]]; then
+  cd pypy-pack/lib-python/2.7
+  wget --no-check-certificate https://raw.githubusercontent.com/certifi/python-certifi/master/certifi/cacert.pem
+  cd -
+fi
 
 cp /src/virtualenv-pypy pypy-pack/bin/virtualenv-pypy
 
