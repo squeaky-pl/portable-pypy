@@ -51,8 +51,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2016/sqlite-autoconf-3140200.tar.gz -O - | tar xz
-cd sqlite-autoconf-3140200
+wget https://sqlite.org/2016/sqlite-autoconf-3150100.tar.gz -O - | tar xz
+cd sqlite-autoconf-3150100
 ./configure --prefix=/opt/prefix
 make -j4
 make install
