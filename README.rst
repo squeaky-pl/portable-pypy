@@ -15,11 +15,11 @@ or later.
 Latest Python 2.7 release
 =========================
 
-`PyPy 5.4.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.4.1-linux_x86_64-portable.tar.bz2>`_::
+`PyPy 5.6 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.6-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    fbe0cffcd182db7361ab085a097e71ee
-    sha1:   e1005e01b32d58e4539815f79050b6ad24c3c7c2
-    sha256: 0b59f8e69c7883d454fce6364ab01a5ec6a481ed7f0cc0f1612c3b0c253f7da4
+    md5:    b8cb7ecdc28f922c76bf48cc581b5ad4
+    sha1:   eb52e8e3c450313f5fa678a62b5a39a2f90097be
+    sha256: 9bd220bc54000e142bd4929435959305efeef8c832fbe3c907211cc5214095ce
 
 `PyPy 5.4.1 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.4.1-linux_i686-portable.tar.bz2>`_::
 
