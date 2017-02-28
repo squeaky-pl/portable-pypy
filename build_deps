@@ -109,8 +109,8 @@ make install
 cd -
 
 
-wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz -O - | tar xz
-cd Python-2.7.12
+wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz -O - | tar xz
+cd Python-2.7.13
 ./configure --prefix=/opt/prefix/cpython-2.7
 make -j4
 make install
