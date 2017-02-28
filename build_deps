@@ -12,23 +12,30 @@ env
 
 set -x
 
+
+wget http://www.cpan.org/src/5.0/perl-5.24.1.tar.gz -O - | tar xz
+cd perl-5.24.1
+./configure.gnu --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
 wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz -O - | tar xz
 cd ncurses-6.0
 ./configure --prefix=/opt/prefix --without-tests --without-cxx --with-termlib --without-normal --with-shared --enable-database --with-terminfo-dirs=/lib/terminfo:/usr/share/terminfo
 echo "#define NCURSES_USE_DATABASE 1" >> include/ncurses_cfg.h
-make
+make -j4
 make install
 cd -
 
-wget http://ftp.vim.org/security/openssl/openssl-1.0.2j.tar.gz -O - | tar xz
-cd openssl-1.0.2j
+wget http://ftp.vim.org/security/openssl/openssl-1.1.0e.tar.gz -O - | tar xz
+cd openssl-1.1.0e
 if [[ $ABI == "32" ]]; then
-    setarch i386 ./config --prefix=/opt/prefix -m32 shared
+    setarch i386 ./config --prefix=/opt/prefix -m32 shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 else
-    ./config --prefix=/opt/prefix shared
+    ./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 fi
-sed -i "s#^SHARED_LDFLAGS=\\(.*\\)#SHARED_LDFLAGS=$LDFLAGS \\1#" Makefile
-make
+make -j4
 make install
 cd -
 
@@ -102,7 +109,7 @@ make install
 cd -
 
 
-wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz -O - | tar xz 
+wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz -O - | tar xz
 cd Python-2.7.12
 ./configure --prefix=/opt/prefix/cpython-2.7
 make -j4
