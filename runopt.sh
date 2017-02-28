@@ -13,9 +13,11 @@ cat <<EOF
 -v `pwd`/platform_linux.patch:/src/platform_linux.patch
 -v `pwd`/_tkinter_app.py.patch:/src/_tkinter_app.py.patch
 -v `pwd`/ssl.py.patch:/src/ssl.py.patch
+-v `pwd`/ssl3.py.patch:/src/ssl3.py.patch
 -v `pwd`/subprocess.py.patch:/src/subprocess.py.patch
 -v `pwd`/subprocess3.py.patch:/src/subprocess3.py.patch
 -v `pwd`/sysconfig_pypy.py.patch:/src/sysconfig_pypy.py.patch
+-v `pwd`/sysconfig_pypy3.py.patch:/src/sysconfig_pypy3.py.patch
 -v `pwd`/virtualenv-pypy:/src/virtualenv-pypy
 -v `pwd`/prefix$ABI:/opt/prefix
 

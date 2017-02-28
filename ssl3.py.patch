@@ -1,0 +1,70 @@
+--- lib-python/3/ssl.orig.py	2017-02-28 03:45:33.984894721 +0000
++++ lib-python/3/ssl.py	2017-02-28 03:53:46.021192608 +0000
+@@ -312,6 +312,27 @@
+             "subjectAltName fields were found")
+ 
+ 
++
++_cafile = None
++_capath = None
++
++# https://www.happyassassin.net/2015/01/12/a-note-about-ssltls-trusted-certificate-stores-and-platforms/
++def _find_cafile_and_capath():
++    global _cafile
++    global _capath
++
++    if not _cafile and not _capath:
++        if os.path.isfile('/etc/pki/tls/certs/ca-bundle.crt'):
++            _cafile = '/etc/pki/tls/certs/ca-bundle.crt'
++        elif os.path.isdir('/etc/ssl/certs'):
++            _capath = '/etc/ssl/certs'
++        else:
++            _cafile = os.path.dirname(__file__) + '/cacert.pem'
++
++    return _cafile, _capath
++
++
++
+ DefaultVerifyPaths = namedtuple("DefaultVerifyPaths",
+     "cafile capath openssl_cafile_env openssl_cafile openssl_capath_env "
+     "openssl_capath")
+@@ -319,14 +340,19 @@
+ def get_default_verify_paths():
+     """Return paths to default cafile and capath.
+     """
+-    parts = _ssl.get_default_verify_paths()
+-
++    parts = list(_ssl.get_default_verify_paths())
++    cafile, capath = _find_cafile_and_capath()
++ 
+     # environment vars shadow paths
+-    cafile = os.environ.get(parts[0], parts[1])
+-    capath = os.environ.get(parts[2], parts[3])
++    cafile = os.environ.get(parts[0], cafile)
++    capath = os.environ.get(parts[2], capath)
+ 
+-    return DefaultVerifyPaths(cafile if os.path.isfile(cafile) else None,
+-                              capath if os.path.isdir(capath) else None,
++    # overwrite what we get from bundled openssl since it's useless 
++    parts[1] = None
++    parts[3] = None
++ 
++    return DefaultVerifyPaths(cafile if os.path.isfile(cafile or '') else None,
++                              capath if os.path.isdir(capath or '') else None,
+                               *parts)
+ 
+ 
+@@ -432,7 +458,12 @@
+         if sys.platform == "win32":
+             for storename in self._windows_cert_stores:
+                 self._load_windows_store_certs(storename, purpose)
+-        self.set_default_verify_paths()
++
++        if not os.environ.get('SSL_CERT_FILE') and not os.environ.get('SSL_CERT_DIR'):
++            locations = _find_cafile_and_capath()
++            self.load_verify_locations(*locations)  
++        else:
++            self.set_default_verify_paths()
+ 
+ 
+ def create_default_context(purpose=Purpose.SERVER_AUTH, *, cafile=None,

@@ -52,9 +52,11 @@ cd -
 
 if [[ $NAME != pypy3* ]]; then
   cd pypy-pack/lib-python/2.7
-  wget --no-check-certificate https://raw.githubusercontent.com/certifi/python-certifi/master/certifi/cacert.pem
-  cd -
+else
+  cd pypy-pack/lib-python/3
 fi
+wget --no-check-certificate https://raw.githubusercontent.com/certifi/python-certifi/master/certifi/cacert.pem
+cd -
 
 cp /src/virtualenv-pypy pypy-pack/bin/virtualenv-pypy
 

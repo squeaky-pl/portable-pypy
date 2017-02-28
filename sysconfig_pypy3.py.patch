@@ -1,0 +1,12 @@
+--- lib-python/3/distutils/sysconfig_pypy.orig.py	2017-02-28 04:47:31.124383391 +0000
++++ lib-python/3/distutils/sysconfig_pypy.py	2017-02-28 04:48:17.815045573 +0000
+@@ -189,6 +189,9 @@
+         else:
+             archiver = ar + ' ' + ar_flags
+ 
++        libdir = os.path.join(sys.prefix, 'lib')
++        ldshared = ldshared + ' -L' + libdir + ' -Wl,-rpath,' + libdir
++
+         cc_cmd = cc + ' ' + cflags
+         compiler.set_executables(
+             preprocessor=cpp,

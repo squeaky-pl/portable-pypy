@@ -79,6 +79,7 @@ def strip(binaries):
 def main():
     binaries = ['bin/libpypy-c.so']
     binaries.extend(glob('lib_pypy/*_cffi.pypy*.so'))
+    binaries.extend(glob('lib_pypy/_pypy_openssl*.so'))
     binaries.extend(glob('lib_pypy/_tkinter/*_cffi.pypy*.so'))
 
     deps = gather_deps(binaries)
@@ -117,7 +118,8 @@ if __name__ == '__main__':
     check_call(['patch', 'lib_pypy/_tkinter/app.py', '/src/_tkinter_app.py.patch'])
     if exists('lib-python/3'):
         check_call(['patch', 'lib-python/3/subprocess.py', '/src/subprocess3.py.patch'])
-        check_call(['patch', 'lib-python/3/distutils/sysconfig_pypy.py', '/src/sysconfig_pypy.py.patch'])
+        check_call(['patch', 'lib-python/3/distutils/sysconfig_pypy.py', '/src/sysconfig_pypy3.py.patch'])
+        check_call(['patch', 'lib-python/3/ssl.py', '/src/ssl3.py.patch'])
     else:
         check_call(['patch', 'lib-python/2.7/ssl.py', '/src/ssl.py.patch'])
         check_call(['patch', 'lib-python/2.7/subprocess.py', '/src/subprocess.py.patch'])
