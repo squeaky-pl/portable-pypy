@@ -14,6 +14,7 @@ cat <<EOF
 -v `pwd`/_tkinter_app.py.patch:/src/_tkinter_app.py.patch
 -v `pwd`/ssl.py.patch:/src/ssl.py.patch
 -v `pwd`/ssl3.py.patch:/src/ssl3.py.patch
+-v `pwd`/socket.append.py:/src/socket.append.py
 -v `pwd`/subprocess.py.patch:/src/subprocess.py.patch
 -v `pwd`/subprocess3.py.patch:/src/subprocess3.py.patch
 -v `pwd`/sysconfig_pypy.py.patch:/src/sysconfig_pypy.py.patch
