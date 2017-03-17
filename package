@@ -39,6 +39,11 @@ if [[ $NAME == pypy3* ]]; then
 fi
 ./make_portable pypy-pack
 
+cd pypy-pack/lib
+ln -s libssl* libssl.so
+ln -s libcrypto* libcrypto.so
+cd -
+
 mkdir pypy-pack/virtualenv_support
 cd pypy-pack/virtualenv_support
 
