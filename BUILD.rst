@@ -13,6 +13,13 @@ First build a base image containging basic headers and up to date multilib GCC
     docker build -t portable-pypy image
 
 
+For PyPy3 use different Dockerfile
+
+.. code:: bash
+
+    docker build -f image/Dockerfile.3 -t portable-pypy image
+
+
 Next we need to build all the up to date dependencies that pypy needs like
 OpenSSL, libffi etc. We are gonna need to build CPython to translate PyPy as well, you might think
 I could reuse Portably PyPy to translate PyPy but there are some problems with
