@@ -77,7 +77,7 @@ def strip(binaries):
 
 
 def main():
-    binaries = ['bin/libpypy-c.so']
+    binaries = glob('bin/libpypy*.so')
     binaries.extend(glob('lib_pypy/*_cffi.pypy*.so'))
     binaries.extend(glob('lib_pypy/_pypy_openssl*.so'))
     binaries.extend(glob('lib_pypy/_tkinter/*_cffi.pypy*.so'))
