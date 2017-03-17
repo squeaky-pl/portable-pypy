@@ -12,7 +12,8 @@ export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
 
-NAME=`pypy/pypy-c version.py || pypy/pypy3-c version.py`
+INPUTNAME=`find pypy -name "pypy*-c"`
+NAME=`$INPUTNAME version.py`
 echo using $NAME
 
 
@@ -24,7 +25,7 @@ echo binname $BINNAME
 
 
 cd pypy
-python pypy/tool/release/package.py --rename_pypy_c $BINNAME --archive-name pypy --targetdir /src --override_pypy_c ./pypy-c
+python pypy/tool/release/package.py --rename_pypy_c $BINNAME --archive-name pypy --targetdir /src --override_pypy_c ./../$INPUTNAME
 cd -
 
 rm -rf pypy-pack
