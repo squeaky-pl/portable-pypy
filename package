@@ -12,7 +12,7 @@ export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
 
-NAME=`pypy/pypy-c version.py`
+NAME=`pypy/pypy-c version.py || pypy/pypy3-c version.py`
 echo using $NAME
 
 
