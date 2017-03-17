@@ -39,8 +39,8 @@ make -j4
 make install
 cd -
 
-wget http://tukaani.org/xz/xz-5.2.2.tar.gz -O - | tar xz
-cd xz-5.2.2
+wget http://tukaani.org/xz/xz-5.2.3.tar.gz -O - | tar xz
+cd xz-5.2.3
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -58,8 +58,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2016/sqlite-autoconf-3150100.tar.gz -O - | tar xz
-cd sqlite-autoconf-3150100
+wget https://sqlite.org/2016/sqlite-autoconf-3170000.tar.gz -O - | tar xz
+cd sqlite-autoconf-3170000
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -85,8 +85,8 @@ make install
 cd -
 
 
-wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.12.tar.gz -O - | tar xz
-cd gdbm-1.12
+wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.13.tar.gz -O - | tar xz
+cd gdbm-1.13
 ./configure --prefix=/opt/prefix
 make -j4
 make install
