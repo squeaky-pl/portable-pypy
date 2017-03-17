@@ -35,6 +35,7 @@ tar -C pypy-pack --strip-components=1 -xjf pypy.tar.bz2
 if [[ $NAME == pypy3* ]]; then
     cd pypy-pack/bin
     ln -s $BINNAME pypy
+    ln -s $BINNAME pypy3
     cd -
 fi
 ./make_portable pypy-pack
