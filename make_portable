@@ -14,7 +14,7 @@ def get_deps(binary):
     deps = {}
     output = check_output(['ldd', binary])
     for line in output.splitlines():
-        if not '=>' in line:
+        if '=>' not in line:
             continue
         line = line.strip()
         needed, path = line.split(' => ')

@@ -8,9 +8,10 @@ is that you just download an archive, uncompress it and run
 it instantly without installing any extra libraries or tweaking
 your OS.
 Currently they are known to work across various DEB and RPM based
-distributions including RHEL/Centos 5 and later, Ubuntu and Debian stable.
-It should run on any distribution that includes GLIBC 2.3 and kernel 2.6.19
-or later.
+distributions including RHEL/Centos 5 and later for PyPy2 series
+RHEL/Centos 6 and later for PyPy3 series, Fedora, SuSE Linux, Ubuntu and Debian stable.
+PyPy2 should run on any distribution that includes glibc 2.3 and kernel 2.6.19
+or later. PyPy3 should run on any distribution that includes glibc 2.12.
 
 Latest Python 2.7 release
 =========================
