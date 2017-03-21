@@ -24,7 +24,7 @@ rm -rf pypy
 mkdir -p pypy
 wget https://bitbucket.org/pypy/pypy/get/${REVISION:=default}.tar.bz2 -O - | tar -C pypy --strip-components=1 -xj
 
-wget https://pypi.python.org/packages/be/64/1bb257ffb17d01f4a38d7ce686809a736837ad4371bcc5c42ba7a715c3ac/pycparser-2.17.tar.gz -O - | tar xz
+wget --no-check-certificate https://pypi.python.org/packages/be/64/1bb257ffb17d01f4a38d7ce686809a736837ad4371bcc5c42ba7a715c3ac/pycparser-2.17.tar.gz -O - | tar xz
 mv pycparser-2.17/pycparser pypy
 
 cd pypy
