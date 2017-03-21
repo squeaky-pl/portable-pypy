@@ -5,7 +5,7 @@ set -e
 if [[ $ABI == "32" ]]; then
     export CFLAGS="-m32 $CFLAGS"
     export CPPFLAGS=$CFLAGS
-    export LDFLAGS="-melf_i386 $LDFLAGS"
+    export LDFLAGS="-m32 $LDFLAGS"
 fi
 
 env
