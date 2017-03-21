@@ -2,7 +2,7 @@
 Portable PyPy distribution for Linux
 ====================================
 
-This repository contains efforts to build 32 and 64 bit
+This repository contains efforts to build 64 bit
 x86 `PyPy <http://pypy.org>`_ binaries for various Linux distributions. The idea
 is that you just download an archive, uncompress it and run
 it instantly without installing any extra libraries or tweaking
