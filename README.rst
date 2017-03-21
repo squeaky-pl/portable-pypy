@@ -13,35 +13,23 @@ RHEL/Centos 6 and later for PyPy3 series, Fedora, SuSE Linux, Ubuntu and Debian 
 PyPy2 should run on any distribution that includes glibc 2.3 and kernel 2.6.19
 or later. PyPy3 should run on any distribution that includes glibc 2.12.
 
+Latest Python 3.5 release
+=========================
+
+`PyPy3.5 5.7 beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.7-beta-linux_x86_64-portable.tar.bz2>`_::
+
+    md5:    1b8ab04ecc67b4ecd95642b12e65a2f1
+    sha1:   e68a82c6feafff5f26ae031fc0f225876076abde
+    sha256: d289ff7c32fd4263c3889994c8191c626891513e8ab60a65ba41a58b331db92c
+
 Latest Python 2.7 release
 =========================
 
-`PyPy 5.6 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.6-linux_x86_64-portable.tar.bz2>`_::
+`PyPy 5.7 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.7-linux_x86_64-portable.tar.bz2>`_::
 
     md5:    b8cb7ecdc28f922c76bf48cc581b5ad4
     sha1:   eb52e8e3c450313f5fa678a62b5a39a2f90097be
     sha256: 9bd220bc54000e142bd4929435959305efeef8c832fbe3c907211cc5214095ce
-
-`PyPy 5.6 i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.6-linux_i686-portable.tar.bz2>`_::
-
-    md5:    2296f9c14d495c69712a576ce7a86001
-    sha1:   8abe9ae5e2fe7162cef6640664372d43f4ff0d0b
-    sha256: 1f220e05ddd4423882794f0e9d3e2dfdecee259d00f1151a52dd244607313399
-
-Latest Python 3.3 release
-=========================
-
-`PyPy3.3 5.5 alpha x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.3-5.5-alpha-20161013-linux_x86_64-portable.tar.bz2>`_::
-
-    md5:    b0f064518a5742f042b5cc067f83b9d2
-    sha1:   1bd7daf24d6e090d8907b80477901aa6a68ff10b
-    sha256: 1cd7a00da376b2db29b3e1f3e9bb7a77afc8ad988b3f13fd0805f37b23960a34
-
-`PyPy3.3 5.5 alpha i686 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.3-5.5-alpha-20161014-linux_i686-portable.tar.bz2>`_::
-
-    md5:    51bb9b25e86868a37b76d26a4f259511
-    sha1:   271815df0491dd0d9f7d737125fee960ddc17317
-    sha256: af32420f368bc3276d15a5cf4e2e8cb0bef16f711ee830a636ad117e55c3268f
 
 
 All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
