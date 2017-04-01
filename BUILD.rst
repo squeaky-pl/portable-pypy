@@ -1,7 +1,7 @@
 Guide to building Portable PyPy yourself
 ========================================
 
-You are going to need Docker installed. I used docker 1.6 on Fedora to accompish
+You are going to need Docker installed. I used docker 1.6 on Fedora to accomplish
 this.
 
 All the commands are executed from the repository root.

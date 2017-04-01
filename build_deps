@@ -1,16 +1,8 @@
 #!/bin/bash
 
-set -e
-
-if [[ $ABI == "32" ]]; then
-    export CFLAGS="-m32 $CFLAGS"
-    export CPPFLAGS=$CFLAGS
-    export LDFLAGS="-m32 $LDFLAGS"
-fi
+set -ex
 
 env
-
-set -x
 
 
 wget http://www.cpan.org/src/5.0/perl-5.24.1.tar.gz -O - | tar xz
@@ -30,11 +22,7 @@ cd -
 
 wget http://ftp.vim.org/security/openssl/openssl-1.1.0e.tar.gz -O - | tar xz
 cd openssl-1.1.0e
-if [[ $ABI == "32" ]]; then
-    setarch i386 ./config --prefix=/opt/prefix -m32 shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
-else
-    ./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
-fi
+./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 make -j4
 make install
 cd -

@@ -4,19 +4,7 @@ set -e
 
 REVISION=$1
 
-if [[ $ABI == 32 ]]; then
-    PYPY_PATH=/opt/pypy-i686/bin
-else
-    PYPY_PATH=/opt/pypy-x86_64/bin
-fi
-
-if [[ $ABI == "32" ]]; then
-    export CFLAGS="-m32 $CFLAGS"
-    export CPPFLAGS=$CFLAGS
-    export LDFLAGS="-m32 $LDFLAGS"
-fi
-
-export PATH=/opt/prefix/cpython-2.7/bin:$PYPY_PATH:$PATH
+export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
 

@@ -2,12 +2,6 @@
 
 set -e
 
-if [[ $ABI == "32" ]]; then
-    export CFLAGS="-m32 $CFLAGS"
-    export CPPFLAGS=$CFLAGS
-    export LDFLAGS="-m32 $LDFLAGS"
-fi
-
 export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
