@@ -16,11 +16,11 @@ or later. PyPy3 should run on any distribution that includes glibc 2.12.
 Latest Python 3.5 release
 =========================
 
-`PyPy3.5 5.7 beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.7-beta-linux_x86_64-portable.tar.bz2>`_::
+`PyPy3.5 5.7.1 beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.7.1-beta-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    1b8ab04ecc67b4ecd95642b12e65a2f1
-    sha1:   e68a82c6feafff5f26ae031fc0f225876076abde
-    sha256: d289ff7c32fd4263c3889994c8191c626891513e8ab60a65ba41a58b331db92c
+    md5:    79ba993ad30545ae5bb48483f6c28502
+    sha1:   fa8a493f9b35f74e05efb31f420426edede52b31
+    sha256: 3d1b02f6ef50d4e9069885e0b3f19f26491c7f4f9c5ccc8aa118e38fd6a23997
 
 Latest Python 2.7 release
 =========================
