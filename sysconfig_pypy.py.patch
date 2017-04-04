@@ -1,11 +1,13 @@
---- lib-python/2.7/distutils/sysconfig_pypy.orig.py	2015-04-16 10:15:56.121894168 +0200
-+++ lib-python/2.7/distutils/sysconfig_pypy.py	2015-04-16 10:16:18.761547389 +0200
-@@ -124,6 +124,8 @@
-     """
-     if compiler.compiler_type == "unix":
-         compiler.compiler_so.extend(['-O2', '-fPIC', '-Wimplicit'])
+--- lib-python/2.7/distutils/sysconfig_pypy.orig.py	2017-04-04 14:41:03.829620959 +0000
++++ lib-python/2.7/distutils/sysconfig_pypy.py	2017-04-04 14:42:24.221028972 +0000
+@@ -206,6 +206,9 @@
+         else:
+             archiver = ar + ' ' + ar_flags
+ 
 +        libdir = os.path.join(sys.prefix, 'lib')
-+        compiler.linker_so.extend(['-L' + libdir, '-Wl,-rpath,' + libdir])
-         compiler.shared_lib_extension = get_config_var('SO')
-         if "CPPFLAGS" in os.environ:
-             cppflags = shlex.split(os.environ["CPPFLAGS"])
++        ldshared = ldshared + ' -L' + libdir + ' -Wl,-rpath,' + libdir
++
+         cc_cmd = cc + ' ' + cflags
+         compiler.set_executables(
+             preprocessor=cpp,
+
