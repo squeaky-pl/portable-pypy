@@ -12,7 +12,7 @@ make -j4
 make install
 cd -
 
-wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz -O - | tar xz
+wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz -O - | tar xz
 cd ncurses-6.0
 ./configure --prefix=/opt/prefix --without-tests --without-cxx --with-termlib --without-normal --with-shared --enable-database --with-terminfo-dirs=/lib/terminfo:/usr/share/terminfo
 echo "#define NCURSES_USE_DATABASE 1" >> include/ncurses_cfg.h
@@ -20,7 +20,7 @@ make -j4
 make install
 cd -
 
-wget http://ftp.vim.org/security/openssl/openssl-1.1.0e.tar.gz -O - | tar xz
+wget https://www.openssl.org/source/openssl-1.1.0e.tar.gz -O - | tar xz
 cd openssl-1.1.0e
 ./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 make -j4
@@ -34,7 +34,7 @@ make -j4
 make install
 cd -
 
-wget http://nixos.org/releases/patchelf/patchelf-0.9/patchelf-0.9.tar.gz -O - | tar xz
+wget https://nixos.org/releases/patchelf/patchelf-0.9/patchelf-0.9.tar.gz -O - | tar xz
 cd patchelf-0.9
 if [[ $ABI == "32" ]]; then
   LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/devtools-6.2/lib" ./configure --prefix=/opt/prefix
@@ -65,7 +65,7 @@ find . -name ffi.h | xargs -i ln -sf ../lib/{} ../include
 find . -name ffitarget.h | xargs -i ln -sf ../lib/{} ../include
 cd -
 
-wget http://downloads.sourceforge.net/project/expat/expat/2.2.0/expat-2.2.0.tar.bz2 -O - | tar xj
+wget https://downloads.sourceforge.net/project/expat/expat/2.2.0/expat-2.2.0.tar.bz2 -O - | tar xj
 cd expat-2.2.0
 ./configure --prefix=/opt/prefix
 make -j4
@@ -73,7 +73,7 @@ make install
 cd -
 
 
-wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.13.tar.gz -O - | tar xz
+wget https://ftp.gnu.org/gnu/gdbm/gdbm-1.13.tar.gz -O - | tar xz
 cd gdbm-1.13
 ./configure --prefix=/opt/prefix
 make -j4
@@ -81,7 +81,7 @@ make install
 cd -
 
 
-wget http://prdownloads.sourceforge.net/tcl/tcl8.6.6-src.tar.gz -O - | tar xz
+wget https://prdownloads.sourceforge.net/tcl/tcl8.6.6-src.tar.gz -O - | tar xz
 cd tcl8.6.6/unix
 ./configure --prefix=/opt/prefix
 make -j4
@@ -89,7 +89,7 @@ make install
 cd -
 
 
-wget http://prdownloads.sourceforge.net/tcl/tk8.6.6-src.tar.gz -O - | tar xz
+wget https://prdownloads.sourceforge.net/tcl/tk8.6.6-src.tar.gz -O - | tar xz
 cd tk8.6.6/unix
 ./configure --prefix=/opt/prefix
 make -j4
