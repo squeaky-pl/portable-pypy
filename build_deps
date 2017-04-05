@@ -72,9 +72,9 @@ make -j4
 make install
 cd -
 
-GDBMVER=`cat /etc/redhat-release | grep 6 && echo 1.13 || echo 1.12`
-wget http://ftp.gnu.org/gnu/gdbm/gdbm-$GDBMVER.tar.gz -O - | tar xz
-cd gdbm-$GDBMVER
+
+wget http://ftp.gnu.org/gnu/gdbm/gdbm-1.13.tar.gz -O - | tar xz
+cd gdbm-1.13
 ./configure --prefix=/opt/prefix
 make -j4
 make install
