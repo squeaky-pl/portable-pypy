@@ -8,10 +8,8 @@ is that you just download an archive, uncompress it and run
 it instantly without installing any extra libraries or tweaking
 your OS.
 Currently they are known to work across various DEB and RPM based
-distributions including RHEL/Centos 5 and later for PyPy2 series
-RHEL/Centos 6 and later for PyPy3 series, Fedora, SuSE Linux, Ubuntu and Debian stable.
-PyPy2 should run on any distribution that includes glibc 2.3 and kernel 2.6.19
-or later. PyPy3 should run on any distribution that includes glibc 2.12.
+distributions including RHEL/Centos 6 and later, Fedora, SuSE Linux, Ubuntu and Debian stable.
+PyPy binaries should run on any distribution that includes glibc 2.12.
 
 Latest Python 3.5 release
 =========================
@@ -36,10 +34,6 @@ All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/do
 
 Using virtualenv
 ================
-
-For versions 2.3 and newer you can use stock virtualenv that comes from your
-distribution or that you installed with PIP etc. Just pass
-``-p path-to-portable-pypy/bin/pypy`` on the commandline.
 
 For your convenience this build also includes packaged virtualenv so you
 don't have to install one if you haven't done it yet::
@@ -69,7 +63,7 @@ The `ssl` module will try to locate and use your system certificate store. Namel
 How it is done
 ==============
 
-Binaries are built with a CentOS 5 base image with help of `docker <http://docker.com/>`_.
+Binaries are built with a CentOS 6 base image with help of `docker <http://docker.com/>`_.
 That ensures that they are built against version of GLIBC that is reasonably
 old not to cause problems with symbol versioning.
 All the dependencies are also built inside chroot from latest stable tarballs. They are packed together with PyPy
