@@ -42,11 +42,11 @@ cd -
 mkdir pypy-pack/virtualenv_support
 cd pypy-pack/virtualenv_support
 
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv.py
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/argparse-1.4.0-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-9.0.1-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-28.8.0-py2.py3-none-any.whl
-wget --no-check-certificate https://github.com/pypa/virtualenv/raw/master/virtualenv_support/wheel-0.29.0-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/master/virtualenv.py
+wget https://github.com/pypa/virtualenv/raw/master/virtualenv_support/argparse-1.4.0-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-9.0.1-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-28.8.0-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/master/virtualenv_support/wheel-0.29.0-py2.py3-none-any.whl
 
 cd -
 
@@ -56,7 +56,7 @@ if [[ $NAME != pypy3* ]]; then
 else
   cd pypy-pack/lib-python/3
 fi
-wget --no-check-certificate https://raw.githubusercontent.com/certifi/python-certifi/master/certifi/cacert.pem
+wget https://raw.githubusercontent.com/certifi/python-certifi/master/certifi/cacert.pem
 cd -
 
 cp /src/virtualenv-pypy pypy-pack/bin/virtualenv-pypy
