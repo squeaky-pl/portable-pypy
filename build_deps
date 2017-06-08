@@ -20,8 +20,8 @@ make -j4
 make install
 cd -
 
-wget https://www.openssl.org/source/openssl-1.1.0e.tar.gz -O - | tar xz
-cd openssl-1.1.0e
+wget https://www.openssl.org/source/openssl-1.1.0f.tar.gz -O - | tar xz
+cd openssl-1.1.0f
 ./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 make -j4
 make install
@@ -46,8 +46,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2017/sqlite-autoconf-3170000.tar.gz -O - | tar xz
-cd sqlite-autoconf-3170000
+wget https://sqlite.org/2017/sqlite-autoconf-3190300.tar.gz -O - | tar xz
+cd sqlite-autoconf-3190300
 ./configure --prefix=/opt/prefix
 make -j4
 make install
