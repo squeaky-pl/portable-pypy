@@ -14,20 +14,20 @@ PyPy binaries should run on any distribution that includes glibc 2.17.
 Latest Python 3.5 release
 =========================
 
-`PyPy3.5 5.8 beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.8-beta-linux_x86_64-portable.tar.bz2>`_::
+`PyPy3.5 5.8 beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.8-1-beta-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    aadcba3b3e5c85ff004506660fd081d3
-    sha1:   7982d1f09e50f6c2c146544c4eb62844561ecf03
-    sha256: 76c2c4b2846e38d2b4846d4b5f9dc0bd9fd7a9b1f04beb92975ae090ad390d75
+    md5:    67408e5d8db6f97dbb574ad75cb1476c
+    sha1:   f93eb33c6a9a7095afeeee3aedc52d943a1f5057
+    sha256: cab20a6d315a1bb05aa953ebc37d8deaa34dcbe298cb5938e373c42c05542b99
 
 Latest Python 2.7 release
 =========================
 
-`PyPy 5.8 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.8-linux_x86_64-portable.tar.bz2>`_::
+`PyPy 5.8 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.8-1-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    67f84b76eb4089ed33d51516bb5c2d0f
-    sha1:   a3b7d67693cab56a5b5c68143780b358a230a307
-    sha256: 337fd7e947a74cb09253f5ff330fb1be471b1d7a64c2d0340ac387920e71bf3c
+    md5:    b846cb3737db59ff604d11cc74c157ce
+    sha1:   989039a27104b1890766e75c97b631d5b42dd67a
+    sha256: 52556230af5769c656173ae8a1bdcb2e16aef46e3993ed89f3aec3d220aec862
 
 
 All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
