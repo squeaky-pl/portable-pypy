@@ -9,7 +9,7 @@ it instantly without installing any extra libraries or tweaking
 your OS.
 Currently they are known to work across various DEB and RPM based
 distributions including RHEL/Centos 6 and later, Fedora, SuSE Linux, Ubuntu and Debian stable.
-PyPy binaries should run on any distribution that includes glibc 2.12.
+PyPy binaries should run on any distribution that includes glibc 2.17.
 
 Latest Python 3.5 release
 =========================
