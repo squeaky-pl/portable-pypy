@@ -10,7 +10,10 @@ def _add_lazy_options():
     ]
 
     import platform
-    kern_version = tuple(map(int, platform.release().partition('-')[0].split('.')))
+
+    kern_version = platform.release().partition('-')[0]
+    kern_version = kern_version.replace('.', ' ').replace('_', ' ')
+    kern_version = tuple(map(int, kern_version.split()))
 
     for name, value, version in options:
         if name in globals():
