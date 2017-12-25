@@ -9,7 +9,7 @@ import platform
 
 py = str(version_info[0]) + '.' + str(version_info[1]) if version_info[0] == 3 else ''
 
-name = 'pypy' + py + '-' + '.'.join(map(str, vi[:2 if not vi[2] else 3]))
+name = 'pypy' + py + '-' + '.'.join(map(str, vi[:3]))
 
 if vi.releaselevel != 'final':
     name += '-' + vi.releaselevel

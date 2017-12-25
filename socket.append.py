@@ -9,11 +9,17 @@ def _add_lazy_options():
         ('SO_REUSEPORT', 15, (3, 9))
     ]
 
+    def safe_int(v):
+        try:
+            return int(v)
+        except ValueError:
+            return 0
+
     import platform
 
     kern_version = platform.release().partition('-')[0]
     kern_version = kern_version.replace('.', ' ').replace('_', ' ')
-    kern_version = tuple(map(int, kern_version.split()))
+    kern_version = tuple(map(safe_int, kern_version.split()))
 
     for name, value, version in options:
         if name in globals():
