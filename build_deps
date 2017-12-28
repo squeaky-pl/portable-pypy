@@ -113,3 +113,4 @@ if [ -d /opt/prefix/lib64 ]; then
 fi
 
 ln -sf /opt/prefix/lib/libexpat.so /opt/prefix/lib/libexpat.so.0
+ln -sf /opt/prefix/bin/ncursesw6-config /opt/prefix/bin/ncurses5-config

@@ -17,5 +17,6 @@ mv pycparser-2.17/pycparser pypy
 
 cd pypy
 patch -p0 < ../platform_linux.patch
+patch -p0 < ../_curses_build.py.patch
 python rpython/bin/rpython -Ojit pypy/goal/targetpypystandalone.py
 cd -

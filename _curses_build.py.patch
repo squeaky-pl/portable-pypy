@@ -1,0 +1,11 @@
+--- lib_pypy/_curses_build.py.orig	2017-12-28 20:08:20.833459790 +0100
++++ lib_pypy/_curses_build.py	2017-12-28 20:09:02.802801349 +0100
+@@ -65,7 +65,7 @@
+ void _m_getsyx(int *yx) {
+     getsyx(yx[0], yx[1]);
+ }
+-""", libraries=[find_curses_library(), 'panel'],
++""", libraries=[find_curses_library(), 'panelw'],
+      include_dirs=find_curses_include_dirs())
+ 
+ 
