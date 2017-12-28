@@ -23,11 +23,11 @@ Latest Python 3.5 release
 Latest Python 2.7 release
 =========================
 
-`PyPy 5.9 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.9-linux_x86_64-portable.tar.bz2>`_::
+`PyPy 5.10.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.10.0-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    65e4bcf1c18a1c3f2b1405c654d10755
-    sha1:   729f7654310accdd41d600006f3822c83de951e9
-    sha256: 8d39eb98df3adf7882a7f3551f47b8c7cff47a0e20d6aabc57bb592f155c2616
+    md5:    aeb81c8b7ad4fb785f7ac5e460caba08
+    sha1:   a2f3a6dbfbdcc41d4d01f1978b083a2b2426c8ab
+    sha256: c966124497ba8728654ce1161fa4c46b035ff30f289be70960f58292e5897cc8
 
 
 All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
