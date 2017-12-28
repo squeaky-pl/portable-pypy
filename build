@@ -17,6 +17,7 @@ mv pycparser-2.17/pycparser pypy
 
 cd pypy
 patch -p0 < ../platform_linux.patch
-patch -p0 < ../_curses_build.py.patch
+patch -p0 < ../_curses_build.py.patch || echo "3 failed"
+patch -p0 < ../_curses_build.py.2.patch  || echo "2 failed"
 python rpython/bin/rpython -Ojit pypy/goal/targetpypystandalone.py
 cd -

@@ -8,6 +8,7 @@ cat <<EOF
 -v `pwd`/build_deps:/src/build_deps
 -v `pwd`/build:/src/build
 -v `pwd`/_curses_build.py.patch:/src/_curses_build.py.patch
+-v `pwd`/_curses_build.py.2.patch:/src/_curses_build.py.2.patch
 -v `pwd`/package:/src/package
 -v `pwd`/make_portable:/src/make_portable
 -v `pwd`/version.py:/src/version.py

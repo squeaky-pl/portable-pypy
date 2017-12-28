@@ -1,0 +1,11 @@
+--- lib_pypy/_curses_build.py.orig	2017-12-28 21:40:02.329433636 +0100
++++ lib_pypy/_curses_build.py	2017-12-28 21:40:17.128547172 +0100
+@@ -41,7 +41,7 @@
+ void _m_getsyx(int *yx) {
+     getsyx(yx[0], yx[1]);
+ }
+-""", libraries=['ncurses', 'panel'])
++""", libraries=['ncursesw', 'panelw'])
+ 
+ 
+ ffi.cdef("""
