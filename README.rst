@@ -14,11 +14,11 @@ PyPy binaries should run on any distribution that includes glibc 2.17.
 Latest Python 3.5 release
 =========================
 
-`PyPy3.5 5.9 beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.9-beta-linux_x86_64-portable.tar.bz2>`_::
+`PyPy3.5 5.10.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-5.10.0-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    90223a9437ddd94ac4fda6836cc33e38
-    sha1:   4b12c5ab6b7617c01c9bb321e0f0216a771647d3
-    sha256: b0a79dabe2c48b0374d567936139ecf1379904a504d4a645be5c3e7e35140575
+    md5:    aea79b2a7f563f15fda96b0585878e47
+    sha1:   a3819d7d39efc4ca1ce8d154d9b6870f85aca432
+    sha256: d03f81f26e5e67d808569c5c69d56ceb007df78f7e36ab1c50da4d9096cebde0
 
 Latest Python 2.7 release
 =========================
