@@ -12,16 +12,16 @@ make -j4
 make install
 cd -
 
-wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz -O - | tar xz
-cd ncurses-6.0
+wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz -O - | tar xz
+cd ncurses-6.1
 ./configure --prefix=/opt/prefix --enable-widec --without-tests --without-cxx --with-termlib --without-normal --with-shared --enable-database --with-terminfo-dirs=/lib/terminfo:/usr/share/terminfo
 echo "#define NCURSES_USE_DATABASE 1" >> include/ncurses_cfg.h
 make -j4
 make install
 cd -
 
-wget https://www.openssl.org/source/openssl-1.1.0g.tar.gz -O - | tar xz
-cd openssl-1.1.0g
+wget https://www.openssl.org/source/openssl-1.1.0h.tar.gz -O - | tar xz
+cd openssl-1.1.0h
 ./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 make -j4
 make install
@@ -46,9 +46,9 @@ make install
 cd -
 
 
-wget https://sqlite.org/2017/sqlite-autoconf-3210000.tar.gz -O - | tar xz
-cd sqlite-autoconf-3210000
-./configure --prefix=/opt/prefix
+wget https://sqlite.org/2018/sqlite-autoconf-3230100.tar.gz -O - | tar xz
+cd sqlite-autoconf-3230100
+./configure --prefix=/opt/prefix --enable-fts5
 make -j4
 make install
 cd -
@@ -73,24 +73,24 @@ make install
 cd -
 
 
-wget https://ftp.gnu.org/gnu/gdbm/gdbm-1.13.tar.gz -O - | tar xz
-cd gdbm-1.13
+wget https://ftp.gnu.org/gnu/gdbm/gdbm-1.14.1.tar.gz -O - | tar xz
+cd gdbm-1.14.1
 ./configure --prefix=/opt/prefix
 make -j4
 make install
 cd -
 
 
-wget https://prdownloads.sourceforge.net/tcl/tcl8.6.7-src.tar.gz -O - | tar xz
-cd tcl8.6.7/unix
+wget https://prdownloads.sourceforge.net/tcl/tcl8.6.8-src.tar.gz -O - | tar xz
+cd tcl8.6.8/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
 cd -
 
 
-wget https://prdownloads.sourceforge.net/tcl/tk8.6.7-src.tar.gz -O - | tar xz
-cd tk8.6.7/unix
+wget https://prdownloads.sourceforge.net/tcl/tk8.6.8-src.tar.gz -O - | tar xz
+cd tk8.6.8/unix
 ./configure --prefix=/opt/prefix
 make -j4
 make install
