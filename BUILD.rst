@@ -33,7 +33,7 @@ artifacts into ``prefix64`` directory relative to current working directory.
 
 
 Now we are ready to translate PyPy, the last parameter is the branch name or commit
-hash in the PyPy Bitbucket repository. Let's build PyPy 2.6:
+hash in the `PyPy Bitbucket repository`_. Let's build PyPy 2.6:
 
 .. code:: bash
 
@@ -54,3 +54,5 @@ patch it to make it relocatable and package all together.
 You will see a line like: ``using pypy-2.6-linux_x86_64-portable`` at the end.
 This leaves with a final tarball ``src64/pypy-2.6-linux_x86_64-portale.tar.bz2``
 and you are done.
+
+.. _PyPy Bitbucket repository: https://bitbucket.org/pypy/pypy/downloads/?tab=tags
