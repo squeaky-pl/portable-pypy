@@ -2,11 +2,11 @@
 
 """This is a trampoline file to make it work on Python 2.4"""
 
-from os.path import abspath, join, dirname
+from os.path import realpath, join, dirname
 from subprocess import call
 from sys import argv
 
-here = dirname(abspath(__file__))
+here = dirname(realpath(__file__))
 pypy = join(here, 'pypy')
 virtualenv = join(here, '../virtualenv_support/virtualenv.py')
 
