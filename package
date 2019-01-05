@@ -42,10 +42,10 @@ cd -
 mkdir pypy-pack/virtualenv_support
 cd pypy-pack/virtualenv_support
 
-wget https://github.com/pypa/virtualenv/raw/master/virtualenv.py
-wget https://github.com/pypa/virtualenv/raw/master/virtualenv_support/pip-18.0-py2.py3-none-any.whl
-wget https://github.com/pypa/virtualenv/raw/master/virtualenv_support/setuptools-40.4.3-py2.py3-none-any.whl
-wget https://github.com/pypa/virtualenv/raw/master/virtualenv_support/wheel-0.31.1-py2.py3-none-any.whl
+wget https://raw.githubusercontent.com/pypa/virtualenv/16.1.0/src/virtualenv.py
+wget https://github.com/pypa/virtualenv/raw/16.1.0/src/virtualenv_support/pip-18.1-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.1.0/src/virtualenv_support/setuptools-40.5.0-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.1.0/src/virtualenv_support/wheel-0.32.2-py2.py3-none-any.whl
 
 cd -
 
