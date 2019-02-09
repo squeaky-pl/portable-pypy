@@ -20,15 +20,15 @@ make -j4
 make install
 cd -
 
-wget https://www.openssl.org/source/openssl-1.1.0h.tar.gz -O - | tar xz
-cd openssl-1.1.0h
+wget https://www.openssl.org/source/openssl-1.1.1a.tar.gz -O - | tar xz
+cd openssl-1.1.1a
 ./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 make -j4
 make install
 cd -
 
-wget http://tukaani.org/xz/xz-5.2.3.tar.gz -O - | tar xz
-cd xz-5.2.3
+wget http://tukaani.org/xz/xz-5.2.4.tar.gz -O - | tar xz
+cd xz-5.2.4
 ./configure --prefix=/opt/prefix
 make -j4
 make install
@@ -46,8 +46,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2018/sqlite-autoconf-3230100.tar.gz -O - | tar xz
-cd sqlite-autoconf-3230100
+wget https://sqlite.org/2019/sqlite-autoconf-3270100.tar.gz -O - | tar xz
+cd sqlite-autoconf-3270100
 ./configure --prefix=/opt/prefix --enable-fts5
 make -j4
 make install
@@ -65,44 +65,48 @@ find . -name ffi.h | xargs -i ln -sf ../lib/{} ../include
 find . -name ffitarget.h | xargs -i ln -sf ../lib/{} ../include
 cd -
 
-wget https://downloads.sourceforge.net/project/expat/expat/2.2.5/expat-2.2.5.tar.bz2 -O - | tar xj
-cd expat-2.2.5
+wget https://downloads.sourceforge.net/project/expat/expat/2.2.6/expat-2.2.6.tar.bz2 -O - | tar xj
+cd expat-2.2.6
 ./configure --prefix=/opt/prefix
 make -j4
 make install
 cd -
 
 
-wget https://ftp.gnu.org/gnu/gdbm/gdbm-1.14.1.tar.gz -O - | tar xz
-cd gdbm-1.14.1
+wget https://ftp.gnu.org/gnu/gdbm/gdbm-1.18.1.tar.gz -O - | tar xz
+cd gdbm-1.18.1
 ./configure --prefix=/opt/prefix
 make -j4
 make install
 cd -
 
 
-wget https://prdownloads.sourceforge.net/tcl/tcl8.6.8-src.tar.gz -O - | tar xz
-cd tcl8.6.8/unix
-./configure --prefix=/opt/prefix
-make -j4
-make install
-cd -
-
-
-wget https://prdownloads.sourceforge.net/tcl/tk8.6.8-src.tar.gz -O - | tar xz
-cd tk8.6.8/unix
-./configure --prefix=/opt/prefix
-make -j4
-make install
-cd -
-
-
-wget https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tgz -O - | tar xz
-cd Python-2.7.14
+wget https://www.python.org/ftp/python/2.7.15/Python-2.7.15.tgz -O - | tar xz
+cd Python-2.7.15
 ./configure --prefix=/opt/prefix/cpython-2.7
 make -j4
 make install
 cd -
+
+# tcl/tk refuses to build with GCC 8
+export PATH=/opt/devtools-7.2/bin:$PATH
+gcc --version
+
+wget https://prdownloads.sourceforge.net/tcl/tcl8.6.9-src.tar.gz -O - | tar xz
+cd tcl8.6.9/unix
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
+
+wget https://prdownloads.sourceforge.net/tcl/tk8.6.9.1-src.tar.gz -O - | tar xz
+cd tk8.6.9/unix
+./configure --prefix=/opt/prefix
+make -j4
+make install
+cd -
+
 
 
 ln -sf /opt/prefix/lib/libtcl8.6.so /opt/prefix/lib/libtcl.so
