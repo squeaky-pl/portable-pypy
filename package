@@ -2,11 +2,13 @@
 
 set -e
 
+REVISION=$1
+
 export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
 
-INPUTNAME=`find pypy -name "pypy*-c"`
+INPUTNAME=`find pypy-$REVISION -name "pypy*-c"`
 NAME=`$INPUTNAME version.py`
 echo using $NAME
 
@@ -18,29 +20,29 @@ fi
 echo binname $BINNAME
 
 
-cd pypy
-python pypy/tool/release/package.py --rename_pypy_c $BINNAME --archive-name pypy --targetdir /src --override_pypy_c ./../$INPUTNAME
+cd pypy-$REVISION
+python pypy/tool/release/package.py --rename_pypy_c $BINNAME --archive-name pypy-$REVISION --targetdir /src --override_pypy_c ./../$INPUTNAME
 cd -
 
-rm -rf pypy-pack
-mkdir pypy-pack
+rm -rf pypy-pack-$REVISION
+mkdir pypy-pack-$REVISION
 
-tar -C pypy-pack --strip-components=1 -xjf pypy.tar.bz2
+tar -C pypy-pack-$REVISION --strip-components=1 -xjf pypy-$REVISION.tar.bz2
 if [[ $NAME == pypy3* ]]; then
-    cd pypy-pack/bin
+    cd pypy-pack-$REVISION/bin
     ln -s $BINNAME pypy
     ln -s $BINNAME pypy3
     cd -
 fi
-./make_portable pypy-pack
+./make_portable pypy-pack-$REVISION
 
-cd pypy-pack/lib
+cd pypy-pack-$REVISION/lib
 ln -s libssl* libssl.so
 ln -s libcrypto* libcrypto.so
 cd -
 
-mkdir pypy-pack/virtualenv_support
-cd pypy-pack/virtualenv_support
+mkdir pypy-pack-$REVISION/virtualenv_support
+cd pypy-pack-$REVISION/virtualenv_support
 
 wget https://raw.githubusercontent.com/pypa/virtualenv/16.1.0/src/virtualenv.py
 wget https://github.com/pypa/virtualenv/raw/16.1.0/src/virtualenv_support/pip-18.1-py2.py3-none-any.whl
@@ -51,17 +53,17 @@ cd -
 
 
 if [[ $NAME != pypy3* ]]; then
-  cd pypy-pack/lib-python/2.7
+  cd pypy-pack-$REVISION/lib-python/2.7
 else
-  cd pypy-pack/lib-python/3
+  cd pypy-pack-$REVISION/lib-python/3
 fi
 wget https://raw.githubusercontent.com/certifi/python-certifi/master/certifi/cacert.pem
 cd -
 
-cp /src/virtualenv-pypy pypy-pack/bin/virtualenv-pypy
+cp /src/virtualenv-pypy pypy-pack-$REVISION/bin/virtualenv-pypy
 
 rm -rf $NAME
-mv pypy-pack $NAME
+mv pypy-pack-$REVISION $NAME
 
 # clean __pycache__
 find ./${NAME} -name "__pycache__" | xargs rm -rf >/dev/null 2>&1

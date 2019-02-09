@@ -8,14 +8,14 @@ export PATH=/opt/prefix/cpython-2.7/bin:$PATH
 
 env
 
-rm -rf pypy
-mkdir -p pypy
-wget https://bitbucket.org/pypy/pypy/get/${REVISION:=default}.tar.bz2 -O - | tar -C pypy --strip-components=1 -xj
+rm -rf pypy-$REVISION
+mkdir -p pypy-$REVISION
+wget https://bitbucket.org/pypy/pypy/get/${REVISION:=default}.tar.bz2 -O - | tar -C pypy-$REVISION --strip-components=1 -xj
 
 wget https://pypi.python.org/packages/be/64/1bb257ffb17d01f4a38d7ce686809a736837ad4371bcc5c42ba7a715c3ac/pycparser-2.17.tar.gz -O - | tar xz
-mv pycparser-2.17/pycparser pypy
+mv pycparser-2.17/pycparser pypy-$REVISION
 
-cd pypy
+cd pypy-$REVISION
 patch -p0 < ../platform_linux.patch
 patch -p0 < ../_curses_build.py.patch || echo "3 failed"
 patch -p0 < ../_curses_build.py.2.patch  || echo "2 failed"
