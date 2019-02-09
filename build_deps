@@ -88,9 +88,6 @@ make -j4
 make install
 cd -
 
-# tcl/tk refuses to build with GCC 8
-export PATH=/opt/devtools-7.2/bin:$PATH
-gcc --version
 
 wget https://prdownloads.sourceforge.net/tcl/tcl8.6.9-src.tar.gz -O - | tar xz
 cd tcl8.6.9/unix

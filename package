@@ -64,7 +64,7 @@ rm -rf $NAME
 mv pypy-pack $NAME
 
 # clean __pycache__
-find ./{NAME} -name "__pycache__" | xargs rm -rf >/dev/null 2>&1
+find ./${NAME} -name "__pycache__" | xargs rm -rf >/dev/null 2>&1
 
 rm -f ${NAME}.tar.bz2
 tar -cjf ${NAME}.tar.bz2 $NAME
