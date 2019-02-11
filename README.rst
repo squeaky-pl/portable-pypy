@@ -11,23 +11,33 @@ Currently they are known to work across various DEB and RPM based
 distributions including RHEL/Centos 6 and later, Fedora, SuSE Linux, Ubuntu and Debian stable.
 PyPy binaries should run on any distribution that includes glibc 2.17.
 
+
+Latest Python 3.6 release
+=========================
+
+`PyPy3.6 7.0.0 alpha x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.6-7.0.0-alpha-20190209-linux_x86_64-portable.tar.bz2>`_::
+
+    md5:    5f7d8e0eb2a3ef26e7cb7db263c6567c
+    sha1:   096a04506238c95e1379a155c220c69a26b295d6
+    sha256: ef8a5254b9a082dec23a6e029b1bb674a122a789c29d9c452452a9e97498bcbe
+
 Latest Python 3.5 release
 =========================
 
-`PyPy3.5 6.0.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-6.0.0-linux_x86_64-portable.tar.bz2>`_::
+`PyPy3.5 7.0.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-7.0.0-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    642aa33f07f93c220eb5188048d6ce6f
-    sha1:   47e889dc0880eaba71b669c41522f8fc8f583393
-    sha256: 07f16282d126abfa759702baea869b0f661aa97f4c553ebec66c624bda28155f
+    md5:    74bf9406a79552a307b36637f039fb11
+    sha1:   1c8123a43be60ccd3d3f5b3888bbc0900cc1e640
+    sha256: b0fa200f25a5a0ef90b8776ab1d0665c47d47c607d2ef057cce1da1ad2568e1f
 
 Latest Python 2.7 release
 =========================
 
-`PyPy 6.0.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-6.0.0-linux_x86_64-portable.tar.bz2>`_::
+`PyPy 7.0.0 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-7.0.0-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    c78a3b9890f6a06485d350bf460debcd
-    sha1:   9d98ab759abd809e9388d5214e9d3ffaf4f9118e
-    sha256: 1d2a833680f9432b6b5f6b8503f656535f429eeb6c4bc5408abe5b637bfb9b94
+    md5:    f379549e05da312da6b231d643a4bede
+    sha1:   e02879902f9f8ff3666e9fe4e1b11f0f9f1cb462
+    sha256: fd71f2bef69c342e492239c2de04a67676bbc08b262d31948bef9e1385a44646
 
 
 All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
