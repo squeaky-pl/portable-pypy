@@ -48,7 +48,7 @@ patch it to make it relocatable and package all together.
 
 .. code:: bash
 
-    docker run --rm `ABI=64 ./runopt.sh` portable-pypy ./package
+    docker run --rm `ABI=64 ./runopt.sh` portable-pypy ./package release-2.6.0
 
 
 You will see a line like: ``using pypy-2.6-linux_x86_64-portable`` at the end.
