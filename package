@@ -4,7 +4,7 @@ set -e
 
 REVISION=$1
 
-export PATH=/opt/prefix/cpython-2.7/bin:$PATH
+export PATH=/opt/pypy/bin:$PATH
 
 env
 
@@ -41,15 +41,19 @@ ln -s libssl* libssl.so
 ln -s libcrypto* libcrypto.so
 cd -
 
-mkdir pypy-pack-$REVISION/virtualenv_support
-cd pypy-pack-$REVISION/virtualenv_support
+(
+mkdir -p pypy-pack-$REVISION/virtualenv/virtualenv_support
+cd pypy-pack-$REVISION/virtualenv
 
-wget https://raw.githubusercontent.com/pypa/virtualenv/16.1.0/src/virtualenv.py
-wget https://github.com/pypa/virtualenv/raw/16.1.0/src/virtualenv_support/pip-18.1-py2.py3-none-any.whl
-wget https://github.com/pypa/virtualenv/raw/16.1.0/src/virtualenv_support/setuptools-40.5.0-py2.py3-none-any.whl
-wget https://github.com/pypa/virtualenv/raw/16.1.0/src/virtualenv_support/wheel-0.32.2-py2.py3-none-any.whl
+wget https://raw.githubusercontent.com/pypa/virtualenv/16.4.3/virtualenv.py
 
-cd -
+cd virtualenv_support
+
+touch __init__.py
+wget https://github.com/pypa/virtualenv/raw/16.4.3/virtualenv_support/pip-19.0.3-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.4.3/virtualenv_support/setuptools-40.8.0-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.4.3/virtualenv_support/wheel-0.33.1-py2.py3-none-any.whl
+)
 
 
 if [[ $NAME != pypy3* ]]; then

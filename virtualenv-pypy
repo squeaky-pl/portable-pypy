@@ -8,6 +8,6 @@ from sys import argv
 
 here = dirname(realpath(__file__))
 pypy = join(here, 'pypy')
-virtualenv = join(here, '../virtualenv_support/virtualenv.py')
+virtualenv = join(here, '../virtualenv/virtualenv.py')
 
 call([pypy, virtualenv] + argv[1:])

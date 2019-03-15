@@ -4,7 +4,7 @@ set -e
 
 REVISION=$1
 
-export PATH=/opt/prefix/cpython-2.7/bin:$PATH
+export PATH=/opt/pypy/bin:$PATH
 
 env
 
