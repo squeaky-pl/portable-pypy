@@ -5,13 +5,6 @@ set -ex
 env
 
 
-wget http://www.cpan.org/src/5.0/perl-5.24.1.tar.gz -O - | tar xz
-cd perl-5.24.1
-./configure.gnu --prefix=/opt/prefix
-make -j4
-make install
-cd -
-
 wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz -O - | tar xz
 cd ncurses-6.1
 ./configure --prefix=/opt/prefix --enable-widec --without-tests --without-cxx --with-termlib --without-normal --with-shared --enable-database --with-terminfo-dirs=/lib/terminfo:/usr/share/terminfo
