@@ -47,14 +47,15 @@ cd -
 mkdir -p pypy-pack-$REVISION/virtualenv/virtualenv_support
 cd pypy-pack-$REVISION/virtualenv
 
-wget https://raw.githubusercontent.com/pypa/virtualenv/16.4.3/virtualenv.py
+wget https://raw.githubusercontent.com/pypa/virtualenv/16.7.6/virtualenv.py
 
 cd virtualenv_support
 
 touch __init__.py
-wget https://github.com/pypa/virtualenv/raw/16.4.3/virtualenv_support/pip-19.0.3-py2.py3-none-any.whl
-wget https://github.com/pypa/virtualenv/raw/16.4.3/virtualenv_support/setuptools-40.8.0-py2.py3-none-any.whl
-wget https://github.com/pypa/virtualenv/raw/16.4.3/virtualenv_support/wheel-0.33.1-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.7.6/virtualenv_support/pip-19.1.1-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.7.6/virtualenv_support/pip-19.3-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.7.6/virtualenv_support/setuptools-41.4.0-py2.py3-none-any.whl
+wget https://github.com/pypa/virtualenv/raw/16.7.6/virtualenv_support/wheel-0.33.6-py2.py3-none-any.whl
 )
 
 
