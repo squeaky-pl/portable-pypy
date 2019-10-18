@@ -24,11 +24,11 @@ Latest Python 3.6 release
 Latest Python 2.7 release
 =========================
 
-`PyPy 7.1.1 x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-7.1.1-linux_x86_64-portable.tar.bz2>`_::
+`PyPy 7.2 x86_64 <https://github.com/squeaky-pl/portable-pypy/releases/download/pypy-7.2.0/pypy-7.2.0-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    add1d1736ee6e44288fc3390a2357b79
-    sha1:   882beac41c4c672868f8eeb1f997b8ca327b37e1
-    sha256: d0b226d2dd656c622cee4e3e982225e1b346653823b49f736d8b0ddc06fd0c73
+    md5:    cc8c7fb3553727476b204d1cd00eaef5
+    sha1:   21101a1ab2a8659f699ea60613cc867e7292f55d
+    sha256: a4f301e7629aafe4691ed1c3e9a39cf2158d86524f6ce584e5b850303e77ad81
 
 
 All downloads can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
