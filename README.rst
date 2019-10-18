@@ -15,11 +15,11 @@ PyPy binaries should run on any distribution that includes glibc 2.17.
 Latest Python 3.6 release
 =========================
 
-`PyPy3.6 7.1.1 beta x86_64 <https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.6-7.1.1-beta-linux_x86_64-portable.tar.bz2>`_::
+`PyPy3.6 7.2 x86_64 <https://github.com/squeaky-pl/portable-pypy/releases/download/pypy3.6-7.2.0/pypy3.6-7.2.0-linux_x86_64-portable.tar.bz2>`_::
 
-    md5:    1f44293675da46a45a3ddbd3d28d26f9
-    sha1:   17de4561ec95b878757d9686a94e20d4bab3dd1a
-    sha256: 82c878b61ad34fc2cf1686fa600a7a002d352e1b33a99a43007eec486ecd068e
+    md5:    f5806dbee63e64bf51b6d8453183f133
+    sha1:   fd675cc1d795f19893ed1d026a34307e0b6b0be0
+    sha256: 59099546b4dee56edcde2c9ff706687e35bb2aa94354cd56daa78aca036bd3d8
 
 Latest Python 2.7 release
 =========================
