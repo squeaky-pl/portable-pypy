@@ -32,6 +32,8 @@ if [[ $NAME == pypy3* ]]; then
     cd pypy-pack-$REVISION/bin
     ln -s $BINNAME pypy
     ln -s $BINNAME pypy3
+    ln -s $BINNAME python3
+    ln -s $BINNAME python3.${NAME:6:1}
     cd -
 fi
 ./make_portable pypy-pack-$REVISION
