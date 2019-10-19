@@ -13,8 +13,8 @@ make -j4
 make install
 cd -
 
-wget https://www.openssl.org/source/openssl-1.1.1b.tar.gz -O - | tar xz
-cd openssl-1.1.1b
+wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz -O - | tar xz
+cd openssl-1.1.1c
 ./config --prefix=/opt/prefix shared -Wl,-rpath=/opt/prefix/lib -D__USE_XOPEN2K8
 make -j4
 make install
@@ -39,8 +39,8 @@ make install
 cd -
 
 
-wget https://sqlite.org/2019/sqlite-autoconf-3270200.tar.gz -O - | tar xz
-cd sqlite-autoconf-3270200
+wget https://sqlite.org/2019/sqlite-autoconf-3300100.tar.gz -O - | tar xz
+cd sqlite-autoconf-3300100
 ./configure --prefix=/opt/prefix --enable-fts5
 make -j4
 make install
@@ -58,8 +58,8 @@ find . -name ffi.h | xargs -i ln -sf ../lib/{} ../include
 find . -name ffitarget.h | xargs -i ln -sf ../lib/{} ../include
 cd -
 
-wget https://downloads.sourceforge.net/project/expat/expat/2.2.6/expat-2.2.6.tar.bz2 -O - | tar xj
-cd expat-2.2.6
+wget https://github.com/libexpat/libexpat/releases/download/R_2_2_9/expat-2.2.9.tar.bz2 -O - | tar xj
+cd expat-2.2.9
 ./configure --prefix=/opt/prefix
 make -j4
 make install

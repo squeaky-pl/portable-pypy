@@ -1,4 +1,4 @@
-FROM centos:centos6
+FROM quay.io/pypa/manylinux2010_x86_64
 
 RUN yum install -y wget make bzip2-devel zlib-devel glibc-devel libX11-devel libXt-devel patch expat libXft-devel perl
 
