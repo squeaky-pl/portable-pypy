@@ -2,6 +2,11 @@
 Portable PyPy distribution for Linux
 ====================================
 
+    Note: As of PyPy 7.3.0 the general direction and some patches from Portable PyPy were 
+    adapted/incorporated into upstream. For 7.3.0 and newer just go to official PyPy 
+    downloads page http://pypy.org/download.html and grab Linux x86-64 binary (64bit, built
+    on CentOS6).
+
 This repository contains efforts to build 64 bit
 x86 `PyPy <http://pypy.org>`_ binaries for various Linux distributions. The idea
 is that you just download an archive, uncompress it and run
