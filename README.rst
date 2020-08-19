@@ -38,7 +38,7 @@ Latest Python 2.7 release
     sha256: a4f301e7629aafe4691ed1c3e9a39cf2158d86524f6ce584e5b850303e77ad81
 
 
-All older downloads (pre 7.2) can be found `here <https://bitbucket.org/squeaky/portable-pypy/downloads>`_
+All older downloads (pre 7.2) can be found `here <https://bitbucket-archive.softwareheritage.org/static/14/140b7b14-aa94-424e-b191-9cd3438381f7/attachments/>`_. The original mercurial repository was archived `here <https://bitbucket-archive.softwareheritage.org/projects/sq/squeaky/portable-pypy.html>`.
 
 Using virtualenv
 ================
